@@ -1,71 +1,104 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Section from '@/components/Section';
-import Card from '@/components/Card';
-import { products } from '../../data/products';
+import Button from '@/components/Button';
+import ShopGrid from './ShopGrid';
+import { products, getFeaturedLimitedDrop } from '../../data/products';
+import DropBadge from '@/components/shop/DropBadge';
 
 export const metadata: Metadata = {
-  title: 'Shop - Fanhattan Merchandise',
-  description: 'Official Fanhattan merchandise including apparel, collectibles, and art prints.',
+  title: 'Official Fanhattan Shop — Bagged Up',
+  description: 'Explore official vinyl, apparel, and limited drops from the world of Fanhattan.',
 };
 
 export default function ShopPage() {
+  const featuredDrop = getFeaturedLimitedDrop();
+
   return (
     <>
+      {/* Hero Section */}
       <Section className="pt-32 pb-12" container={false}>
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold font-display mb-4">
-            Shop
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Official Fanhattan merchandise and collectibles
-          </p>
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center space-y-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display uppercase tracking-wide">
+              Official Fanhattan Drops
+            </h1>
+            <p className="text-xl md:text-2xl text-sand font-display uppercase tracking-wider">
+              Earn it. Own it. Display it.
+            </p>
+          </div>
         </div>
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <Card key={product.id} href={`/shop/${product.id}`} className="group">
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center relative">
-                <span className="text-6xl">🛍️</span>
-                {product.status !== 'available' && (
-                  <div className="absolute top-2 right-2">
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      product.status === 'preorder' 
-                        ? 'bg-primary/20 text-primary' 
-                        : 'bg-muted text-muted-foreground'
-                    }`}>
-                      {product.status === 'preorder' ? 'Pre-order' : 'Sold Out'}
-                    </span>
+      {/* Featured Limited Drop */}
+      {featuredDrop && (
+        <Section className="pb-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-gradient-to-br from-card via-card to-muted border-2 border-platform/30 rounded-2xl overflow-hidden shadow-2xl shadow-platform/20 transition-all duration-300 hover:shadow-platform/30 hover:-translate-y-1">
+              <div className="grid md:grid-cols-2 gap-0">
+                {/* Visual */}
+                <div className="aspect-square md:aspect-auto bg-gradient-to-br from-platform/20 to-platform/5 flex items-center justify-center p-16 relative">
+                  <div className="text-9xl opacity-60">
+                    {featuredDrop.type === 'vinyl' && '🎵'}
+                    {featuredDrop.type === 'apparel' && '👕'}
+                    {featuredDrop.type === 'digital' && '💎'}
+                    {featuredDrop.type === 'accessory' && '📌'}
                   </div>
-                )}
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
-                  {product.description}
-                </p>
-                <p className="text-lg font-bold text-primary">
-                  ${product.price.toFixed(2)}
-                </p>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
+                  
+                  {/* Badge */}
+                  <div className="absolute top-6 right-6">
+                    <DropBadge dropType={featuredDrop.dropType} mode={featuredDrop.mode} />
+                  </div>
+                </div>
 
-      <Section className="bg-muted/30">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold font-display mb-4">
-            Coming in Phase 1
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            We&apos;re working on integrating with Shopify or Stripe for secure payments and order management. 
-            In the meantime, enjoy browsing our product catalog!
-          </p>
+                {/* Content */}
+                <div className="p-8 md:p-12 flex flex-col justify-center space-y-6">
+                  <div>
+                    <span className="text-sm font-display uppercase tracking-widest text-platform mb-2 block">
+                      Limited Release
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-display uppercase tracking-wide mb-4">
+                      {featuredDrop.name}
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {featuredDrop.description}
+                    </p>
+                  </div>
+
+                  {/* Countdown Placeholder */}
+                  <div className="inline-flex items-center gap-4 text-center">
+                    <div className="flex-1">
+                      <div className="text-3xl font-display text-platform">48</div>
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground">Hours</div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-3xl font-display text-platform">12</div>
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground">Minutes</div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-3xl font-display text-platform">34</div>
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground">Seconds</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <span className="text-3xl font-display text-platform">
+                      ${featuredDrop.price.toFixed(2)}
+                    </span>
+                    <Button href={`/shop/${featuredDrop.slug}`} variant="primary">
+                      View Drop
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {/* Filter Bar + Product Grid (Client Component) */}
+      <Section className="pt-8">
+        <div className="max-w-7xl mx-auto">
+          <ShopGrid products={products} />
         </div>
       </Section>
     </>

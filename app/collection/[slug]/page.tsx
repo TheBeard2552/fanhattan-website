@@ -6,7 +6,7 @@ import Card from '@/components/Card';
 import RarityBadge from '@/components/collection/RarityBadge';
 import ModeTag from '@/components/collection/ModeTag';
 import { getCollectibleBySlug, getAllCollectibleSlugs } from '../../../data/collectibles';
-import { getLoreBySlug } from '@/lib/lore/queries';
+import { getLoreBySlug } from '@/lib/loreHub/queries';
 
 interface PageProps {
   params: Promise<{
@@ -173,23 +173,23 @@ export default async function CollectibleDetailPage({ params }: PageProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {relatedLore.map((entry) => (
                 <Card 
-                  key={entry.frontmatter.slug}
-                  href={`/lore/${entry.frontmatter.type}/${entry.frontmatter.slug}`}
+                  key={entry.slug}
+                  href={`/lore/${entry.type}/${entry.slug}`}
                   className="group"
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">
-                          {entry.frontmatter.type}
+                          {entry.type}
                         </p>
                         <h3 className="text-lg font-semibold group-hover:text-platform transition-colors">
-                          {entry.frontmatter.title}
+                          {entry.name}
                         </h3>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {entry.frontmatter.summary}
+                      {entry.summary}
                     </p>
                   </div>
                 </Card>
