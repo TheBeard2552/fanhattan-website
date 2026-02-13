@@ -71,7 +71,7 @@ export default function HomePage() {
           </div>
           
           <div className="text-center">
-            <Button variant="secondary" href="/lore">
+            <Button variant="secondary" href="/collection">
               View Collection
             </Button>
           </div>
