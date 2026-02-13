@@ -4,38 +4,43 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --primary: 346 77% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --border: 240 5.9% 90%;
+    /* Core Brand Colors - Bagged Up */
+    --asphalt: #0E0F11;
+    --stadium-teal: #1F6F78;
+    --paper-sand: #E5D3B3;
+    --text-primary: #F4F4F4;
+    --text-muted: #6B7280;
+    
+    /* Semantic Mappings */
+    --background: var(--asphalt);
+    --foreground: var(--text-primary);
+    --platform: var(--stadium-teal);
+    --sand: var(--paper-sand);
+    
+    /* Derived Neutrals */
+    --card: #1A1B1E;
+    --card-foreground: var(--text-primary);
+    --muted: #2A2B2E;
+    --muted-foreground: var(--text-muted);
+    --border: #2A2B2E;
     --radius: 0.5rem;
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-display: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --primary: 346 77% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --border: 240 3.7% 15.9%;
+    
+    /* Mode Colors - Isolated (only for ModeCard) */
+    --mode-billy-heat: #FF5A1F;
+    --mode-billy-glow: #FF7A3F;
+    --mode-super-electric: #00D9FF;
+    --mode-super-glow: #33E4FF;
+    
+    /* Rarity Colors */
+    --rarity-common: #9CA3AF;
+    --rarity-rare: #3B82F6;
+    --rarity-epic: #8B5CF6;
+    --rarity-legendary: #F59E0B;
+    --rarity-mythical: #EC4899;
+    
+    /* Font Variables (will be set by next/font) */
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Lilita One', system-ui, sans-serif;
   }
 }
 
@@ -44,8 +49,12 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase tracking-wide;
   }
 }
 

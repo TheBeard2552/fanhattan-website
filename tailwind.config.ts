@@ -8,28 +8,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Core Brand
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
-        },
-        secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
-        },
-        accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
+        platform: 'var(--platform)',
+        sand: 'var(--sand)',
+        
+        // Semantic
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
         muted: {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',
         },
         border: 'var(--border)',
-        card: {
-          DEFAULT: 'var(--card)',
-          foreground: 'var(--card-foreground)',
+        
+        // Mode Colors (isolated - only for ModeCard)
+        mode: {
+          billy: {
+            heat: 'var(--mode-billy-heat)',
+            glow: 'var(--mode-billy-glow)',
+          },
+          super: {
+            electric: 'var(--mode-super-electric)',
+            glow: 'var(--mode-super-glow)',
+          },
+        },
+        
+        // Rarity System
+        rarity: {
+          common: 'var(--rarity-common)',
+          rare: 'var(--rarity-rare)',
+          epic: 'var(--rarity-epic)',
+          legendary: 'var(--rarity-legendary)',
+          mythical: 'var(--rarity-mythical)',
         },
       },
       borderRadius: {

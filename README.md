@@ -1,345 +1,258 @@
-# Fanhattan v0
+# Bagged Up - A Collectible Universe
 
-A Next.js-powered website for the Fanhattan universe featuring a game landing page, Riot-Universe-style lore hub, and merchandise shop.
+A Next.js-powered platform for Bagged Up featuring a collectible-first universe, game modes, lore hub, and merchandise shop.
 
-## Features
+## Brand System
 
-- 🎮 **Game Landing & Play Pages**: Hero sections, feature showcases, and download CTAs
-- 📖 **Lore Hub**: File-based MDX content with strict schema validation for characters, districts, and artifacts
-- 🛍️ **Shop**: Product catalog with add-to-cart functionality (no payment processing yet)
-- ✅ **Content Validation**: Build-time checks for schema compliance, slug uniqueness, and related links
-- 🎨 **Modern Design**: Tailwind-based design system with reusable components
-- 🚀 **Vercel-Ready**: Deploy with zero configuration
+### Core Identity
 
-## Tech Stack
+Bagged Up is built on a **collectible-first** platform with a muted, energetic brand that scales across multiple game modes, a lore universe, and physical/digital drops.
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Content**: MDX with gray-matter for frontmatter parsing
-- **Validation**: Zod schemas with custom validation logic
-- **Deployment**: Vercel (or any Node.js host)
+**Platform Colors:**
+- **Asphalt** (`#0E0F11`) - Background
+- **Stadium Teal** (`#1F6F78`) - Primary platform accent
+- **Paper Sand** (`#E5D3B3`) - Secondary neutral accent
+- **Text Primary** (`#F4F4F4`) - Main text
+- **Text Muted** (`#6B7280`) - Secondary text
+
+**Critical Rule:** Heat orange is **NOT** a global brand color. It appears only within Billy's Big Streak mode.
+
+### Mode Color System (Isolated)
+
+Mode colors are **isolated** to prevent leakage into global components.
+
+**Billy's Big Streak:**
+- Heat Orange: `#FF5A1F`
+- Glow: `#FF7A3F`
+- Usage: Only within `ModeCard` component when `mode="billy"`
+
+**Super Streak:**
+- Electric Blue: `#00D9FF`
+- Glow: `#33E4FF`
+- Usage: Only within `ModeCard` component when `mode="super"`
+
+**Implementation:**
+- Mode colors live under `colors.mode.*` in Tailwind config
+- Only `ModeCard.tsx` may reference these colors
+- Global components (Nav, Button, Card, Section) must never use `mode.*` tokens
+
+### Rarity System
+
+Collectibles use a scalable rarity system:
+
+| Rarity | Color | Hex |
+|--------|-------|-----|
+| Common | Gray | `#9CA3AF` |
+| Rare | Blue | `#3B82F6` |
+| Epic | Purple | `#8B5CF6` |
+| Legendary | Gold | `#F59E0B` |
+| Mythical | Pink/Holo | `#EC4899` |
+
+**Usage:**
+- `CollectibleCard` borders and badges
+- Shop product frames
+- UI rarity indicators
+- Digital card treatments
+
+### Typography System
+
+**Headline Font:** Lilita One (Google Font)
+- All H1, H2, H3
+- Navigation links
+- Buttons
+- Uppercase + tracking-wide
+
+**Body Font:** Inter (Google Font)
+- Paragraphs
+- Forms
+- Metadata
+- Weights: 400, 500, 600
+
+**Implementation:**
+- Fonts loaded via `next/font/google` in `app/layout.tsx`
+- CSS variables: `--font-display`, `--font-sans`
+- Tailwind: `font-display`, `font-sans`
+
+### Design Rules
+
+**Headlines:**
+- Uppercase
+- `tracking-wide`
+- Large scale (H1: `text-5xl+`, H2: `text-3xl-4xl`)
+- Generous spacing
+
+**Buttons:**
+- `font-display uppercase tracking-wide`
+- Tactile: shadow + hover lift + active press
+- Variants: primary (teal), secondary (sand), ghost
+
+**Cards:**
+- Border + shadow for tactile feel
+- `hover:-translate-y-0.5` lift effect
+- Collectible cards use rarity border colors
+
+## Project Structure
+
+```
+├── app/
+│   ├── layout.tsx           # Font setup (Lilita One + Inter)
+│   ├── globals.css          # Design tokens
+│   ├── page.tsx             # Homepage
+│   ├── play/                # Play/download page
+│   ├── lore/                # Lore hub
+│   └── shop/                # Shop pages
+├── src/components/
+│   ├── Button.tsx           # Primary button component
+│   ├── CollectibleCard.tsx  # Collectible display card
+│   ├── ModeCard.tsx         # Game mode card (only component using mode.* colors)
+│   ├── Nav.tsx              # Global navigation
+│   ├── Card.tsx             # Generic card component
+│   ├── Section.tsx          # Page section wrapper
+│   └── Footer.tsx           # Global footer
+├── content/                  # MDX lore content
+├── data/
+│   └── products.ts          # Shop product data
+└── tailwind.config.ts       # Design tokens config
+```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 18+
+- npm
 
 ### Installation
-
-1. Clone the repository or navigate to the project directory:
-
-```bash
-cd WebsiteV1
-```
-
-2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Run the development server:
+### Development
 
 ```bash
 npm run dev
 ```
 
-The site will be available at [http://localhost:3000](http://localhost:3000).
+Visit [http://localhost:3000](http://localhost:3000)
 
-### Available Scripts
+### Build
 
-- `npm run dev` - Start development server with content validation (warn mode)
-- `npm run build` - Build for production (fails if content validation errors exist)
+```bash
+npm run build
+```
+
+### Scripts
+
+- `npm run dev` - Start dev server with content validation
+- `npm run build` - Production build with validation
 - `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run validate` - Run content validation only (error mode)
+- `npm run validate` - Validate lore content only
 
-## Project Structure
+## Design System Extension
 
-```
-├── app/                          # Next.js App Router pages
-│   ├── layout.tsx               # Root layout with nav/footer
-│   ├── page.tsx                 # Landing page
-│   ├── play/                    # Play/download page
-│   ├── lore/                    # Lore hub and type pages
-│   │   ├── [type]/[slug]/       # Dynamic lore detail pages
-│   │   ├── characters/
-│   │   ├── districts/
-│   │   └── artifacts/
-│   └── shop/                    # Shop pages
-│       └── [id]/                # Product detail pages
-├── content/                      # MDX lore content
-│   ├── characters/
-│   ├── districts/
-│   └── artifacts/
-├── data/
-│   └── products.ts              # Shop product data
-├── src/
-│   ├── components/              # Reusable React components
-│   │   ├── Nav.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Card.tsx
-│   │   ├── Section.tsx
-│   │   ├── TagFilter.tsx
-│   │   ├── MDXContent.tsx
-│   │   └── shop/                # Shop-specific components
-│   └── lib/
-│       └── lore/                # Lore content system
-│           ├── types.ts
-│           ├── schema.ts
-│           ├── fs.ts
-│           ├── validate.ts
-│           └── queries.ts
-├── scripts/
-│   └── validate-content.ts      # Content validation CLI
-└── tailwind.config.ts           # Design tokens
+### Adding a New Mode
+
+1. Add mode colors to `app/globals.css`:
+```css
+--mode-newmode-primary: #HEX;
+--mode-newmode-glow: #HEX;
 ```
 
-## Adding Lore Content
-
-### Content Schema
-
-All lore entries must be MDX files placed in the appropriate directory (`content/characters/`, `content/districts/`, or `content/artifacts/`) with valid frontmatter.
-
-#### Required Frontmatter Fields
-
-```yaml
----
-title: string              # Display name
-slug: string               # URL-safe identifier (lowercase, alphanumeric, hyphens only)
-type: enum                 # Must be 'characters', 'districts', or 'artifacts'
-summary: string            # Brief description (used in cards and meta tags)
-tags: string[]             # Array of tags (at least one required)
-related: string[]          # Array of related content slugs (can be empty)
-updatedAt: string          # ISO 8601 datetime (e.g., "2026-02-13T12:00:00Z")
-status: enum               # 'canon', 'apocrypha', or 'draft'
-heroImage: string          # Optional image path
----
-```
-
-#### Example Lore Entry
-
-Create `content/characters/example-character.mdx`:
-
-```mdx
----
-title: Example Character
-slug: example-character
-type: characters
-summary: A brief description of this character that appears in card previews.
-tags: [warrior, hero, faction-name]
-related: [related-district, related-artifact]
-updatedAt: 2026-02-13T10:00:00Z
-status: canon
-heroImage: /images/characters/example.jpg
----
-
-# Example Character
-
-Write your character lore here using full Markdown/MDX syntax.
-
-## Section Headings
-
-- Lists
-- **Bold text**
-- *Italic text*
-
-You can use all standard Markdown features.
-```
-
-### Validation Rules
-
-The validation system enforces:
-
-1. **Schema Compliance**: All required fields must be present and correctly typed
-2. **Slug Uniqueness**: No two entries can share the same slug (across all types)
-3. **Type Matching**: The `type` field must match the directory name
-4. **Related Links**: Warns if `related[]` references non-existent slugs
-5. **ISO Dates**: `updatedAt` must be a valid ISO 8601 datetime
-
-### When Validation Runs
-
-- **Dev (`npm run dev`)**: Runs once on startup in **warn** mode (shows issues but doesn't block)
-- **Build (`npm run build`)**: Runs before build in **error** mode (fails build if errors exist)
-- **Manual (`npm run validate`)**: Run validation anytime in **error** mode
-
-### Validation Output Example
-
-```
-=== Lore Content Validation Results ===
-
-✗ [content/characters/broken.mdx] slug: Slug must be lowercase alphanumeric with hyphens
-⚠ [content/districts/neon-district.mdx] Related slug "missing-character" not found in any lore entry
-
-=======================================
-Errors: 1, Warnings: 1
-```
-
-## Design System
-
-### Tailwind Tokens
-
-Custom CSS variables are defined in `app/globals.css` and exposed via Tailwind config:
-
-- **Colors**: `primary`, `secondary`, `accent`, `muted`, `border`, `card`
-- **Radius**: `--radius` for consistent border-radius
-- **Fonts**: `--font-sans`, `--font-display`
-
-### Reusable Components
-
-- **`<Section>`**: Page section wrapper with consistent padding
-- **`<Card>`**: Content card with optional link and hover states
-- **`<TagFilter>`**: Client-side tag filtering UI
-- **`<MDXContent>`**: Server-side MDX renderer using next-mdx-remote
-
-## Shop System (v0)
-
-The shop is a **UI-only prototype** with:
-
-- Product data contract in `data/products.ts`
-- Add-to-cart functionality with local state (React Context)
-- Product grid and detail pages
-- No payment processing (Phase 1 feature)
-
-### Adding Products
-
-Edit `data/products.ts`:
-
+2. Add to `tailwind.config.ts`:
 ```typescript
-{
-  id: 'unique-product-id',
-  name: 'Product Name',
-  price: 29.99,
-  image: '/images/products/image.jpg',  // Placeholder for v0
-  description: 'Product description',
-  status: 'available' | 'preorder' | 'sold-out',
-  category: 'apparel' | 'art' | 'collectibles' | 'books',
+mode: {
+  newmode: {
+    primary: 'var(--mode-newmode-primary)',
+    glow: 'var(--mode-newmode-glow)',
+  },
 }
 ```
 
+3. Update `ModeCard.tsx` to accept new mode:
+```typescript
+mode: 'billy' | 'super' | 'newmode'
+```
+
+### Adding a New Rarity
+
+1. Add rarity color to `app/globals.css`:
+```css
+--rarity-special: #HEX;
+```
+
+2. Add to `tailwind.config.ts`:
+```typescript
+rarity: {
+  special: 'var(--rarity-special)',
+}
+```
+
+3. Update `CollectibleCard.tsx` to accept new rarity.
+
+### Creating New Components
+
+**Rules:**
+- Use `font-display` for headlines/buttons
+- Use `font-sans` for body text
+- Never use `mode.*` colors outside `ModeCard`
+- Use platform colors (teal/sand) for global UI
+- Apply tactile effects: shadows + hover lift
+
+**Example:**
+```tsx
+<button className="
+  font-display uppercase tracking-wide
+  bg-platform text-white
+  px-8 py-3 rounded-lg
+  shadow-lg hover:-translate-y-0.5
+  transition-all
+">
+  Action
+</button>
+```
+
+## Lore Content System
+
+Lore entries are MDX files in `/content` with strict validation.
+
+**Required frontmatter:**
+- `title`, `slug`, `type`, `summary`, `tags[]`, `related[]`, `updatedAt`, `status`
+
+**Validation:**
+- Runs on dev start (warn mode)
+- Runs on build (error mode - fails if invalid)
+- `npm run validate` - manual check
+
+See original README sections for detailed lore documentation.
+
 ## Deployment
 
-### Vercel (Recommended)
+### Vercel
 
-1. Push your code to GitHub/GitLab/Bitbucket
+1. Connect your GitHub repo to Vercel
+2. Vercel auto-detects Next.js settings
+3. Deploy
 
-2. Import your repository on [Vercel](https://vercel.com)
-
-3. Vercel will auto-detect Next.js and use these settings:
-   - **Build Command**: `npm run build` (includes validation)
-   - **Output Directory**: `.next`
-   - **Install Command**: `npm install`
-
-4. Deploy! 🚀
-
-The build will **fail** if content validation errors exist, ensuring canon integrity.
-
-### Other Platforms
-
-This is a standard Next.js app and can be deployed to:
-
-- Netlify
-- Cloudflare Pages
-- AWS Amplify
-- Any Node.js host
-
-Just ensure the build command is `npm run build` to enable validation.
-
-## Environment Variables
-
-No environment variables are required for v0. All content is file-based and shop is UI-only.
+Build command: `npm run build` (includes validation)
 
 ## Phase 1 Roadmap
 
 ### Payment Integration
+- Headless Shopify or Stripe + Supabase
+- Order management
+- Digital collectible delivery
 
-**Option A: Headless Shopify**
-- Migrate products to Shopify
-- Use Shopify Storefront API
-- Keep existing UI, add checkout flow
+### Enhanced Features
+- Authentication (NextAuth.js)
+- User profiles + collection showcase
+- Streak tracking + leaderboards
+- Seasonal drops + limited editions
 
-**Option B: Stripe + Supabase**
-- Store products in Supabase
-- Implement Stripe checkout
-- Add order management
-- Requires backend API routes
-
-### Features to Add
-
-1. **Authentication** (if needed for shop accounts)
-   - NextAuth.js or Clerk
-   - User profiles and order history
-
-2. **CMS Integration** (optional)
-   - Sanity or Contentful for lore content
-   - Admin UI for non-technical content updates
-   - Keep validation schema
-
-3. **Enhanced Lore Features**
-   - Search functionality
-   - Timeline view
-   - Interactive district map
-
-4. **Shop Enhancements**
-   - Inventory management
-   - Order tracking
-   - Email notifications
-   - Product reviews
-
-5. **Analytics**
-   - Vercel Analytics (built-in)
-   - Google Analytics 4
-   - Content engagement tracking
-
-## Troubleshooting
-
-### Build Fails with Validation Errors
-
-Check the console output for specific errors. Common issues:
-
-- **Duplicate slugs**: Two entries have the same `slug` value
-- **Type mismatch**: Entry's `type` doesn't match its directory
-- **Invalid date**: `updatedAt` is not a valid ISO 8601 datetime
-- **Missing fields**: Required frontmatter fields are missing
-
-Fix the errors in your MDX files and rebuild.
-
-### TypeScript Errors
-
-If you see type errors:
-
-```bash
-# Delete cache and reinstall
-rm -rf .next node_modules
-npm install
-npm run dev
-```
-
-### Dev Server Won't Start
-
-Ensure you're using Node.js 18+:
-
-```bash
-node --version  # Should be v18 or higher
-```
-
-## Contributing
-
-### Content Guidelines
-
-1. **Canon Status**: Use `status: canon` only for officially approved lore
-2. **Tags**: Keep tags lowercase and hyphenated (e.g., `tech-savvy`, `neon-district`)
-3. **Related Links**: Always verify related slugs exist before adding them
-4. **Dates**: Use ISO format with timezone (`2026-02-13T12:00:00Z`)
-
-### Code Guidelines
-
-1. Follow existing TypeScript patterns
-2. Use the design system components
-3. Run `npm run lint` before committing
-4. Ensure `npm run build` succeeds
+### Lore Expansion
+- Interactive district map
+- Timeline view
+- Character relationships graph
 
 ## License
 
@@ -347,4 +260,4 @@ node --version  # Should be v18 or higher
 
 ## Credits
 
-Built with Next.js, Tailwind CSS, and TypeScript. Inspired by Riot Games' Universe hub.
+Built with Next.js, Tailwind CSS, TypeScript, and Google Fonts (Lilita One + Inter).
