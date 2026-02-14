@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import LoreHero from '@/components/lore/LoreHero';
 import LoreSection from '@/components/lore/LoreSection';
 import LoreCard from '@/components/lore/LoreCard';
-import { getLoreByType, filterByDistrict, getDistrictOptions } from '@/lib/loreHub/queries';
-import { LoreType } from '@/lib/loreHub/types';
+import { getLoreByType, getDistrictOptions } from '@/lib/sanity/queries';
+import { LoreType } from '@/lib/sanity/types';
 
 interface PageProps {
   params: Promise<{
@@ -36,6 +36,8 @@ const typeConfig: Record<LoreType, { title: string; description: string }> = {
 
 const validTypes: LoreType[] = ['characters', 'districts', 'artifacts', 'chapters'];
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export async function generateStaticParams() {
   return validTypes.map((type) => ({ type }));
 }
@@ -66,13 +68,13 @@ export default async function LoreTypePage({ params, searchParams }: PageProps) 
   const loreType = type as LoreType;
   const config = typeConfig[loreType];
   
-  let entries = getLoreByType(loreType);
+  let entries = await getLoreByType(loreType);
   
   if (district) {
-    entries = filterByDistrict(entries, district);
+    entries = entries.filter((entry) => entry.district === district);
   }
   
-  const districtOptions = getDistrictOptions();
+  const districtOptions = await getDistrictOptions();
   
   return (
     <>

@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import LoreSection from '@/components/lore/LoreSection';
 import Card from '@/components/Card';
 import TagBadge from '@/components/lore/TagBadge';
-import { getLoreByTypeAndSlug, getRelatedLore, getAllLore } from '@/lib/loreHub/queries';
-import { LoreType } from '@/lib/loreHub/types';
+import PortableText from '@/components/PortableText';
+import { getLoreByTypeAndSlug, getRelatedLore, getAllLoreSlugs } from '@/lib/sanity/queries';
+import { LoreType } from '@/lib/sanity/types';
+import { urlForImage } from '@/lib/sanity/image';
 import { getCollectibleBySlug } from '../../../../data/collectibles';
 
 interface PageProps {
@@ -15,8 +18,10 @@ interface PageProps {
   }>;
 }
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export async function generateStaticParams() {
-  const allLore = getAllLore();
+  const allLore = await getAllLoreSlugs();
   return allLore.map((entry) => ({
     type: entry.type,
     slug: entry.slug,
@@ -25,7 +30,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { type, slug } = await params;
-  const entry = getLoreByTypeAndSlug(type as LoreType, slug);
+  const entry = await getLoreByTypeAndSlug(type as LoreType, slug);
 
   if (!entry) {
     return {
@@ -55,13 +60,13 @@ const typeEmojis: Record<string, string> = {
 
 export default async function LoreDetailPage({ params }: PageProps) {
   const { type, slug } = await params;
-  const entry = getLoreByTypeAndSlug(type as LoreType, slug);
+  const entry = await getLoreByTypeAndSlug(type as LoreType, slug);
 
   if (!entry) {
     notFound();
   }
 
-  const relatedLore = getRelatedLore(entry.relatedLore);
+  const relatedLore = await getRelatedLore(entry.relatedLore);
   const relatedCollectibles = entry.relatedCollectibles
     .map((collectibleSlug) => getCollectibleBySlug(collectibleSlug))
     .filter((c) => c !== undefined);
@@ -79,8 +84,18 @@ export default async function LoreDetailPage({ params }: PageProps) {
           <div className="max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {/* Image */}
-              <div className="aspect-square bg-gradient-to-br from-platform/20 to-platform/5 rounded-lg flex items-center justify-center border-2 border-platform/20">
-                <span className="text-9xl">{typeEmojis[entry.type] || '📄'}</span>
+              <div className="aspect-square bg-gradient-to-br from-platform/20 to-platform/5 rounded-lg flex items-center justify-center border-2 border-platform/20 overflow-hidden">
+                {entry.heroImage ? (
+                  <Image
+                    src={urlForImage(entry.heroImage).width(800).height(800).url()}
+                    alt={entry.name}
+                    width={800}
+                    height={800}
+                    className="object-cover w-full h-full"
+                  />
+                ) : (
+                  <span className="text-9xl">{typeEmojis[entry.type] || '📄'}</span>
+                )}
               </div>
               
               {/* Details */}
@@ -114,24 +129,17 @@ export default async function LoreDetailPage({ params }: PageProps) {
         </div>
       </LoreSection>
 
-      {/* Main Body (Placeholder) */}
-      <LoreSection className="bg-muted/30">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl font-display uppercase tracking-wide mb-6">
-            Full Story
-          </h2>
-          <div className="prose prose-invert max-w-none">
-            <p className="text-foreground/70 leading-relaxed mb-4">
-              The full lore entry for <strong>{entry.name}</strong> is being documented by the Archive District.
-              This page will be updated as more information becomes available.
-            </p>
-            <p className="text-foreground/70 leading-relaxed">
-              In the meantime, explore the related lore and collectibles below to learn more about
-              the world of Fanhattan.
-            </p>
+      {/* Main Body */}
+      {entry.body && entry.body.length > 0 && (
+        <LoreSection className="bg-muted/30">
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-display uppercase tracking-wide mb-6">
+              Full Story
+            </h2>
+            <PortableText value={entry.body} />
           </div>
-        </div>
-      </LoreSection>
+        </LoreSection>
+      )}
 
       {/* Related Lore Section */}
       {relatedLore.length > 0 && (

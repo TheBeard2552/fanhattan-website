@@ -231,19 +231,39 @@ rarity: {
 </button>
 ```
 
-## Lore Content System
+## Lore Content System (Sanity CMS)
 
-Lore entries are MDX files in `/content` with strict validation.
+Lore content is now managed through **Sanity CMS** for a writer-friendly interface.
 
-**Required frontmatter:**
-- `title`, `slug`, `type`, `summary`, `tags[]`, `related[]`, `updatedAt`, `status`
+### Content Management
+- **Studio URL**: `/studio` (invite-only access)
+- **Content Types**: Characters, Districts, Artifacts, Chapters
+- **Workflow**: Draft → Review → Publish
+- **Auto-Revalidation**: Published content appears within 60 seconds
 
-**Validation:**
-- Runs on dev start (warn mode)
-- Runs on build (error mode - fails if invalid)
-- `npm run validate` - manual check
+### For Writers
+- Create and edit drafts in the Sanity Studio
+- Rich text editor for long-form lore
+- Tag system for organization
+- Link related lore entries
+- No code/markdown required
 
-See original README sections for detailed lore documentation.
+### For Publishers
+- Review drafts and publish when ready
+- Only administrators can publish
+- Content automatically syncs to the site
+
+### Setup Instructions
+See `SANITY_SETUP.md` for detailed setup instructions including:
+- Creating a Sanity project
+- Inviting writers
+- Configuring webhooks
+- Publishing workflow
+
+### Legacy Content
+- Old MDX files in `/content` are preserved but not actively used
+- Old TS data files in `/data/lore*.ts` are deprecated
+- Validation scripts in `src/lib/lore/*` are replaced by Sanity schemas
 
 ## Deployment
 

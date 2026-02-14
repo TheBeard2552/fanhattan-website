@@ -7,7 +7,9 @@ export default function DownloadButtons({ className = '' }: DownloadButtonsProps
     <div className={`flex flex-col sm:flex-row gap-4 items-center justify-center ${className}`}>
       {/* App Store Button */}
       <a 
-        href="#" 
+        href="https://apps.apple.com/us/app/bagged-up/id6742116076" 
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex items-center gap-3 px-6 py-3 bg-card border-2 border-border rounded-lg hover:border-platform/50 transition-all duration-200 hover:-translate-y-0.5"
         aria-label="Download on the App Store"
       >
@@ -22,7 +24,9 @@ export default function DownloadButtons({ className = '' }: DownloadButtonsProps
 
       {/* Google Play Button */}
       <a 
-        href="#" 
+        href="https://play.google.com/store/apps/details?id=com.anonymous.brownbaggames&hl=en_US" 
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex items-center gap-3 px-6 py-3 bg-card border-2 border-border rounded-lg hover:border-platform/50 transition-all duration-200 hover:-translate-y-0.5"
         aria-label="Get it on Google Play"
       >

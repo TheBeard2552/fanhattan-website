@@ -5,17 +5,19 @@ import LoreSection from '@/components/lore/LoreSection';
 import CategoryCard from '@/components/lore/CategoryCard';
 import TimelineItem from '@/components/lore/TimelineItem';
 import LoreCard from '@/components/lore/LoreCard';
-import { getFeaturedLore, getTimelineLore, getLoreTypeCounts } from '@/lib/loreHub/queries';
+import { getFeaturedLore, getTimelineLore, getLoreTypeCounts } from '@/lib/sanity/queries';
 
 export const metadata: Metadata = {
   title: 'The Lore of Fanhattan — Bagged Up',
   description: 'Explore the districts, characters, artifacts, and stories that shape the world of Fanhattan.',
 };
 
-export default function LorePage() {
-  const featured = getFeaturedLore();
-  const timeline = getTimelineLore(5);
-  const counts = getLoreTypeCounts();
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function LorePage() {
+  const featured = await getFeaturedLore();
+  const timeline = await getTimelineLore(5);
+  const counts = await getLoreTypeCounts();
 
   return (
     <>
