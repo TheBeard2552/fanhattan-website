@@ -128,6 +128,25 @@ Collectibles use a scalable rarity system:
 npm install
 ```
 
+### Environment Setup
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```bash
+# Supabase Configuration (for email capture)
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+**Getting your Supabase credentials:**
+1. Create a project at [supabase.com](https://supabase.com)
+2. Go to Project Settings > API
+3. Copy your project URL (SUPABASE_URL)
+4. Copy your service_role key (SUPABASE_SERVICE_ROLE_KEY) - **Never expose this to the client**
+
+**Database Setup:**
+Run the SQL in `supabase-setup.sql` in your Supabase SQL Editor to create the `email_signups` table.
+
 ### Development
 
 ```bash
@@ -235,6 +254,51 @@ See original README sections for detailed lore documentation.
 3. Deploy
 
 Build command: `npm run build` (includes validation)
+
+## Email Capture System
+
+The homepage includes a working email signup form that stores emails in Supabase.
+
+### Features
+- Server-side email validation and storage
+- Anti-spam protection (honeypot + rate limiting)
+- Duplicate prevention (unique email constraint)
+- Real-time UI feedback (loading/success/error states)
+- GDPR-friendly consent tracking
+
+### Architecture
+1. User submits email via `EmailForm` component
+2. Form posts to `/api/subscribe` API route
+3. Server validates input and checks for spam
+4. Email is upserted into Supabase `email_signups` table
+5. Success/error message displayed to user
+
+### Database Schema
+See `supabase-setup.sql` for the complete schema. Key fields:
+- `email` (unique, lowercased)
+- `created_at` (timestamp)
+- `source` (e.g., "homepage")
+- `consent` (boolean, default true)
+
+### Migrating to Mailchimp Later
+
+When you're ready to start email campaigns, you have two options:
+
+**Option 1: CSV Export/Import**
+1. Export emails from Supabase: `SELECT email, created_at FROM email_signups ORDER BY created_at`
+2. Download as CSV
+3. Import into Mailchimp Audience via their dashboard
+
+**Option 2: Programmatic Sync**
+Create a one-time sync script that:
+1. Reads all emails from Supabase
+2. Calls Mailchimp's "Add or update list member" API for each email
+3. Optionally adds a `mailchimp_synced_at` timestamp to track synced records
+
+After migration, you can either:
+- Keep both systems (Supabase as source of truth)
+- Switch the API route to write directly to Mailchimp
+- Archive the Supabase table
 
 ## Phase 1 Roadmap
 
