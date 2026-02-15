@@ -19,12 +19,14 @@ export default async function Nav() {
             >
               Play
             </Link>
+            {/* Collection tab hidden for now
             <Link 
               href="/collection" 
               className="text-sm font-display uppercase tracking-wide text-foreground/80 hover:text-platform transition-colors"
             >
               Collection
             </Link>
+            */}
             <Link 
               href="/lore" 
               className="text-sm font-display uppercase tracking-wide text-foreground/80 hover:text-platform transition-colors"
