@@ -3,20 +3,10 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react';
 import Link from 'next/link';
 
-type District = {
-  slug: string;
-  title: string;
-};
-
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
-interface FeedbackFormProps {
-  districts: District[];
-}
-
-export default function FeedbackForm({ districts }: FeedbackFormProps) {
+export default function FeedbackForm() {
   const [type, setType] = useState('');
-  const [districtSlug, setDistrictSlug] = useState('');
   const [description, setDescription] = useState('');
   const [screenshot, setScreenshot] = useState<File | null>(null);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
@@ -73,7 +63,6 @@ export default function FeedbackForm({ districts }: FeedbackFormProps) {
 
     const formData = new FormData();
     formData.append('type', type);
-    if (districtSlug) formData.append('districtSlug', districtSlug);
     formData.append('description', description);
     if (screenshot) formData.append('screenshot', screenshot);
     // Honeypot field (should remain empty)
@@ -140,7 +129,6 @@ export default function FeedbackForm({ districts }: FeedbackFormProps) {
               onClick={() => {
                 setStatus('idle');
                 setType('');
-                setDistrictSlug('');
                 setDescription('');
                 setScreenshot(null);
                 setScreenshotPreview(null);
@@ -185,30 +173,6 @@ export default function FeedbackForm({ districts }: FeedbackFormProps) {
             <option value="UX">🎨 UX - User experience feedback</option>
             <option value="Other">📝 Other - General feedback</option>
           </select>
-        </div>
-
-        {/* District Selection */}
-        <div>
-          <label htmlFor="district" className="block text-sm font-display uppercase tracking-wide text-foreground mb-2">
-            District (Optional)
-          </label>
-          <select
-            id="district"
-            value={districtSlug}
-            onChange={(e) => setDistrictSlug(e.target.value)}
-            className="w-full px-4 py-3 rounded-md bg-muted border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-platform focus:border-transparent"
-            disabled={status === 'loading'}
-          >
-            <option value="">None / General</option>
-            {districts.map((district) => (
-              <option key={district.slug} value={district.slug}>
-                {district.title}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1 text-xs text-muted-foreground">
-            If your feedback relates to a specific district
-          </p>
         </div>
 
         {/* Description */}

@@ -149,6 +149,19 @@ Update your main navigation to include the feedback link:
 
 ## Troubleshooting
 
+### "Server configuration error" on Submit
+
+This means required environment variables are missing. Check your server/terminal logs for `[Feedback API] Missing...` to see which vars are needed.
+
+**Local development (.env.local):**
+- `NEXT_PUBLIC_SUPABASE_URL` – your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY` – from Supabase Dashboard → Settings → API
+- `DISCORD_FEEDBACK_WEBHOOK_URL` – your Discord webhook URL
+
+**Deployed (Vercel, etc.):** `.env.local` is not deployed. Add the same variables in your host's dashboard (e.g. Vercel → Project → Settings → Environment Variables). Redeploy after adding.
+
+**After changing env vars:** Restart the dev server (`npm run dev`) or trigger a new deployment.
+
 ### No Discord Thread Created
 
 1. Check Discord webhook URL is correct

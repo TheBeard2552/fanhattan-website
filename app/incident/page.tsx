@@ -1,4 +1,3 @@
-import { getCanonByCanonType } from '@/lib/content';
 import FeedbackForm from '@/components/FeedbackForm';
 
 export const metadata = {
@@ -7,12 +6,6 @@ export const metadata = {
 };
 
 export default function IncidentPage() {
-  // Load districts for the dropdown
-  const districts = getCanonByCanonType('district').map((entry) => ({
-    slug: entry.frontmatter.slug,
-    title: entry.frontmatter.title,
-  }));
-
   return (
     <div className="min-h-screen bg-background py-12 px-4">
       <div className="container mx-auto max-w-3xl">
@@ -26,7 +19,7 @@ export default function IncidentPage() {
           </p>
         </div>
 
-        <FeedbackForm districts={districts} />
+        <FeedbackForm />
 
         <div className="mt-8 p-6 border border-border rounded-lg bg-muted/50">
           <h2 className="text-xl font-display uppercase tracking-wide mb-4">

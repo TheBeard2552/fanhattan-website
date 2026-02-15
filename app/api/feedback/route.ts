@@ -7,7 +7,6 @@ const feedbackSchema = z.object({
   type: z.enum(['Bug', 'Feature', 'UX', 'Other'], {
     errorMap: () => ({ message: 'Please select a valid feedback type' }),
   }),
-  districtSlug: z.string().optional().nullable(),
   description: z
     .string()
     .min(10, 'Description must be at least 10 characters')
@@ -68,7 +67,6 @@ async function postToDiscord(
   feedback: {
     publicId: string;
     type: string;
-    districtSlug: string | null;
     description: string;
     screenshotUrl: string | null;
   }
@@ -81,15 +79,6 @@ async function postToDiscord(
       fields: [
         { name: 'ID', value: `#${feedback.publicId}`, inline: true },
         { name: 'Type', value: feedback.type, inline: true },
-        ...(feedback.districtSlug
-          ? [
-              {
-                name: 'District',
-                value: formatDistrictName(feedback.districtSlug),
-                inline: true,
-              },
-            ]
-          : []),
         { name: 'Submitted via', value: 'Website', inline: true },
       ],
       timestamp: new Date().toISOString(),
@@ -135,13 +124,6 @@ function getEmojiForType(type: string): string {
   return emojiMap[type] || '📝';
 }
 
-function formatDistrictName(slug: string): string {
-  return slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
-
 export async function POST(request: NextRequest) {
   try {
     // Check environment variables
@@ -150,17 +132,28 @@ export async function POST(request: NextRequest) {
     const discordWebhookUrl = process.env.DISCORD_FEEDBACK_WEBHOOK_URL;
 
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Missing Supabase environment variables');
+      const missing = [];
+      if (!supabaseUrl) missing.push('NEXT_PUBLIC_SUPABASE_URL or SUPABASE_URL');
+      if (!supabaseServiceKey) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+      console.error('[Feedback API] Missing Supabase env vars:', missing.join(', '));
       return NextResponse.json(
-        { ok: false, message: 'Server configuration error' },
+        {
+          ok: false,
+          message:
+            'Server configuration error. The feedback service is not fully configured. Please contact the site administrator.',
+        },
         { status: 500 }
       );
     }
 
     if (!discordWebhookUrl) {
-      console.error('Missing Discord webhook URL');
+      console.error('[Feedback API] Missing DISCORD_FEEDBACK_WEBHOOK_URL');
       return NextResponse.json(
-        { ok: false, message: 'Discord integration not configured' },
+        {
+          ok: false,
+          message:
+            'Server configuration error. Discord integration is not configured. Please contact the site administrator.',
+        },
         { status: 500 }
       );
     }
@@ -168,7 +161,6 @@ export async function POST(request: NextRequest) {
     // Parse multipart form data
     const formData = await request.formData();
     const type = formData.get('type') as string;
-    const districtSlug = formData.get('districtSlug') as string | null;
     const description = formData.get('description') as string;
     const website = formData.get('website') as string;
     const screenshot = formData.get('screenshot') as File | null;
@@ -176,7 +168,6 @@ export async function POST(request: NextRequest) {
     // Validate form fields
     const validation = feedbackSchema.safeParse({
       type,
-      districtSlug: districtSlug || null,
       description,
       website,
     });
@@ -191,7 +182,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { type: validType, districtSlug: validDistrict, description: validDescription } = validation.data;
+    const { type: validType, description: validDescription } = validation.data;
 
     // Honeypot check
     if (website) {
@@ -240,7 +231,7 @@ export async function POST(request: NextRequest) {
       .from('feedback')
       .insert({
         type: validType,
-        district_slug: validDistrict || null,
+        district_slug: null,
         description: validDescription,
         submit_ip: ip,
         user_agent: userAgent,
@@ -305,7 +296,6 @@ export async function POST(request: NextRequest) {
     const discordResult = await postToDiscord(discordWebhookUrl, {
       publicId,
       type: validType,
-      districtSlug: validDistrict || null,
       description: validDescription,
       screenshotUrl,
     });
