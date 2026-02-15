@@ -45,6 +45,12 @@ export default async function Nav() {
             >
               Shop
             </Link>
+            <Link 
+              href="/incident" 
+              className="text-sm font-display uppercase tracking-wide text-foreground/80 hover:text-platform transition-colors"
+            >
+              Contact Us
+            </Link>
             {user ? (
               <Link 
                 href="/account" 
