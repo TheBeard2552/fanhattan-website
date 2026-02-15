@@ -2,8 +2,14 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 
 export default async function Nav() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch {
+    // Supabase not configured or env vars missing (e.g. during Vercel build)
+  }
 
   return (
     <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
