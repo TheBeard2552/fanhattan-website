@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
 import CollectibleCard from '@/components/CollectibleCard';
@@ -57,23 +58,44 @@ export default function HomePage() {
               title="District Badge"
               description="Unlock unique badges for each district you conquer."
               rarity="rare"
+              placeholder={
+                <Image
+                  src="/images/district-badge.png"
+                  alt="District Badge - Unlock unique badges for each district"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+              }
             />
             <CollectibleCard
               title="Streak Crown"
               description="Crown your achievements with legendary streak rewards."
               rarity="legendary"
+              placeholder={
+                <Image
+                  src="/images/streak-crown.png"
+                  alt="Streak Crown - Legendary achievement"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+              }
             />
             <CollectibleCard
               title="Legacy Card"
               description="Collect mythical cards that define your legacy in Fanhattan."
               rarity="mythical"
+              placeholder={
+                <Image
+                  src="/images/legacy-card.png"
+                  alt="Legacy Card - Spirit of Sals"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+              }
             />
-          </div>
-          
-          <div className="text-center">
-            <Button variant="secondary" href="/collection">
-              View Collection
-            </Button>
           </div>
         </div>
       </Section>
