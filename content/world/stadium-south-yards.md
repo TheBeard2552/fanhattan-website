@@ -1,14 +1,17 @@
 ---
-title: Stadium South Yards
 slug: stadium-south-yards
-type: world
 canonTier: 1
 district: stadium-south
-coreBelief: True neutral venue—12,000 makeshift seats, no district gets home advantage, most violent crowds
+coreBelief: >-
+  True neutral venue—12,000 makeshift seats, no district gets home advantage,
+  most violent crowds
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
-related: [district-trials]
+related:
+  - district-trials
 status: active
+artifactType: location
+name: Stadium South Yards
 ---
 
 ## Core Belief

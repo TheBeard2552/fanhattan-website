@@ -1,15 +1,21 @@
 ---
-name: "Bailey Brownbag"
-slug: "bailey-brownbag"
-district: "stadium-south"
-role: "Resistance researcher and strategist, Billy's right hand"
-reputation: "Smart. Competent. Billy's right hand. Keeps to the research side. When Billy needs intel, Bailey provides it."
-privateTruth: "Bailey carries the weight of being the 'sensible' Brownbag—the one who has to think through consequences while Billy charges ahead."
-beliefs: ["strategic-analysis", "survival-over-glory"]
-factions: ["the-resistance"]
-canonTier: "tier-2"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Bailey Brownbag
+slug: bailey-brownbag
+district: stadium-south
+role: 'Resistance researcher and strategist, Billy''s right hand'
+reputation: >-
+  Smart. Competent. Billy's right hand. Keeps to the research side. When Billy
+  needs intel, Bailey provides it.
+privateTruth: >-
+  Bailey carries the weight of being the 'sensible' Brownbag—the one who has to
+  think through consequences while Billy charges ahead.
+canonTier: tier-2
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - strategic-analysis
+  - survival-over-glory
+  - the-resistance
 ---
 
 ## What They Want

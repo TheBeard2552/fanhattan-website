@@ -1,8 +1,11 @@
 ---
-name: "Strategic Analysis"
-slug: "strategic-analysis"
-description: "Victory comes from thinking ahead, gathering intelligence, and planning three moves deep."
-canonTier: "tier-2"
+name: Strategic Analysis
+slug: strategic-analysis
+description: >-
+  Victory comes from thinking ahead, gathering intelligence, and planning three
+  moves deep.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Strategic Analysis

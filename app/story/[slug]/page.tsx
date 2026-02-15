@@ -4,11 +4,7 @@ import {
   getStoryBySlug,
   getDistrictBySlug,
   getCharacterBySlug,
-  getBeliefBySlug,
-  getConflictBySlug,
-  getThreadBySlug,
-  getFactionBySlug,
-  getSystemBySlug,
+  getArtifactBySlug,
   getStaticPaths,
 } from '@/lib/lore/resolvers';
 import { CanonTierBadge } from '@/components/CanonTierBadge';
@@ -33,13 +29,14 @@ export default async function StoryPage({ params }: PageProps) {
   const { frontmatter, content } = story;
   
   // Resolve all relationships
-  const districts = frontmatter.districts.map(slug => getDistrictBySlug(slug)).filter(Boolean);
-  const characters = frontmatter.characters.map(slug => getCharacterBySlug(slug)).filter(Boolean);
-  const beliefs = frontmatter.beliefs.map(slug => getBeliefBySlug(slug)).filter(Boolean);
-  const conflicts = frontmatter.conflicts.map(slug => getConflictBySlug(slug)).filter(Boolean);
-  const threads = frontmatter.threads.map(slug => getThreadBySlug(slug)).filter(Boolean);
-  const factions = frontmatter.factions.map(slug => getFactionBySlug(slug)).filter(Boolean);
-  const systems = frontmatter.systems.map(slug => getSystemBySlug(slug)).filter(Boolean);
+  const districts = frontmatter.districts.map((s: string) => getDistrictBySlug(s)).filter((x): x is NonNullable<typeof x> => !!x);
+  const characters = frontmatter.characters.map((s: string) => getCharacterBySlug(s)).filter((x): x is NonNullable<typeof x> => !!x);
+  const artifacts = frontmatter.artifacts.map((s: string) => getArtifactBySlug(s)).filter((x): x is NonNullable<typeof x> => !!x);
+  const beliefs = artifacts.filter((a) => a.frontmatter.artifactType === 'belief');
+  const conflicts = artifacts.filter((a) => a.frontmatter.artifactType === 'conflict');
+  const threads = artifacts.filter((a) => a.frontmatter.artifactType === 'thread');
+  const factions = artifacts.filter((a) => a.frontmatter.artifactType === 'faction');
+  const systems = artifacts.filter((a) => a.frontmatter.artifactType === 'system');
   
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">

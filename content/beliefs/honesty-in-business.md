@@ -1,8 +1,11 @@
 ---
-name: "Honesty in Business"
-slug: "honesty-in-business"
-description: "You can succeed without compromising your principles, even in a corrupt system."
-canonTier: "tier-2"
+name: Honesty in Business
+slug: honesty-in-business
+description: >-
+  You can succeed without compromising your principles, even in a corrupt
+  system.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Honesty in Business

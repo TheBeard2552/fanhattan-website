@@ -1,14 +1,17 @@
 ---
-name: "Brown Bag Billy"
-slug: "brown-bag-billy"
-district: "the-proving-grounds"
-role: "Survival Expert & Information Broker"
-reputation: "The man who knows how to disappear—and how to find anyone who tried."
-privateTruth: "He's actually from Stadium South elite, fled after a scandal, and reinvented himself."
-beliefs: ["survival-over-glory"]
-factions: ["the-resistance"]
-canonTier: "tier-1"
-thumbnail: "/images/characters/brown-bag-billy-thumb.jpg"
+name: Brown Bag Billy
+slug: brown-bag-billy
+district: the-proving-grounds
+role: Survival Expert & Information Broker
+reputation: The man who knows how to disappear—and how to find anyone who tried.
+privateTruth: >-
+  He's actually from Stadium South elite, fled after a scandal, and reinvented
+  himself.
+canonTier: tier-1
+thumbnail: /images/characters/brown-bag-billy-thumb.jpg
+artifacts:
+  - survival-over-glory
+  - the-resistance
 ---
 
 # Brown Bag Billy

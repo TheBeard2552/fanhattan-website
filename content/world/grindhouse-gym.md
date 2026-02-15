@@ -1,14 +1,16 @@
 ---
-title: Grindhouse Gym
 slug: grindhouse-gym
-type: world
 canonTier: 1
 district: the-proving-grounds
-coreBelief: The main training facility, open 24/7—you can tell a team's prospects by which shift they can afford
+coreBelief: >-
+  The main training facility, open 24/7—you can tell a team's prospects by which
+  shift they can afford
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Grindhouse Gym
 ---
 
 ## Core Belief

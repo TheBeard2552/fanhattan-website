@@ -1,8 +1,12 @@
 ---
-name: "District Trials"
-slug: "district-trials"
-description: "Fanhattan's primary competitive framework—four-person squad competitions that channel inter-district conflict into structured events where belief becomes measurable."
-canonTier: "tier-1"
+name: District Trials
+slug: district-trials
+description: >-
+  Fanhattan's primary competitive framework—four-person squad competitions that
+  channel inter-district conflict into structured events where belief becomes
+  measurable.
+canonTier: tier-1
+artifactType: system
 ---
 
 ## Core Belief

@@ -1,8 +1,11 @@
 ---
-name: "Strategic Invisibility"
-slug: "strategic-invisibility"
-description: "The best way to survive is to be useful but unremarkable. Stay under the radar."
-canonTier: "tier-2"
+name: Strategic Invisibility
+slug: strategic-invisibility
+description: >-
+  The best way to survive is to be useful but unremarkable. Stay under the
+  radar.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Strategic Invisibility

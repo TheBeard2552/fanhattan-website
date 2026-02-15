@@ -1,14 +1,16 @@
 ---
-title: Morrow's Manor
 slug: morrows-manor
-type: world
 canonTier: 2
 district: winchester
-coreBelief: Abandoned but legendary—Winchester's elite maintain a buffer zone because it's actually haunted
+coreBelief: >-
+  Abandoned but legendary—Winchester's elite maintain a buffer zone because it's
+  actually haunted
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Morrow's Manor
 ---
 
 ## Core Belief

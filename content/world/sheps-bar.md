@@ -1,14 +1,15 @@
 ---
-title: Shep's Bar
 slug: sheps-bar
-type: world
 canonTier: 1
 district: stadium-south
 coreBelief: The beating heart of Stadium South—where more deals get made than at City Hall
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
-related: [shep]
+related:
+  - shep
 status: active
+artifactType: location
+name: Shep's Bar
 ---
 
 ## Core Belief

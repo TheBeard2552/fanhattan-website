@@ -1,8 +1,11 @@
 ---
-name: "Probability Mastery"
-slug: "probability-mastery"
-description: "Understanding and manipulating probability is the ultimate form of power in a belief-driven reality."
-canonTier: "tier-2"
+name: Probability Mastery
+slug: probability-mastery
+description: >-
+  Understanding and manipulating probability is the ultimate form of power in a
+  belief-driven reality.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Probability Mastery

@@ -1,14 +1,16 @@
 ---
-title: Rocky Top Tavern
 slug: rocky-top-tavern
-type: world
 canonTier: 1
 district: vol-valley
-coreBelief: The main bar where "Rocky Top" plays minimum once per hour—usually more like five times
+coreBelief: >-
+  The main bar where "Rocky Top" plays minimum once per hour—usually more like
+  five times
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Rocky Top Tavern
 ---
 
 ## Core Belief

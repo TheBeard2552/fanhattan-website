@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {
   getConflictBySlug,
   getStoriesByConflict,
-  getStaticPaths,
+  getArtifactTypeStaticPaths,
 } from '@/lib/lore/resolvers';
 import { CanonTierBadge } from '@/components/CanonTierBadge';
 import { Markdown } from '@/components/MarkdownRenderer';
@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getStaticPaths('conflicts');
+  return getArtifactTypeStaticPaths('conflict');
 }
 
 export default async function ConflictPage({ params }: PageProps) {

@@ -1,8 +1,9 @@
 ---
-name: "Family Above All"
-slug: "family-above-all"
-description: "Everything you do is justified if it protects and provides for your family."
-canonTier: "tier-2"
+name: Family Above All
+slug: family-above-all
+description: Everything you do is justified if it protects and provides for your family.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Family Above All

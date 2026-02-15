@@ -1,13 +1,15 @@
 ---
-title: The Shipwreck
 slug: the-shipwreck
-type: world
 canonTier: 2
-coreBelief: A warship wreck in the harbor—rumors of experimental weaponry and Syndicate smuggling
+coreBelief: >-
+  A warship wreck in the harbor—rumors of experimental weaponry and Syndicate
+  smuggling
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The Shipwreck
 ---
 
 ## Core Belief

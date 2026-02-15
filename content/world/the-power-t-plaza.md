@@ -1,14 +1,14 @@
 ---
-title: The Power T Plaza
 slug: the-power-t-plaza
-type: world
 canonTier: 1
 district: vol-valley
-coreBelief: Ground zero for Vol Valley—T-shaped plaza with T-shaped lake, frozen in 1998
+coreBelief: 'Ground zero for Vol Valley—T-shaped plaza with T-shaped lake, frozen in 1998'
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The Power T Plaza
 ---
 
 ## Core Belief

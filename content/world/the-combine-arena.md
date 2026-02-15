@@ -1,14 +1,17 @@
 ---
-title: The Combine Arena
 slug: the-combine-arena
-type: world
 canonTier: 1
 district: the-proving-grounds
-coreBelief: 15,000 metal bleachers—where prospects prove themselves and relegated teams fight for reinstatement
+coreBelief: >-
+  15,000 metal bleachers—where prospects prove themselves and relegated teams
+  fight for reinstatement
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
-related: [district-trials]
+related:
+  - district-trials
 status: active
+artifactType: location
+name: The Combine Arena
 ---
 
 ## Core Belief

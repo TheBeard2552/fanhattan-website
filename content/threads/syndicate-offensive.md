@@ -1,9 +1,12 @@
 ---
-name: "The Syndicate Offensive"
-slug: "syndicate-offensive"
-status: "active"
-description: "An organized push by the Syndicate to expand influence into previously independent districts."
-canonTier: "tier-1"
+name: The Syndicate Offensive
+slug: syndicate-offensive
+status: active
+description: >-
+  An organized push by the Syndicate to expand influence into previously
+  independent districts.
+canonTier: tier-1
+artifactType: thread
 ---
 
 # The Syndicate Offensive

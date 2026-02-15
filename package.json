@@ -10,7 +10,8 @@
     "validate": "tsx scripts/validate-content.ts --mode error",
     "validate:lore": "tsx scripts/validate-lore.ts",
     "validate:lore-strict": "tsx scripts/validate-lore.ts --strict",
-    "canon:lock": "tsx scripts/update-tier1-lock.ts"
+    "canon:lock": "tsx scripts/update-tier1-lock.ts",
+    "migrate:lore": "tsx scripts/migrate-lore-redesign.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",

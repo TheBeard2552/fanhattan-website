@@ -5,7 +5,7 @@ import {
   getStoriesByBelief,
   getDistrictsByBelief,
   getCharactersByBeliefDirect,
-  getStaticPaths,
+  getArtifactTypeStaticPaths,
 } from '@/lib/lore/resolvers';
 import { CanonTierBadge } from '@/components/CanonTierBadge';
 import { Markdown } from '@/components/MarkdownRenderer';
@@ -15,7 +15,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getStaticPaths('beliefs');
+  return getArtifactTypeStaticPaths('belief');
 }
 
 export default async function BeliefPage({ params }: PageProps) {

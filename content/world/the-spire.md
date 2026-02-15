@@ -1,13 +1,15 @@
 ---
-title: The Spire
 slug: the-spire
-type: world
 canonTier: 1
-coreBelief: Built to symbolize unity, it became the dividing line instead—Fanhattan's failed promise made concrete
+coreBelief: >-
+  Built to symbolize unity, it became the dividing line instead—Fanhattan's
+  failed promise made concrete
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The Spire
 ---
 
 ## Core Belief

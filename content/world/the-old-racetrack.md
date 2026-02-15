@@ -1,13 +1,15 @@
 ---
-title: The Old Racetrack
 slug: the-old-racetrack
-type: world
 canonTier: 2
-coreBelief: South waterfront. Shut down in the 40s when the races were fixed. Never redeveloped. Divisive.
+coreBelief: >-
+  South waterfront. Shut down in the 40s when the races were fixed. Never
+  redeveloped. Divisive.
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The Old Racetrack
 ---
 
 ## Core Belief

@@ -1,13 +1,16 @@
 ---
-title: Fanhattan
 slug: fanhattan
-type: world
 canonTier: 1
-coreBelief: Belief collides with reality. When enough people believe something hard enough, reality bends. And when reality bends in a city like this, someone always pays the price.
+coreBelief: >-
+  Belief collides with reality. When enough people believe something hard
+  enough, reality bends. And when reality bends in a city like this, someone
+  always pays the price.
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Fanhattan
 ---
 
 ## Core Belief

@@ -1,8 +1,11 @@
 ---
-name: "The Resistance"
-slug: "the-resistance"
-description: "A decentralized movement opposing Syndicate expansion and fighting for district autonomy."
-canonTier: "tier-1"
+name: The Resistance
+slug: the-resistance
+description: >-
+  A decentralized movement opposing Syndicate expansion and fighting for
+  district autonomy.
+canonTier: tier-1
+artifactType: faction
 ---
 
 # The Resistance

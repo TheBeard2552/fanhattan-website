@@ -1,15 +1,22 @@
 ---
-name: "Sal Marino"
-slug: "sal-marino"
-district: "stadium-south"
-role: "Old-school enforcer and odds runner, former mob muscle"
-reputation: "Old-school. Dangerous back in the day, probably still dangerous now. Runs odds, moves packages, doesn't snitch. You can trust him if he gives his word."
-privateTruth: "Terrified of being forgotten. The mob got pushed out by the Syndicate, and most people don't remember there was a mob. Helping Billy is about proving the old ways still matter."
-beliefs: ["old-ways-matter", "survival-over-glory"]
-factions: ["the-resistance"]
-canonTier: "tier-2"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Sal Marino
+slug: sal-marino
+district: stadium-south
+role: 'Old-school enforcer and odds runner, former mob muscle'
+reputation: >-
+  Old-school. Dangerous back in the day, probably still dangerous now. Runs
+  odds, moves packages, doesn't snitch. You can trust him if he gives his word.
+privateTruth: >-
+  Terrified of being forgotten. The mob got pushed out by the Syndicate, and
+  most people don't remember there was a mob. Helping Billy is about proving the
+  old ways still matter.
+canonTier: tier-2
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - old-ways-matter
+  - survival-over-glory
+  - the-resistance
 ---
 
 ## What They Want

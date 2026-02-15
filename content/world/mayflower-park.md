@@ -1,13 +1,15 @@
 ---
-title: Mayflower Park
 slug: mayflower-park
-type: world
 canonTier: 1
-coreBelief: Beautiful by day, dangerous by night—where the old guard plays bocce and talks about when they ran the town
+coreBelief: >-
+  Beautiful by day, dangerous by night—where the old guard plays bocce and talks
+  about when they ran the town
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Mayflower Park
 ---
 
 ## Core Belief

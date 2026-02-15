@@ -117,9 +117,9 @@ function getExpectedFolder(type: CanonType): string {
 
 /**
  * Folders validated by the lore system - skip these in canon validation
- * (lore uses a different schema: name, slug, beliefs, factions, etc.)
+ * (lore uses a different schema: name, slug, artifactType, artifacts, etc.)
  */
-const LORE_VALIDATED_FOLDERS = ['districts', 'characters', 'systems', 'stories', 'beliefs', 'conflicts', 'threads', 'factions'];
+const LORE_VALIDATED_FOLDERS = ['districts', 'characters', 'systems', 'stories', 'beliefs', 'conflicts', 'threads', 'factions', 'world'];
 
 /**
  * Validate all canon content

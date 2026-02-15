@@ -3,9 +3,25 @@
  * 
  * This defines the complete type system for the lore engine.
  * All relationships are typed and validated at build time.
+ * 
+ * Four Core Content Types:
+ * 1. Districts - Geographic/cultural regions
+ * 2. Characters - Individuals
+ * 3. Stories - Narratives (standalone or episodic)
+ * 4. Artifacts - World elements (beliefs, systems, factions, locations, etc.)
  */
 
 export type CanonTier = "tier-1" | "tier-2" | "tier-3";
+export type StoryType = "standalone" | "episodic";
+export type ArtifactType = 
+  | "belief"      // Ideological principles
+  | "system"      // World mechanics/rules
+  | "faction"     // Organized groups
+  | "location"    // Physical places
+  | "conflict"    // Tensions/struggles
+  | "thread"      // Narrative arcs
+  | "item";       // Physical objects/relics
+
 export type ThreadStatus = "active" | "dormant" | "resolved";
 
 /**
@@ -32,8 +48,7 @@ export interface CharacterFrontmatter {
   role: string;
   reputation: string;
   privateTruth: string;
-  beliefs: string[]; // belief slugs
-  factions: string[]; // faction slugs
+  artifacts: string[]; // artifact slugs (beliefs, factions, items, etc.)
   canonTier: CanonTier;
   coverImage?: string;
   thumbnail?: string;
@@ -41,17 +56,17 @@ export interface CharacterFrontmatter {
 
 /**
  * Story - A narrative event or chapter in Fanhattan
+ * Can be standalone (complete in one story) or episodic (part of a series)
  */
 export interface StoryFrontmatter {
   title: string;
   slug: string;
+  storyType: StoryType; // standalone or episodic
+  episodeNumber?: number; // required if storyType is "episodic"
+  seriesSlug?: string; // required if storyType is "episodic"
   districts: string[]; // district slugs
   characters: string[]; // character slugs
-  beliefs: string[]; // belief slugs
-  conflicts: string[]; // conflict slugs
-  factions: string[]; // faction slugs
-  systems: string[]; // system slugs
-  threads: string[]; // thread slugs
+  artifacts: string[]; // artifact slugs
   canonTier: CanonTier;
   summary: string;
   date?: string;
@@ -60,54 +75,24 @@ export interface StoryFrontmatter {
 }
 
 /**
- * Belief - A core ideological principle
+ * Artifact - Any world element (belief, system, faction, location, conflict, thread, item)
+ * Consolidates multiple old content types into one flexible type
  */
-export interface BeliefFrontmatter {
+export interface ArtifactFrontmatter {
   name: string;
   slug: string;
+  artifactType: ArtifactType;
   description: string;
   canonTier: CanonTier;
-}
-
-/**
- * Conflict - A tension or struggle
- */
-export interface ConflictFrontmatter {
-  name: string;
-  slug: string;
-  description: string;
-  canonTier: CanonTier;
-}
-
-/**
- * Thread - An ongoing narrative thread
- */
-export interface ThreadFrontmatter {
-  name: string;
-  slug: string;
-  status: ThreadStatus;
-  canonTier: CanonTier;
-  description?: string;
-}
-
-/**
- * Faction - An organized group
- */
-export interface FactionFrontmatter {
-  name: string;
-  slug: string;
-  description: string;
-  canonTier: CanonTier;
-}
-
-/**
- * System - A mechanic or rule of the world
- */
-export interface SystemFrontmatter {
-  name: string;
-  slug: string;
-  description: string;
-  canonTier: CanonTier;
+  district?: string; // optional - for locations or district-specific artifacts
+  
+  // Legacy fields for backward compatibility
+  status?: ThreadStatus; // for thread-type artifacts
+  coreBelief?: string; // for location-type artifacts
+  related?: string[]; // related artifact/character slugs
+  
+  coverImage?: string;
+  thumbnail?: string;
 }
 
 /**
@@ -117,11 +102,7 @@ export type AnyFrontmatter =
   | DistrictFrontmatter
   | CharacterFrontmatter
   | StoryFrontmatter
-  | BeliefFrontmatter
-  | ConflictFrontmatter
-  | ThreadFrontmatter
-  | FactionFrontmatter
-  | SystemFrontmatter;
+  | ArtifactFrontmatter;
 
 /**
  * Content type discriminator
@@ -130,11 +111,7 @@ export type ContentType =
   | "districts"
   | "characters"
   | "stories"
-  | "beliefs"
-  | "conflicts"
-  | "threads"
-  | "factions"
-  | "systems";
+  | "artifacts";
 
 /**
  * Generic entry wrapper
@@ -152,11 +129,7 @@ export interface LoreEntry<T extends AnyFrontmatter = AnyFrontmatter> {
 export type DistrictEntry = LoreEntry<DistrictFrontmatter>;
 export type CharacterEntry = LoreEntry<CharacterFrontmatter>;
 export type StoryEntry = LoreEntry<StoryFrontmatter>;
-export type BeliefEntry = LoreEntry<BeliefFrontmatter>;
-export type ConflictEntry = LoreEntry<ConflictFrontmatter>;
-export type ThreadEntry = LoreEntry<ThreadFrontmatter>;
-export type FactionEntry = LoreEntry<FactionFrontmatter>;
-export type SystemEntry = LoreEntry<SystemFrontmatter>;
+export type ArtifactEntry = LoreEntry<ArtifactFrontmatter>;
 
 /**
  * Validation error types

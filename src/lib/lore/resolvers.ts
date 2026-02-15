@@ -3,6 +3,12 @@
  * 
  * Functions to resolve relationships between entities.
  * All relationships are computed dynamically from frontmatter.
+ * 
+ * Four Core Content Types:
+ * 1. Districts - Geographic/cultural regions
+ * 2. Characters - Individuals
+ * 3. Stories - Narratives (standalone or episodic)
+ * 4. Artifacts - World elements (beliefs, systems, factions, locations, etc.)
  */
 
 import {
@@ -10,14 +16,12 @@ import {
   DistrictEntry,
   CharacterEntry,
   StoryEntry,
-  BeliefEntry,
-  ConflictEntry,
-  ThreadEntry,
-  FactionEntry,
-  SystemEntry,
+  ArtifactEntry,
   DistrictFrontmatter,
   CharacterFrontmatter,
   StoryFrontmatter,
+  ArtifactFrontmatter,
+  ArtifactType,
 } from './types';
 import { loadAllContent, createSlugIndex } from './loader';
 
@@ -77,43 +81,11 @@ export function getStoryBySlug(slug: string): StoryEntry | null {
 }
 
 /**
- * Get belief by slug
+ * Get artifact by slug
  */
-export function getBeliefBySlug(slug: string): BeliefEntry | null {
+export function getArtifactBySlug(slug: string): ArtifactEntry | null {
   const entry = getBySlug(slug);
-  return entry?.type === 'beliefs' ? (entry as BeliefEntry) : null;
-}
-
-/**
- * Get conflict by slug
- */
-export function getConflictBySlug(slug: string): ConflictEntry | null {
-  const entry = getBySlug(slug);
-  return entry?.type === 'conflicts' ? (entry as ConflictEntry) : null;
-}
-
-/**
- * Get thread by slug
- */
-export function getThreadBySlug(slug: string): ThreadEntry | null {
-  const entry = getBySlug(slug);
-  return entry?.type === 'threads' ? (entry as ThreadEntry) : null;
-}
-
-/**
- * Get faction by slug
- */
-export function getFactionBySlug(slug: string): FactionEntry | null {
-  const entry = getBySlug(slug);
-  return entry?.type === 'factions' ? (entry as FactionEntry) : null;
-}
-
-/**
- * Get system by slug
- */
-export function getSystemBySlug(slug: string): SystemEntry | null {
-  const entry = getBySlug(slug);
-  return entry?.type === 'systems' ? (entry as SystemEntry) : null;
+  return entry?.type === 'artifacts' ? (entry as ArtifactEntry) : null;
 }
 
 /**
@@ -138,38 +110,66 @@ export function getAllStories(): StoryEntry[] {
 }
 
 /**
- * Get all beliefs (uses cache)
+ * Get all artifacts (uses cache)
  */
-export function getAllBeliefs(): BeliefEntry[] {
-  return getAllContent().filter((e): e is BeliefEntry => e.type === 'beliefs');
+export function getAllArtifacts(): ArtifactEntry[] {
+  return getAllContent().filter((e): e is ArtifactEntry => e.type === 'artifacts');
 }
 
 /**
- * Get all conflicts (uses cache)
+ * Get artifacts by type
  */
-export function getAllConflicts(): ConflictEntry[] {
-  return getAllContent().filter((e): e is ConflictEntry => e.type === 'conflicts');
+export function getArtifactsByType(artifactType: ArtifactType): ArtifactEntry[] {
+  return getAllArtifacts().filter(a => a.frontmatter.artifactType === artifactType);
 }
 
 /**
- * Get all threads (uses cache)
+ * Get all beliefs (artifacts with artifactType: "belief")
  */
-export function getAllThreads(): ThreadEntry[] {
-  return getAllContent().filter((e): e is ThreadEntry => e.type === 'threads');
+export function getAllBeliefs(): ArtifactEntry[] {
+  return getArtifactsByType('belief');
 }
 
 /**
- * Get all factions (uses cache)
+ * Get all systems (artifacts with artifactType: "system")
  */
-export function getAllFactions(): FactionEntry[] {
-  return getAllContent().filter((e): e is FactionEntry => e.type === 'factions');
+export function getAllSystems(): ArtifactEntry[] {
+  return getArtifactsByType('system');
 }
 
 /**
- * Get all systems (uses cache)
+ * Get all factions (artifacts with artifactType: "faction")
  */
-export function getAllSystems(): SystemEntry[] {
-  return getAllContent().filter((e): e is SystemEntry => e.type === 'systems');
+export function getAllFactions(): ArtifactEntry[] {
+  return getArtifactsByType('faction');
+}
+
+/**
+ * Get all locations (artifacts with artifactType: "location")
+ */
+export function getAllLocations(): ArtifactEntry[] {
+  return getArtifactsByType('location');
+}
+
+/**
+ * Get all conflicts (artifacts with artifactType: "conflict")
+ */
+export function getAllConflicts(): ArtifactEntry[] {
+  return getArtifactsByType('conflict');
+}
+
+/**
+ * Get all threads (artifacts with artifactType: "thread")
+ */
+export function getAllThreads(): ArtifactEntry[] {
+  return getArtifactsByType('thread');
+}
+
+/**
+ * Get all items (artifacts with artifactType: "item")
+ */
+export function getAllItems(): ArtifactEntry[] {
+  return getArtifactsByType('item');
 }
 
 // ============================================================================
@@ -204,132 +204,102 @@ export function getStoriesByCharacter(characterSlug: string): StoryEntry[] {
 }
 
 /**
- * Get all stories that involve a specific belief
+ * Get all stories that involve a specific artifact
  */
-export function getStoriesByBelief(beliefSlug: string): StoryEntry[] {
+export function getStoriesByArtifact(artifactSlug: string): StoryEntry[] {
   return getAllStories().filter(
-    story => story.frontmatter.beliefs.includes(beliefSlug)
+    story => story.frontmatter.artifacts.includes(artifactSlug)
   );
 }
 
 /**
- * Get all stories that involve a specific conflict
+ * Get all stories that involve a specific artifact type
  */
-export function getStoriesByConflict(conflictSlug: string): StoryEntry[] {
-  return getAllStories().filter(
-    story => story.frontmatter.conflicts.includes(conflictSlug)
+export function getStoriesByArtifactType(artifactType: ArtifactType): StoryEntry[] {
+  const artifactsOfType = getArtifactsByType(artifactType);
+  const artifactSlugs = new Set(artifactsOfType.map(a => a.frontmatter.slug));
+  
+  return getAllStories().filter(story =>
+    story.frontmatter.artifacts.some(slug => artifactSlugs.has(slug))
   );
 }
 
 /**
- * Get all stories that are part of a specific thread
+ * Get all standalone stories
  */
-export function getStoriesByThread(threadSlug: string): StoryEntry[] {
-  return getAllStories().filter(
-    story => story.frontmatter.threads.includes(threadSlug)
-  );
+export function getStandaloneStories(): StoryEntry[] {
+  return getAllStories().filter(story => story.frontmatter.storyType === 'standalone');
 }
 
 /**
- * Get all stories that involve a specific faction
+ * Get all episodic stories
  */
-export function getStoriesByFaction(factionSlug: string): StoryEntry[] {
-  return getAllStories().filter(
-    story => story.frontmatter.factions.includes(factionSlug)
-  );
+export function getEpisodicStories(): StoryEntry[] {
+  return getAllStories().filter(story => story.frontmatter.storyType === 'episodic');
 }
 
 /**
- * Get all stories that involve a specific system
+ * Get all episodes in a series, sorted by episode number
  */
-export function getStoriesBySystem(systemSlug: string): StoryEntry[] {
-  return getAllStories().filter(
-    story => story.frontmatter.systems.includes(systemSlug)
-  );
+export function getStoriesBySeries(seriesSlug: string): StoryEntry[] {
+  return getAllStories()
+    .filter(story => 
+      story.frontmatter.storyType === 'episodic' && 
+      story.frontmatter.seriesSlug === seriesSlug
+    )
+    .sort((a, b) => (a.frontmatter.episodeNumber || 0) - (b.frontmatter.episodeNumber || 0));
 }
 
 /**
- * Get all characters that belong to a specific faction
+ * Get all characters associated with a specific artifact
  */
-export function getCharactersByFaction(factionSlug: string): CharacterEntry[] {
+export function getCharactersByArtifact(artifactSlug: string): CharacterEntry[] {
   return getAllCharacters().filter(
-    char => char.frontmatter.factions.includes(factionSlug)
+    char => char.frontmatter.artifacts.includes(artifactSlug)
   );
 }
 
 /**
- * Get all characters that hold a specific belief
+ * Get all characters associated with a specific artifact type
  */
-export function getCharactersByBelief(beliefSlug: string): CharacterEntry[] {
-  return getAllCharacters().filter(
-    char => char.frontmatter.beliefs.includes(beliefSlug)
+export function getCharactersByArtifactType(artifactType: ArtifactType): CharacterEntry[] {
+  const artifactsOfType = getArtifactsByType(artifactType);
+  const artifactSlugs = new Set(artifactsOfType.map(a => a.frontmatter.slug));
+  
+  return getAllCharacters().filter(char =>
+    char.frontmatter.artifacts.some(slug => artifactSlugs.has(slug))
   );
 }
 
 /**
- * Get all conflicts that appear in stories involving a district
+ * Get all artifacts that appear in stories involving a district
  */
-export function getConflictsByDistrict(districtSlug: string): ConflictEntry[] {
+export function getArtifactsByDistrict(districtSlug: string): ArtifactEntry[] {
   const stories = getStoriesByDistrict(districtSlug);
-  const conflictSlugs = new Set<string>();
+  const artifactSlugs = new Set<string>();
   
   for (const story of stories) {
-    for (const conflictSlug of story.frontmatter.conflicts) {
-      conflictSlugs.add(conflictSlug);
+    for (const artifactSlug of story.frontmatter.artifacts) {
+      artifactSlugs.add(artifactSlug);
     }
   }
   
-  const conflicts: ConflictEntry[] = [];
-  for (const slug of conflictSlugs) {
-    const conflict = getConflictBySlug(slug);
-    if (conflict) conflicts.push(conflict);
+  const artifacts: ArtifactEntry[] = [];
+  for (const slug of artifactSlugs) {
+    const artifact = getArtifactBySlug(slug);
+    if (artifact) artifacts.push(artifact);
   }
   
-  return conflicts;
+  return artifacts;
 }
 
 /**
- * Get all beliefs that appear in stories involving a district
+ * Get artifacts of a specific type that appear in stories involving a district
  */
-export function getBeliefsByDistrict(districtSlug: string): BeliefEntry[] {
-  const stories = getStoriesByDistrict(districtSlug);
-  const beliefSlugs = new Set<string>();
-  
-  for (const story of stories) {
-    for (const beliefSlug of story.frontmatter.beliefs) {
-      beliefSlugs.add(beliefSlug);
-    }
-  }
-  
-  const beliefs: BeliefEntry[] = [];
-  for (const slug of beliefSlugs) {
-    const belief = getBeliefBySlug(slug);
-    if (belief) beliefs.push(belief);
-  }
-  
-  return beliefs;
-}
-
-/**
- * Get all threads that appear in stories involving a district
- */
-export function getThreadsByDistrict(districtSlug: string): ThreadEntry[] {
-  const stories = getStoriesByDistrict(districtSlug);
-  const threadSlugs = new Set<string>();
-  
-  for (const story of stories) {
-    for (const threadSlug of story.frontmatter.threads) {
-      threadSlugs.add(threadSlug);
-    }
-  }
-  
-  const threads: ThreadEntry[] = [];
-  for (const slug of threadSlugs) {
-    const thread = getThreadBySlug(slug);
-    if (thread) threads.push(thread);
-  }
-  
-  return threads;
+export function getArtifactsByDistrictAndType(districtSlug: string, artifactType: ArtifactType): ArtifactEntry[] {
+  return getArtifactsByDistrict(districtSlug).filter(
+    artifact => artifact.frontmatter.artifactType === artifactType
+  );
 }
 
 /**
@@ -355,10 +325,10 @@ export function getDistrictsByCharacter(characterSlug: string): DistrictEntry[] 
 }
 
 /**
- * Get all districts that are connected to a belief (via stories)
+ * Get all districts that are connected to an artifact (via stories)
  */
-export function getDistrictsByBelief(beliefSlug: string): DistrictEntry[] {
-  const stories = getStoriesByBelief(beliefSlug);
+export function getDistrictsByArtifact(artifactSlug: string): DistrictEntry[] {
+  const stories = getStoriesByArtifact(artifactSlug);
   const districtSlugs = new Set<string>();
   
   for (const story of stories) {
@@ -377,14 +347,14 @@ export function getDistrictsByBelief(beliefSlug: string): DistrictEntry[] {
 }
 
 /**
- * Get all characters involved in a belief (via stories or direct)
+ * Get all characters involved with an artifact (via direct association or stories)
  */
-export function getCharactersByBeliefDirect(beliefSlug: string): CharacterEntry[] {
-  // Characters who directly hold this belief
-  const directCharacters = getCharactersByBelief(beliefSlug);
+export function getCharactersByArtifactWithStories(artifactSlug: string): CharacterEntry[] {
+  // Characters who directly reference this artifact
+  const directCharacters = getCharactersByArtifact(artifactSlug);
   
-  // Characters who appear in stories about this belief
-  const stories = getStoriesByBelief(beliefSlug);
+  // Characters who appear in stories involving this artifact
+  const stories = getStoriesByArtifact(artifactSlug);
   const characterSlugs = new Set<string>(directCharacters.map(c => c.frontmatter.slug));
   
   for (const story of stories) {
@@ -419,43 +389,149 @@ export function getRivalDistricts(districtSlug: string): DistrictEntry[] {
 }
 
 /**
- * Get all factions for a character
+ * Get all artifacts for a character
  */
-export function getFactionsByCharacter(characterSlug: string): FactionEntry[] {
+export function getArtifactsByCharacter(characterSlug: string): ArtifactEntry[] {
   const character = getCharacterBySlug(characterSlug);
   if (!character) return [];
   
-  const factions: FactionEntry[] = [];
-  for (const factionSlug of character.frontmatter.factions) {
-    const faction = getFactionBySlug(factionSlug);
-    if (faction) factions.push(faction);
+  const artifacts: ArtifactEntry[] = [];
+  for (const artifactSlug of character.frontmatter.artifacts) {
+    const artifact = getArtifactBySlug(artifactSlug);
+    if (artifact) artifacts.push(artifact);
   }
   
-  return factions;
+  return artifacts;
 }
 
 /**
- * Get all beliefs for a character
+ * Get artifacts of a specific type for a character
  */
-export function getBeliefsByCharacter(characterSlug: string): BeliefEntry[] {
-  const character = getCharacterBySlug(characterSlug);
-  if (!character) return [];
+export function getArtifactsByCharacterAndType(characterSlug: string, artifactType: ArtifactType): ArtifactEntry[] {
+  return getArtifactsByCharacter(characterSlug).filter(
+    artifact => artifact.frontmatter.artifactType === artifactType
+  );
+}
+
+/**
+ * Get all artifacts for a story
+ */
+export function getArtifactsByStory(storySlug: string): ArtifactEntry[] {
+  const story = getStoryBySlug(storySlug);
+  if (!story) return [];
   
-  const beliefs: BeliefEntry[] = [];
-  for (const beliefSlug of character.frontmatter.beliefs) {
-    const belief = getBeliefBySlug(beliefSlug);
-    if (belief) beliefs.push(belief);
+  const artifacts: ArtifactEntry[] = [];
+  for (const artifactSlug of story.frontmatter.artifacts) {
+    const artifact = getArtifactBySlug(artifactSlug);
+    if (artifact) artifacts.push(artifact);
   }
   
-  return beliefs;
+  return artifacts;
+}
+
+/**
+ * Get artifacts of a specific type for a story
+ */
+export function getArtifactsByStoryAndType(storySlug: string, artifactType: ArtifactType): ArtifactEntry[] {
+  return getArtifactsByStory(storySlug).filter(
+    artifact => artifact.frontmatter.artifactType === artifactType
+  );
 }
 
 /**
  * Get all static paths for a content type (for Next.js generateStaticParams)
  */
-export function getStaticPaths(type: 'districts' | 'characters' | 'stories' | 'beliefs' | 'conflicts' | 'threads' | 'factions' | 'systems'): { slug: string }[] {
+export function getStaticPaths(type: 'districts' | 'characters' | 'stories' | 'artifacts'): { slug: string }[] {
   const allContent = getAllContent();
   return allContent
     .filter(entry => entry.type === type)
     .map(entry => ({ slug: entry.frontmatter.slug }));
+}
+
+/**
+ * Get static paths for artifact subtypes (belief, conflict, faction, system, thread)
+ */
+export function getArtifactTypeStaticPaths(artifactType: ArtifactType): { slug: string }[] {
+  return getArtifactsByType(artifactType).map(a => ({ slug: a.frontmatter.slug }));
+}
+
+// ============================================================================
+// ARTIFACT-TYPE ALIASES (for backward compatibility with entity pages)
+// ============================================================================
+
+export function getBeliefBySlug(slug: string): ArtifactEntry | null {
+  const a = getArtifactBySlug(slug);
+  return a?.frontmatter.artifactType === 'belief' ? a : null;
+}
+
+export function getConflictBySlug(slug: string): ArtifactEntry | null {
+  const a = getArtifactBySlug(slug);
+  return a?.frontmatter.artifactType === 'conflict' ? a : null;
+}
+
+export function getThreadBySlug(slug: string): ArtifactEntry | null {
+  const a = getArtifactBySlug(slug);
+  return a?.frontmatter.artifactType === 'thread' ? a : null;
+}
+
+export function getFactionBySlug(slug: string): ArtifactEntry | null {
+  const a = getArtifactBySlug(slug);
+  return a?.frontmatter.artifactType === 'faction' ? a : null;
+}
+
+export function getSystemBySlug(slug: string): ArtifactEntry | null {
+  const a = getArtifactBySlug(slug);
+  return a?.frontmatter.artifactType === 'system' ? a : null;
+}
+
+export function getStoriesByBelief(slug: string): StoryEntry[] {
+  return getStoriesByArtifact(slug);
+}
+
+export function getStoriesByConflict(slug: string): StoryEntry[] {
+  return getStoriesByArtifact(slug);
+}
+
+export function getStoriesByThread(slug: string): StoryEntry[] {
+  return getStoriesByArtifact(slug);
+}
+
+export function getStoriesByFaction(slug: string): StoryEntry[] {
+  return getStoriesByArtifact(slug);
+}
+
+export function getStoriesBySystem(slug: string): StoryEntry[] {
+  return getStoriesByArtifact(slug);
+}
+
+export function getDistrictsByBelief(slug: string): DistrictEntry[] {
+  return getDistrictsByArtifact(slug);
+}
+
+export function getCharactersByBeliefDirect(slug: string): CharacterEntry[] {
+  return getCharactersByArtifact(slug);
+}
+
+export function getBeliefsByDistrict(districtSlug: string): ArtifactEntry[] {
+  return getArtifactsByDistrictAndType(districtSlug, 'belief');
+}
+
+export function getConflictsByDistrict(districtSlug: string): ArtifactEntry[] {
+  return getArtifactsByDistrictAndType(districtSlug, 'conflict');
+}
+
+export function getThreadsByDistrict(districtSlug: string): ArtifactEntry[] {
+  return getArtifactsByDistrictAndType(districtSlug, 'thread');
+}
+
+export function getBeliefsByCharacter(characterSlug: string): ArtifactEntry[] {
+  return getArtifactsByCharacterAndType(characterSlug, 'belief');
+}
+
+export function getFactionsByCharacter(characterSlug: string): ArtifactEntry[] {
+  return getArtifactsByCharacterAndType(characterSlug, 'faction');
+}
+
+export function getCharactersByFaction(slug: string): CharacterEntry[] {
+  return getCharactersByArtifact(slug);
 }

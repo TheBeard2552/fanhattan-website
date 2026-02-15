@@ -1,8 +1,11 @@
 ---
-name: "The Syndicate"
-slug: "the-syndicate"
-description: "An organized network that controls much of Fanhattan's underground economy and political leverage."
-canonTier: "tier-1"
+name: The Syndicate
+slug: the-syndicate
+description: >-
+  An organized network that controls much of Fanhattan's underground economy and
+  political leverage.
+canonTier: tier-1
+artifactType: faction
 ---
 
 # The Syndicate

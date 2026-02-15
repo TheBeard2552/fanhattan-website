@@ -1,14 +1,17 @@
 ---
-name: "Shep"
-slug: "shep"
-district: "stadium-south"
-role: "Bar Owner & Community Anchor"
-reputation: "The neutral voice in a district of competitors—everyone trusts Shep."
-privateTruth: "He keeps detailed records on everyone who comes through his bar, selling information when necessary."
-beliefs: ["meritocracy-is-honest", "survival-over-glory"]
-factions: []
-canonTier: "tier-1"
-thumbnail: "/images/characters/shep-thumb.jpg"
+name: Shep
+slug: shep
+district: stadium-south
+role: Bar Owner & Community Anchor
+reputation: The neutral voice in a district of competitors—everyone trusts Shep.
+privateTruth: >-
+  He keeps detailed records on everyone who comes through his bar, selling
+  information when necessary.
+canonTier: tier-1
+thumbnail: /images/characters/shep-thumb.jpg
+artifacts:
+  - meritocracy-is-honest
+  - survival-over-glory
 ---
 
 # Shep

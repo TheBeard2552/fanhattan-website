@@ -1,13 +1,15 @@
 ---
-title: Birchingham's Mercantile
 slug: birchinghams-mercantile
-type: world
 canonTier: 2
-coreBelief: Marble building with a "whisper effect"—conversations redirect to specific spots. Ghost stories or acoustic engineering? Yes.
+coreBelief: >-
+  Marble building with a "whisper effect"—conversations redirect to specific
+  spots. Ghost stories or acoustic engineering? Yes.
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Birchingham's Mercantile
 ---
 
 ## Core Belief

@@ -1,14 +1,17 @@
 ---
-title: Touchdown Terry's Cards & Collectibles
 slug: touchdown-terrys
-type: world
 canonTier: 1
 district: stadium-south
-coreBelief: The honest card shop—Terry gives you a fair shake on sports memorabilia when nobody else will
+coreBelief: >-
+  The honest card shop—Terry gives you a fair shake on sports memorabilia when
+  nobody else will
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
-related: [touchdown-terry]
+related:
+  - touchdown-terry
 status: active
+artifactType: location
+name: Touchdown Terry's Cards & Collectibles
 ---
 
 ## Core Belief

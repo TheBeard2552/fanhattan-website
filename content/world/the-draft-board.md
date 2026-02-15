@@ -1,14 +1,17 @@
 ---
-title: The Draft Board
 slug: the-draft-board
-type: world
 canonTier: 1
 district: the-proving-grounds
-coreBelief: The four-story digital display—real-time rankings that determine who rises and who falls
+coreBelief: >-
+  The four-story digital display—real-time rankings that determine who rises and
+  who falls
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
-related: [district-trials]
+related:
+  - district-trials
 status: active
+artifactType: location
+name: The Draft Board
 ---
 
 ## Core Belief

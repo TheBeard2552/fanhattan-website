@@ -1,15 +1,21 @@
 ---
-name: "Touchdown Terry"
-slug: "touchdown-terry"
-district: "stadium-south"
-role: "Honest sports memorabilia dealer"
-reputation: "Legit dealer who knows his cards and sports history. Played ball back in the day—still got the limp to prove it. Weird having an honest dealer in Stadium South."
-privateTruth: "Every authentic card he sells is a middle finger to the Syndicate who burned down his uncle's shop. He's terrified they'll make an example of him next."
-beliefs: ["honesty-in-business", "meritocracy-is-honest"]
-factions: []
-canonTier: "tier-2"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Touchdown Terry
+slug: touchdown-terry
+district: stadium-south
+role: Honest sports memorabilia dealer
+reputation: >-
+  Legit dealer who knows his cards and sports history. Played ball back in the
+  day—still got the limp to prove it. Weird having an honest dealer in Stadium
+  South.
+privateTruth: >-
+  Every authentic card he sells is a middle finger to the Syndicate who burned
+  down his uncle's shop. He's terrified they'll make an example of him next.
+canonTier: tier-2
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - honesty-in-business
+  - meritocracy-is-honest
 ---
 
 ## What They Want

@@ -1,14 +1,16 @@
 ---
-title: The '98 Archive
 slug: the-98-archive
-type: world
 canonTier: 1
 district: vol-valley
-coreBelief: A building dedicated entirely to preserving 1998—newspaper clippings, game footage, memorabilia
+coreBelief: >-
+  A building dedicated entirely to preserving 1998—newspaper clippings, game
+  footage, memorabilia
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The '98 Archive
 ---
 
 ## Core Belief

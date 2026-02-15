@@ -8,16 +8,12 @@ This is a **structured, relational narrative engine** for Fanhattan. It is NOT a
 
 ### Content Types
 
-The system supports 8 core content types:
+The system supports **4 core content types**:
 
 1. **Districts** - Geographic and cultural regions
 2. **Characters** - Individuals in Fanhattan
-3. **Stories** - Narrative events that tie everything together
-4. **Beliefs** - Core ideological principles
-5. **Conflicts** - Tensions and struggles
-6. **Threads** - Ongoing narrative arcs
-7. **Factions** - Organized groups
-8. **Systems** - World mechanics and rules
+3. **Stories** - Narrative events (standalone or episodic)
+4. **Artifacts** - World elements (beliefs, systems, factions, locations, conflicts, threads, items)
 
 ### Folder Structure
 
@@ -26,11 +22,15 @@ The system supports 8 core content types:
   /districts      - District MDX files
   /characters     - Character MDX files
   /stories        - Story MDX files
-  /beliefs        - Belief MDX files
-  /conflicts      - Conflict MDX files
-  /threads        - Thread MDX files
-  /factions       - Faction MDX files
-  /systems        - System MDX files
+  /artifacts      - Artifact MDX files
+  
+  # Legacy folders (still supported, auto-detected as artifacts):
+  /beliefs        - Legacy belief files
+  /conflicts      - Legacy conflict files
+  /threads        - Legacy thread files
+  /factions       - Legacy faction files
+  /systems        - Legacy system files
+  /world          - Legacy location files
 ```
 
 ## Frontmatter Schemas
@@ -60,88 +60,88 @@ district: "district-slug"
 role: "Their role in society"
 reputation: "Public perception"
 privateTruth: "Hidden truth about them"
-beliefs: ["belief-slug-1", "belief-slug-2"]
-factions: ["faction-slug-1"]
+artifacts: ["belief-slug", "faction-slug", "item-slug"]  # All world elements
 canonTier: "tier-1"
 coverImage: "/images/characters/slug.jpg"
 thumbnail: "/images/characters/slug-thumb.jpg"
 ---
 ```
 
-### Story
+### Story (Standalone)
 
 ```yaml
 ---
 title: "Story Title"
 slug: "story-slug"
+storyType: "standalone"
 districts: ["district-slug-1", "district-slug-2"]
 characters: ["character-slug-1", "character-slug-2"]
-beliefs: ["belief-slug-1"]
-conflicts: ["conflict-slug-1"]
-factions: ["faction-slug-1"]
-systems: ["system-slug-1"]
-threads: ["thread-slug-1"]
+artifacts: [
+  "belief-slug",
+  "conflict-slug",
+  "faction-slug",
+  "system-slug",
+  "thread-slug"
+]
 canonTier: "tier-1"
 summary: "Brief summary of the story"
 date: "2024-03-15"
+coverImage: "/images/stories/slug.jpg"
+thumbnail: "/images/stories/slug-thumb.jpg"
 ---
 ```
 
-### Belief
+### Story (Episodic)
 
 ```yaml
 ---
-name: "Belief Name"
-slug: "belief-slug"
-description: "What this belief represents"
+title: "Story Title - Episode 1"
+slug: "story-slug-episode-1"
+storyType: "episodic"
+episodeNumber: 1
+seriesSlug: "story-series-slug"
+districts: ["district-slug-1"]
+characters: ["character-slug-1"]
+artifacts: ["belief-slug", "faction-slug"]
 canonTier: "tier-1"
+summary: "Brief summary of this episode"
+date: "2024-03-15"
+coverImage: "/images/stories/slug.jpg"
+thumbnail: "/images/stories/slug-thumb.jpg"
 ---
 ```
 
-### Conflict
+### Artifact
+
+All world elements (beliefs, systems, factions, locations, conflicts, threads, items) use this schema:
 
 ```yaml
 ---
-name: "Conflict Name"
-slug: "conflict-slug"
-description: "Nature of the conflict"
+name: "Artifact Name"
+slug: "artifact-slug"
+artifactType: "belief"  # belief, system, faction, location, conflict, thread, item
+description: "What this artifact represents"
 canonTier: "tier-1"
+
+# Optional fields:
+district: "district-slug"  # For location-type artifacts
+status: "active"           # For thread-type artifacts (active, dormant, resolved)
+related: ["slug-1", "slug-2"]  # Related artifacts or characters
+
+coverImage: "/images/artifacts/slug.jpg"
+thumbnail: "/images/artifacts/slug-thumb.jpg"
 ---
 ```
 
-### Thread
+#### Artifact Types
 
-```yaml
----
-name: "Thread Name"
-slug: "thread-slug"
-status: "active" # or "dormant" or "resolved"
-canonTier: "tier-1"
-description: "Optional description"
----
-```
-
-### Faction
-
-```yaml
----
-name: "Faction Name"
-slug: "faction-slug"
-description: "What the faction represents"
-canonTier: "tier-1"
----
-```
-
-### System
-
-```yaml
----
-name: "System Name"
-slug: "system-slug"
-description: "How this system works"
-canonTier: "tier-1"
----
-```
+- **belief** - Ideological principles (e.g., "Survival Over Glory")
+- **system** - World mechanics/rules (e.g., "District Trials")
+- **faction** - Organized groups (e.g., "The Syndicate")
+- **location** - Physical places (e.g., "Shep's Bar")
+- **conflict** - Tensions/struggles (e.g., "Neutrality Collapse")
+- **thread** - Narrative arcs (e.g., "Syndicate Offensive")
+- **item** - Physical objects/relics (e.g., "The Golden Trophy")
 
 ## Validation
 
@@ -207,8 +207,9 @@ import {
   getCharactersByDistrict,
   getStoriesByDistrict,
   getStoriesByCharacter,
-  getStoriesByBelief,
-  getCharactersByFaction,
+  getStoriesByArtifact,
+  getArtifactsByType,
+  getStoriesBySeries,
   // ... many more
 } from '@/lib/lore/resolvers';
 
@@ -218,61 +219,71 @@ const characters = getCharactersByDistrict('stadium-south');
 // Get all stories involving Shep
 const stories = getStoriesByCharacter('shep');
 
-// Get all stories exploring a belief
-const beliefStories = getStoriesByBelief('survival-over-glory');
+// Get all stories involving a specific artifact
+const artifactStories = getStoriesByArtifact('survival-over-glory');
+
+// Get all beliefs
+const beliefs = getArtifactsByType('belief');
+
+// Get all episodes in a series
+const episodes = getStoriesBySeries('billy-saga');
+
+// Get standalone vs episodic stories
+const standalone = getStandaloneStories();
+const episodic = getEpisodicStories();
 ```
 
 ### Available Relational Resolvers
 
-- `getCharactersByDistrict(districtSlug)`
-- `getStoriesByDistrict(districtSlug)`
-- `getStoriesByCharacter(characterSlug)`
-- `getStoriesByBelief(beliefSlug)`
-- `getStoriesByConflict(conflictSlug)`
-- `getStoriesByThread(threadSlug)`
-- `getStoriesByFaction(factionSlug)`
-- `getStoriesBySystem(systemSlug)`
-- `getCharactersByFaction(factionSlug)`
-- `getCharactersByBelief(beliefSlug)`
-- `getConflictsByDistrict(districtSlug)`
-- `getBeliefsByDistrict(districtSlug)`
-- `getThreadsByDistrict(districtSlug)`
-- `getDistrictsByCharacter(characterSlug)`
-- `getDistrictsByBelief(beliefSlug)`
-- `getRivalDistricts(districtSlug)`
-- `getFactionsByCharacter(characterSlug)`
-- `getBeliefsByCharacter(characterSlug)`
+#### District Resolvers
+- `getCharactersByDistrict(districtSlug)` - Characters in a district
+- `getStoriesByDistrict(districtSlug)` - Stories involving a district
+- `getArtifactsByDistrict(districtSlug)` - Artifacts in stories about a district
+- `getArtifactsByDistrictAndType(districtSlug, artifactType)` - Filtered artifacts
+- `getRivalDistricts(districtSlug)` - Rival districts
+
+#### Character Resolvers
+- `getStoriesByCharacter(characterSlug)` - Stories involving a character
+- `getDistrictsByCharacter(characterSlug)` - Districts in character's stories
+- `getArtifactsByCharacter(characterSlug)` - Character's artifacts
+- `getArtifactsByCharacterAndType(characterSlug, artifactType)` - Filtered artifacts
+- `getCharactersByArtifact(artifactSlug)` - Characters with an artifact
+- `getCharactersByArtifactType(artifactType)` - Characters with artifact type
+- `getCharactersByArtifactWithStories(artifactSlug)` - Direct + story associations
+
+#### Story Resolvers
+- `getStoriesByArtifact(artifactSlug)` - Stories involving an artifact
+- `getStoriesByArtifactType(artifactType)` - Stories with artifact type
+- `getArtifactsByStory(storySlug)` - Artifacts in a story
+- `getArtifactsByStoryAndType(storySlug, artifactType)` - Filtered artifacts
+- `getStandaloneStories()` - All standalone stories
+- `getEpisodicStories()` - All episodic stories
+- `getStoriesBySeries(seriesSlug)` - Episodes in a series (sorted)
+
+#### Artifact Resolvers
+- `getDistrictsByArtifact(artifactSlug)` - Districts in stories with artifact
+- `getArtifactsByType(artifactType)` - All artifacts of a type
+- `getAllBeliefs()` - Shorthand for getArtifactsByType('belief')
+- `getAllSystems()` - Shorthand for getArtifactsByType('system')
+- `getAllFactions()` - Shorthand for getArtifactsByType('faction')
+- `getAllLocations()` - Shorthand for getArtifactsByType('location')
+- `getAllConflicts()` - Shorthand for getArtifactsByType('conflict')
+- `getAllThreads()` - Shorthand for getArtifactsByType('thread')
+- `getAllItems()` - Shorthand for getArtifactsByType('item')
 
 ## Dynamic Routes
 
 The following routes are automatically generated:
 
-- `/district/[slug]` - Shows district with related characters, stories, beliefs, conflicts, threads
-- `/character/[slug]` - Shows character with district, stories, beliefs, factions
-- `/story/[slug]` - Shows story with all related entities
-- `/belief/[slug]` - Shows belief with related districts, characters, stories
-- `/conflict/[slug]` - Shows conflict with related stories
-- `/thread/[slug]` - Shows thread with related stories
-- `/faction/[slug]` - Shows faction with members and stories
-- `/system/[slug]` - Shows system with related stories
+- `/district/[slug]` - Shows district with related characters, stories, artifacts
+- `/character/[slug]` - Shows character with district, stories, artifacts
+- `/story/[slug]` - Shows story with all related entities (characters, districts, artifacts)
+- `/artifact/[slug]` - Shows artifact with related districts, characters, stories
+- `/series/[slug]` - Shows all episodes in a series (for episodic stories)
 
 ## Example Seed Content
 
 See the following example files:
-
-**Beliefs:**
-- `content/beliefs/survival-over-glory.md`
-- `content/beliefs/meritocracy-is-honest.md`
-
-**Conflicts:**
-- `content/conflicts/neutrality-collapse.md`
-
-**Threads:**
-- `content/threads/syndicate-offensive.md`
-
-**Factions:**
-- `content/factions/the-syndicate.md`
-- `content/factions/the-resistance.md`
 
 **Districts:**
 - `content/districts/stadium-south.md`
@@ -283,29 +294,51 @@ See the following example files:
 - `content/characters/brown-bag-billy.md`
 
 **Stories:**
-- `content/stories/the-night-neutrality-broke.md`
+- `content/stories/the-night-neutrality-broke.md` (standalone)
+
+**Artifacts:**
+- `content/artifacts/survival-over-glory.md` (belief)
+- `content/artifacts/the-syndicate.md` (faction)
+- `content/artifacts/district-trials.md` (system)
+- `content/artifacts/sheps-bar.md` (location)
+- `content/artifacts/neutrality-collapse.md` (conflict)
+- `content/artifacts/syndicate-offensive.md` (thread)
+
+**Legacy folders** (still supported):
+- `content/beliefs/` - Auto-detected as belief artifacts
+- `content/factions/` - Auto-detected as faction artifacts
+- `content/systems/` - Auto-detected as system artifacts
+- `content/world/` - Auto-detected as location artifacts
 
 ## Key Principles
 
-### 1. No Freeform Tags
+### 1. Four Core Types
+
+The system uses exactly 4 content types: Districts, Characters, Stories, Artifacts. All other world elements are artifacts with a type field.
+
+### 2. No Freeform Tags
 
 All relationships are typed slug references. You cannot use arbitrary strings—only valid slugs that reference actual content.
 
-### 2. Single Source of Truth
+### 3. Single Source of Truth
 
 Frontmatter is the only source of relationships. There are no duplicate relationship definitions.
 
-### 3. Build-Time Validation
+### 4. Build-Time Validation
 
 Broken references fail the build. This ensures the graph remains consistent.
 
-### 4. Static Generation
+### 5. Static Generation
 
 All pages are statically generated at build time using Next.js App Router.
 
-### 5. Scalability
+### 6. Scalability
 
 The system is designed to handle 500+ stories with performant static generation.
+
+### 7. Story Types
+
+Stories can be **standalone** (complete in one story) or **episodic** (part of a series). Episodic stories require `episodeNumber` and `seriesSlug`.
 
 ## Implementation Files
 

@@ -1,8 +1,11 @@
 ---
-name: "Meritocracy Is Honest"
-slug: "meritocracy-is-honest"
-description: "True fairness comes from performance-based systems where talent and effort determine outcomes."
-canonTier: "tier-1"
+name: Meritocracy Is Honest
+slug: meritocracy-is-honest
+description: >-
+  True fairness comes from performance-based systems where talent and effort
+  determine outcomes.
+canonTier: tier-1
+artifactType: belief
 ---
 
 # Meritocracy Is Honest

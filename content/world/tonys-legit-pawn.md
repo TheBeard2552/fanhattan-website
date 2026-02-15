@@ -1,14 +1,16 @@
 ---
-title: Tony's Legit Pawn
 slug: tonys-legit-pawn
-type: world
 canonTier: 2
 district: stadium-south
-coreBelief: The one honest pawn shop in Stadium South—in a district of Syndicate fronts, Tony's is the exception
+coreBelief: >-
+  The one honest pawn shop in Stadium South—in a district of Syndicate fronts,
+  Tony's is the exception
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Tony's Legit Pawn
 ---
 
 ## Core Belief

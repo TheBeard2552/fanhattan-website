@@ -1,15 +1,21 @@
 ---
-name: "Papi"
-slug: "papi"
-district: "la-fiesta"
-role: "Piñata Crafter & Owner of Casa de Boom"
-reputation: "The showman of Calle Rota. Thirty-one years of building piñatas. Everyone knows Papi—nobody calls him Alejandro anymore."
-privateTruth: "He can feel probability fields with a clarity few crafters match. The 'tingle' behind his molars has been getting stronger. Something is waking up in Fanhattan."
-beliefs: ["probability-mastery", "survival-over-glory"]
-factions: []
-canonTier: "tier-1"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Papi
+slug: papi
+district: la-fiesta
+role: Piñata Crafter & Owner of Casa de Boom
+reputation: >-
+  The showman of Calle Rota. Thirty-one years of building piñatas. Everyone
+  knows Papi—nobody calls him Alejandro anymore.
+privateTruth: >-
+  He can feel probability fields with a clarity few crafters match. The 'tingle'
+  behind his molars has been getting stronger. Something is waking up in
+  Fanhattan.
+canonTier: tier-1
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - probability-mastery
+  - survival-over-glory
 ---
 
 # Papi

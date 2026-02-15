@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {
   getThreadBySlug,
   getStoriesByThread,
-  getStaticPaths,
+  getArtifactTypeStaticPaths,
 } from '@/lib/lore/resolvers';
 import { CanonTierBadge } from '@/components/CanonTierBadge';
 import { Markdown } from '@/components/MarkdownRenderer';
@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getStaticPaths('threads');
+  return getArtifactTypeStaticPaths('thread');
 }
 
 export default async function ThreadPage({ params }: PageProps) {

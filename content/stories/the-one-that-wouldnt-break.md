@@ -1,16 +1,33 @@
 ---
-title: "The One That Wouldn't Break"
-slug: "the-one-that-wouldnt-break"
-districts: ["la-fiesta", "the-bayou", "meadow-hills", "the-proving-grounds", "the-swamp", "vol-valley"]
-characters: ["papi", "bailey-brownbag", "touchdown-terry", "brown-bag-billy"]
-beliefs: ["probability-mastery", "strategic-analysis", "survival-over-glory"]
-conflicts: ["neutrality-collapse"]
-factions: ["the-syndicate", "the-resistance"]
-systems: ["district-trials"]
-threads: ["syndicate-offensive"]
-canonTier: "tier-1"
-summary: "Papi builds an unbreakable piñata in Casa de Boom. Something inside it is waking up—and it knows his real name."
-date: "2024-06-12"
+title: The One That Wouldn't Break
+slug: the-one-that-wouldnt-break
+districts:
+  - la-fiesta
+  - the-bayou
+  - meadow-hills
+  - the-proving-grounds
+  - the-swamp
+  - vol-valley
+characters:
+  - papi
+  - bailey-brownbag
+  - touchdown-terry
+  - brown-bag-billy
+canonTier: tier-1
+summary: >-
+  Papi builds an unbreakable piñata in Casa de Boom. Something inside it is
+  waking up—and it knows his real name.
+date: '2024-06-12'
+artifacts:
+  - probability-mastery
+  - strategic-analysis
+  - survival-over-glory
+  - neutrality-collapse
+  - the-syndicate
+  - the-resistance
+  - district-trials
+  - syndicate-offensive
+storyType: standalone
 ---
 
 # **THE ONE THAT WOULDN'T BREAK**

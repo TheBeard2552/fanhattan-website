@@ -1,8 +1,11 @@
 ---
-name: "Resistance Network"
-slug: "resistance"
-description: "A decentralized intelligence and operations network opposing Syndicate control through probability manipulation and grassroots organizing."
-canonTier: "tier-1"
+name: Resistance Network
+slug: resistance
+description: >-
+  A decentralized intelligence and operations network opposing Syndicate control
+  through probability manipulation and grassroots organizing.
+canonTier: tier-1
+artifactType: system
 ---
 
 ## Core Belief

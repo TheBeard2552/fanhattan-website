@@ -1,8 +1,11 @@
 ---
-name: "The Neutrality Collapse"
-slug: "neutrality-collapse"
-description: "The moment when neutral zones and safe havens are forced to pick sides in the larger conflict."
-canonTier: "tier-1"
+name: The Neutrality Collapse
+slug: neutrality-collapse
+description: >-
+  The moment when neutral zones and safe havens are forced to pick sides in the
+  larger conflict.
+canonTier: tier-1
+artifactType: conflict
 ---
 
 # The Neutrality Collapse

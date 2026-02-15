@@ -1,8 +1,12 @@
 ---
-name: "Syndicate Control System"
-slug: "syndicate"
-description: "The infrastructure for harvesting belief energy and manipulating probability—Oracles, dark markets, and engineered miracles that control Fanhattan's reality."
-canonTier: "tier-1"
+name: Syndicate Control System
+slug: syndicate
+description: >-
+  The infrastructure for harvesting belief energy and manipulating
+  probability—Oracles, dark markets, and engineered miracles that control
+  Fanhattan's reality.
+canonTier: tier-1
+artifactType: system
 ---
 
 ## Core Belief

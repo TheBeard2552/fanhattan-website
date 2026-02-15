@@ -1,7 +1,5 @@
 ---
-title: Urban's Urbanium
 slug: urbans-urbanium
-type: world
 canonTier: 1
 district: the-swamp
 coreBelief: The bar with the statue—spiritual center of Chomp City
@@ -9,6 +7,8 @@ coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Urban's Urbanium
 ---
 
 ## Core Belief

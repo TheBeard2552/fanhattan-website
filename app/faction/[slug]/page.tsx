@@ -4,7 +4,7 @@ import {
   getFactionBySlug,
   getCharactersByFaction,
   getStoriesByFaction,
-  getStaticPaths,
+  getArtifactTypeStaticPaths,
 } from '@/lib/lore/resolvers';
 import { CanonTierBadge } from '@/components/CanonTierBadge';
 import { Markdown } from '@/components/MarkdownRenderer';
@@ -14,7 +14,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getStaticPaths('factions');
+  return getArtifactTypeStaticPaths('faction');
 }
 
 export default async function FactionPage({ params }: PageProps) {

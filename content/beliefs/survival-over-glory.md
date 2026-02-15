@@ -1,8 +1,11 @@
 ---
-name: "Survival Over Glory"
-slug: "survival-over-glory"
-description: "In a cutthroat world, surviving to fight another day matters more than dying for honor."
-canonTier: "tier-1"
+name: Survival Over Glory
+slug: survival-over-glory
+description: >-
+  In a cutthroat world, surviving to fight another day matters more than dying
+  for honor.
+canonTier: tier-1
+artifactType: belief
 ---
 
 # Survival Over Glory

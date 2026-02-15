@@ -1,15 +1,22 @@
 ---
-name: "Baby (Professor)"
-slug: "baby-professor"
-district: "stadium-south"
-role: "Tech specialist and probability expert for the Resistance"
-reputation: "Brilliant. Unconventional methods. Part of the Resistance brain trust. Don't ask how they know what they know."
-privateTruth: "Baby sees probability in ways most people can't. That gift comes with a cost—the world looks different when you can sense the currents of belief and possibility."
-beliefs: ["probability-mastery", "survival-over-glory"]
-factions: ["the-resistance"]
-canonTier: "tier-2"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Baby (Professor)
+slug: baby-professor
+district: stadium-south
+role: Tech specialist and probability expert for the Resistance
+reputation: >-
+  Brilliant. Unconventional methods. Part of the Resistance brain trust. Don't
+  ask how they know what they know.
+privateTruth: >-
+  Baby sees probability in ways most people can't. That gift comes with a
+  cost—the world looks different when you can sense the currents of belief and
+  possibility.
+canonTier: tier-2
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - probability-mastery
+  - survival-over-glory
+  - the-resistance
 ---
 
 ## What They Want

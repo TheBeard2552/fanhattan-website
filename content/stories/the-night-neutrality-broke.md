@@ -1,16 +1,26 @@
 ---
-title: "The Night Neutrality Broke"
-slug: "the-night-neutrality-broke"
-districts: ["stadium-south", "the-proving-grounds"]
-characters: ["shep", "brown-bag-billy"]
-beliefs: ["survival-over-glory", "meritocracy-is-honest"]
-conflicts: ["neutrality-collapse"]
-factions: ["the-syndicate", "the-resistance"]
-systems: ["district-trials"]
-threads: ["syndicate-offensive"]
-canonTier: "tier-1"
-summary: "When the Syndicate demanded Shep choose a side, his decision sent shockwaves through Stadium South and beyond."
-date: "2024-03-15"
+title: The Night Neutrality Broke
+slug: the-night-neutrality-broke
+districts:
+  - stadium-south
+  - the-proving-grounds
+characters:
+  - shep
+  - brown-bag-billy
+canonTier: tier-1
+summary: >-
+  When the Syndicate demanded Shep choose a side, his decision sent shockwaves
+  through Stadium South and beyond.
+date: '2024-03-15'
+artifacts:
+  - survival-over-glory
+  - meritocracy-is-honest
+  - neutrality-collapse
+  - the-syndicate
+  - the-resistance
+  - district-trials
+  - syndicate-offensive
+storyType: standalone
 ---
 
 # The Night Neutrality Broke

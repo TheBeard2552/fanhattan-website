@@ -2,6 +2,12 @@
  * Fanhattan Relational Lore Engine
  * 
  * Main export file for the lore system.
+ * 
+ * Four Core Content Types:
+ * 1. Districts - Geographic/cultural regions
+ * 2. Characters - Individuals
+ * 3. Stories - Narratives (standalone or episodic)
+ * 4. Artifacts - World elements (beliefs, systems, factions, locations, etc.)
  */
 
 // Types
@@ -12,11 +18,7 @@ export {
   loadDistricts,
   loadCharacters,
   loadStories,
-  loadBeliefs,
-  loadConflicts,
-  loadThreads,
-  loadFactions,
-  loadSystems,
+  loadArtifacts,
   loadAllContent,
   loadAndValidateAllContent,
   validateAllContent,
@@ -29,43 +31,74 @@ export {
   getDistrictBySlug,
   getCharacterBySlug,
   getStoryBySlug,
-  getBeliefBySlug,
-  getConflictBySlug,
-  getThreadBySlug,
-  getFactionBySlug,
-  getSystemBySlug,
+  getArtifactBySlug,
   
   // All entities getters
   getAllDistricts,
   getAllCharacters,
   getAllStories,
+  getAllArtifacts,
+  
+  // Artifact type getters
+  getArtifactsByType,
   getAllBeliefs,
+  getAllSystems,
+  getAllFactions,
+  getAllLocations,
   getAllConflicts,
   getAllThreads,
-  getAllFactions,
-  getAllSystems,
+  getAllItems,
   
-  // Relational resolvers
+  // Story type getters
+  getStandaloneStories,
+  getEpisodicStories,
+  getStoriesBySeries,
+  
+  // Relational resolvers - Districts
   getCharactersByDistrict,
   getStoriesByDistrict,
+  getArtifactsByDistrict,
+  getArtifactsByDistrictAndType,
+  getRivalDistricts,
+  
+  // Relational resolvers - Characters
   getStoriesByCharacter,
+  getDistrictsByCharacter,
+  getArtifactsByCharacter,
+  getArtifactsByCharacterAndType,
+  getCharactersByArtifact,
+  getCharactersByArtifactType,
+  getCharactersByArtifactWithStories,
+  
+  // Relational resolvers - Stories
+  getStoriesByArtifact,
+  getStoriesByArtifactType,
+  getArtifactsByStory,
+  getArtifactsByStoryAndType,
+  
+  // Relational resolvers - Artifacts
+  getDistrictsByArtifact,
+  
+  // Utilities
+  getStaticPaths,
+  getArtifactTypeStaticPaths,
+  // Artifact-type aliases
+  getBeliefBySlug,
+  getConflictBySlug,
+  getThreadBySlug,
+  getFactionBySlug,
+  getSystemBySlug,
   getStoriesByBelief,
   getStoriesByConflict,
   getStoriesByThread,
   getStoriesByFaction,
   getStoriesBySystem,
-  getCharactersByFaction,
-  getCharactersByBelief,
-  getConflictsByDistrict,
-  getBeliefsByDistrict,
-  getThreadsByDistrict,
-  getDistrictsByCharacter,
   getDistrictsByBelief,
   getCharactersByBeliefDirect,
-  getRivalDistricts,
-  getFactionsByCharacter,
+  getBeliefsByDistrict,
+  getConflictsByDistrict,
+  getThreadsByDistrict,
   getBeliefsByCharacter,
-  
-  // Utilities
-  getStaticPaths,
+  getFactionsByCharacter,
+  getCharactersByFaction,
 } from './resolvers';

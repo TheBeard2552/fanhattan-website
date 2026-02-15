@@ -1,15 +1,21 @@
 ---
-name: "Vito DeLucca"
-slug: "vito-delucca"
-district: "stadium-south"
-role: "Numbers runner and deliveryman for Sal Marino"
-reputation: "Quiet guy. Works for Sal. Keeps his head down. Runs numbers, makes deliveries, doesn't cause problems. If you need something moved right, Vito's your guy."
-privateTruth: "He's skimming just a little from side jobs—nothing big enough to notice, but over time it adds up. Vito's retirement fund is built on being the most trustworthy unreliable person in Stadium South."
-beliefs: ["strategic-invisibility", "family-above-all"]
-factions: []
-canonTier: "tier-2"
-coverImage: "/images/placeholder.svg"
-thumbnail: "/images/placeholder.svg"
+name: Vito DeLucca
+slug: vito-delucca
+district: stadium-south
+role: Numbers runner and deliveryman for Sal Marino
+reputation: >-
+  Quiet guy. Works for Sal. Keeps his head down. Runs numbers, makes deliveries,
+  doesn't cause problems. If you need something moved right, Vito's your guy.
+privateTruth: >-
+  He's skimming just a little from side jobs—nothing big enough to notice, but
+  over time it adds up. Vito's retirement fund is built on being the most
+  trustworthy unreliable person in Stadium South.
+canonTier: tier-2
+coverImage: /images/placeholder.svg
+thumbnail: /images/placeholder.svg
+artifacts:
+  - strategic-invisibility
+  - family-above-all
 ---
 
 ## What They Want

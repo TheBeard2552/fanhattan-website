@@ -1,14 +1,16 @@
 ---
-title: Draft Day Diner
 slug: draft-day-diner
-type: world
 canonTier: 1
 district: the-proving-grounds
-coreBelief: The only good restaurant in the district—where prospects celebrate and relegated teams drown their sorrows
+coreBelief: >-
+  The only good restaurant in the district—where prospects celebrate and
+  relegated teams drown their sorrows
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: Draft Day Diner
 ---
 
 ## Core Belief

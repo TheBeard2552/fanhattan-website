@@ -1,8 +1,9 @@
 ---
-name: "Old Ways Matter"
-slug: "old-ways-matter"
-description: "The traditions and codes of the past had honor. Modern chaos has none."
-canonTier: "tier-2"
+name: Old Ways Matter
+slug: old-ways-matter
+description: The traditions and codes of the past had honor. Modern chaos has none.
+canonTier: tier-2
+artifactType: belief
 ---
 
 # Old Ways Matter

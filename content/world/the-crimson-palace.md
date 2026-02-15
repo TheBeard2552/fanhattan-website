@@ -1,14 +1,16 @@
 ---
-title: The Crimson Palace
 slug: the-crimson-palace
-type: world
 canonTier: 1
 district: tidewater
-coreBelief: Officially the community center—everyone calls it the Crimson Palace. Where district decisions get made.
+coreBelief: >-
+  Officially the community center—everyone calls it the Crimson Palace. Where
+  district decisions get made.
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
 status: active
+artifactType: location
+name: The Crimson Palace
 ---
 
 ## Core Belief
