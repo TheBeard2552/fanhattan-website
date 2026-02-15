@@ -96,12 +96,8 @@ async function postToDiscord(
       footer: {
         text: 'React with 🔥 (Want), 💯 (Must Have), 🐞 (Bug), or 🧠 (Idea)',
       },
+      ...(feedback.screenshotUrl && { image: { url: feedback.screenshotUrl } }),
     };
-
-    // Add screenshot if available
-    if (feedback.screenshotUrl) {
-      embed.image = { url: feedback.screenshotUrl };
-    }
 
     const response = await fetch(webhookUrl, {
       method: 'POST',
