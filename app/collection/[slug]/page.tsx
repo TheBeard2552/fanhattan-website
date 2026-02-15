@@ -6,7 +6,6 @@ import Card from '@/components/Card';
 import RarityBadge from '@/components/collection/RarityBadge';
 import ModeTag from '@/components/collection/ModeTag';
 import { getCollectibleBySlug, getAllCollectibleSlugs } from '../../../data/collectibles';
-import { getLoreBySlug } from '@/lib/loreHub/queries';
 
 interface PageProps {
   params: Promise<{
@@ -45,10 +44,11 @@ export default async function CollectibleDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Resolve related lore entries
-  const relatedLore = collectible.relatedLoreSlugs
-    .map((loreSlug) => getLoreBySlug(loreSlug))
-    .filter((entry) => entry !== null);
+  // TODO: Re-integrate with new canon system
+  // const relatedLore = collectible.relatedLoreSlugs
+  //   .map((loreSlug) => getCanonBySlug(loreSlug))
+  //   .filter((entry) => entry !== null);
+  const relatedLore: any[] = [];
 
   const modeLabels = {
     billy: "Billy's Big Streak",

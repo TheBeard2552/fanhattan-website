@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { LoreType } from '@/lib/loreHub/types';
 
 interface CategoryCardProps {
-  type: LoreType;
+  type: string;
   title: string;
   description: string;
   count: number;

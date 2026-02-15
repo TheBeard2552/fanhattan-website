@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import { validateLoreContent, printValidationResults } from '../src/lib/lore/validate';
+import { validateCanonContent, printValidationResults } from '../src/lib/validator';
 
 const mode = process.argv.includes('--mode') 
   ? process.argv[process.argv.indexOf('--mode') + 1] as 'warn' | 'error'
   : 'error';
 
-const errors = validateLoreContent();
+const errors = validateCanonContent();
 const success = printValidationResults(errors, mode);
 
 if (!success) {

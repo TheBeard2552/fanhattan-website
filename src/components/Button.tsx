@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost';
   href?: string;
@@ -14,7 +14,8 @@ export default function Button({
   variant = 'primary', 
   href, 
   onClick,
-  className = '' 
+  className = '',
+  ...buttonProps
 }: ButtonProps) {
   const baseClasses = `
     inline-flex items-center justify-center
@@ -53,7 +54,7 @@ export default function Button({
   }
   
   return (
-    <button onClick={onClick} className={classes}>
+    <button onClick={onClick} className={classes} {...buttonProps}>
       {children}
     </button>
   );

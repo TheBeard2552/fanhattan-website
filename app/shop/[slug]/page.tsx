@@ -6,7 +6,6 @@ import AddToCartButton from '@/components/shop/AddToCartButton';
 import DropBadge from '@/components/shop/DropBadge';
 import RarityBadge from '@/components/collection/RarityBadge';
 import { products, getProductBySlug } from '../../../data/products';
-import { getLoreBySlug } from '@/lib/lore/queries';
 
 interface PageProps {
   params: Promise<{
@@ -44,10 +43,11 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
-  // Resolve related lore entries
-  const relatedLoreEntries = product.relatedLore
-    .map((loreSlug) => getLoreBySlug(loreSlug))
-    .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+  // TODO: Re-integrate with new canon system
+  // const relatedLoreEntries = product.relatedLore
+  //   .map((loreSlug) => getCanonBySlug(loreSlug))
+  //   .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+  const relatedLoreEntries: any[] = [];
 
   // Resolve related collectible if exists
   const relatedCollectible = product.relatedCollectible 

@@ -1,119 +1,120 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import LoreHero from '@/components/lore/LoreHero';
-import LoreSection from '@/components/lore/LoreSection';
-import CategoryCard from '@/components/lore/CategoryCard';
-import TimelineItem from '@/components/lore/TimelineItem';
-import LoreCard from '@/components/lore/LoreCard';
-import { getFeaturedLore, getTimelineLore, getLoreTypeCounts } from '@/lib/sanity/queries';
+import {
+  getAllDistricts,
+  getAllCharacters,
+  getAllSystems,
+  getAllStories,
+} from '@/lib/lore/resolvers';
+import { getAllCanon } from '@/lib/content';
+import CanonLayout from '@/components/CanonLayout';
 
 export const metadata: Metadata = {
-  title: 'The Lore of Fanhattan — Bagged Up',
-  description: 'Explore the districts, characters, artifacts, and stories that shape the world of Fanhattan.',
+  title: 'The Canon of Fanhattan — Bagged Up',
+  description: 'Explore the districts, characters, and systems that shape the world of Fanhattan.',
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export default function LoreHubPage() {
+  // New lore engine content
+  const districts = getAllDistricts();
+  const characters = getAllCharacters();
+  const systems = getAllSystems();
+  const stories = getAllStories();
 
-export default async function LorePage() {
-  const featured = await getFeaturedLore();
-  const timeline = await getTimelineLore(5);
-  const counts = await getLoreTypeCounts();
+  // Old system content (world, events, myths)
+  const allCanon = getAllCanon();
+
+  // Featured story: most recent by date, or first available
+  const featuredStory = [...stories].sort((a, b) => {
+    const dateA = a.frontmatter.date ? new Date(a.frontmatter.date).getTime() : 0;
+    const dateB = b.frontmatter.date ? new Date(b.frontmatter.date).getTime() : 0;
+    return dateB - dateA;
+  })[0];
+
+  // Count by type
+  const counts = {
+    world: allCanon.filter((e) => e.frontmatter.type === 'world').length,
+    districts: districts.length,
+    characters: characters.length,
+    stories: stories.length,
+    systems: systems.length,
+    events: allCanon.filter((e) => e.frontmatter.type === 'event').length,
+    myths: allCanon.filter((e) => e.frontmatter.type === 'myth').length,
+  };
+
+  // Order: World (foundation) → Districts → Characters → Stories → Systems → Events → Myths
+  const categories = [
+    { type: 'world', title: 'World', description: 'The foundation of Fanhattan', emoji: '🌍' },
+    { type: 'districts', title: 'Districts', description: 'The territories of power', emoji: '🏙️' },
+    { type: 'characters', title: 'Characters', description: 'Those who shape the city', emoji: '👤' },
+    { type: 'stories', title: 'Stories', description: 'Narrative events that tie everything together', emoji: '📜' },
+    { type: 'systems', title: 'Systems', description: 'The rules that govern reality', emoji: '⚙️' },
+    { type: 'events', title: 'Events', description: 'Moments that changed everything', emoji: '⚡' },
+    { type: 'myths', title: 'Myths', description: 'Stories that became legend', emoji: '📖' },
+  ];
 
   return (
-    <>
-      {/* Hero Section */}
-      <LoreHero
-        headline="THE WORLD OF FANHATTAN"
-        subtext="Belief collides with reality."
-      />
+    <CanonLayout>
+      {/* Hero */}
+      <section className="container mx-auto px-4 pt-32 pb-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="font-display text-6xl md:text-7xl uppercase tracking-tight mb-6 text-white">
+            The Canon
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-400 font-light">
+            Belief collides with reality.
+          </p>
+        </div>
+      </section>
 
       {/* Featured Story */}
-      {featured && (
-        <LoreSection className="bg-muted/30">
-          <div className="mb-6">
-            <h2 className="text-3xl font-display uppercase tracking-wide mb-2">
+      {featuredStory && (
+        <section className="container mx-auto px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-display text-sm uppercase tracking-widest text-platform mb-4">
               Featured Story
             </h2>
-            <div className="h-1 w-20 bg-platform"></div>
+            <Link
+              href={`/story/${featuredStory.frontmatter.slug}`}
+              className="group block bg-gradient-to-br from-platform/10 to-platform/5 border-2 border-platform/30 rounded-lg p-8 hover:border-platform/60 transition-all duration-300"
+            >
+              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide mb-3 text-white group-hover:text-platform transition-colors">
+                {featuredStory.frontmatter.title}
+              </h3>
+              <p className="text-gray-400 text-lg leading-relaxed mb-4">
+                {featuredStory.frontmatter.summary}
+              </p>
+              <span className="text-platform font-display uppercase tracking-wide text-sm group-hover:underline">
+                Read the full story →
+              </span>
+            </Link>
           </div>
-          <Link
-            href={`/lore/${featured.type}/${featured.slug}`}
-            className="block bg-card border-2 border-platform/50 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-xl group"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="aspect-video md:aspect-square bg-gradient-to-br from-platform/20 to-platform/5 flex items-center justify-center">
-                <span className="text-8xl">⭐</span>
-              </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="text-xs text-platform font-display uppercase tracking-wide mb-2">
-                  Featured {featured.type.slice(0, -1)}
-                </div>
-                <h3 className="text-3xl font-display uppercase tracking-wide mb-4 group-hover:text-platform transition-colors">
-                  {featured.name}
-                </h3>
-                <p className="text-lg text-muted-foreground">
-                  {featured.summary}
-                </p>
-              </div>
-            </div>
-          </Link>
-        </LoreSection>
+        </section>
       )}
 
-      {/* Category Navigation */}
-      <LoreSection>
-        <div className="mb-8">
-          <h2 className="text-3xl font-display uppercase tracking-wide mb-2">
-            Explore the Lore
-          </h2>
-          <div className="h-1 w-20 bg-platform"></div>
+      {/* Categories Grid */}
+      <section className="container mx-auto px-4 pb-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((category) => (
+              <Link
+                key={category.type}
+                href={`/lore/${category.type}`}
+                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border-2 border-white/10 rounded-lg p-8 hover:border-platform/50 transition-all duration-300"
+              >
+                <div className="text-5xl mb-4">{category.emoji}</div>
+                <h3 className="font-display text-2xl uppercase tracking-wide mb-2 text-white group-hover:text-platform transition-colors">
+                  {category.title}
+                </h3>
+                <p className="text-gray-400 mb-4">{category.description}</p>
+                <div className="text-sm text-platform font-display uppercase tracking-wide">
+                  {counts[category.type as keyof typeof counts]} {counts[category.type as keyof typeof counts] === 1 ? 'entry' : 'entries'}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <CategoryCard
-            type="characters"
-            title="Characters"
-            description="The people who shape the city."
-            count={counts.characters}
-            emoji="👤"
-          />
-          <CategoryCard
-            type="districts"
-            title="Districts"
-            description="The neighborhoods of Fanhattan."
-            count={counts.districts}
-            emoji="🏙️"
-          />
-          <CategoryCard
-            type="artifacts"
-            title="Artifacts"
-            description="Objects of power and mystery."
-            count={counts.artifacts}
-            emoji="💎"
-          />
-          <CategoryCard
-            type="chapters"
-            title="Chapters"
-            description="Key moments in the city's history."
-            count={counts.chapters}
-            emoji="📖"
-          />
-        </div>
-      </LoreSection>
-
-      {/* Timeline Preview */}
-      <LoreSection className="bg-muted/30">
-        <div className="mb-8">
-          <h2 className="text-3xl font-display uppercase tracking-wide mb-2">
-            The City Remembers
-          </h2>
-          <div className="h-1 w-20 bg-platform"></div>
-        </div>
-        <div className="space-y-0">
-          {timeline.map((entry) => (
-            <TimelineItem key={entry.id} entry={entry} />
-          ))}
-        </div>
-      </LoreSection>
-    </>
+      </section>
+    </CanonLayout>
   );
 }
