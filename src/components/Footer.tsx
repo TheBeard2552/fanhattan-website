@@ -39,8 +39,13 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Fanhattan. All rights reserved.</p>
+          <div className="flex flex-wrap gap-6 justify-center sm:justify-end">
+            <Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link href="/delete-account" className="hover:text-foreground transition-colors">Delete Account</Link>
+          </div>
         </div>
       </div>
     </footer>
