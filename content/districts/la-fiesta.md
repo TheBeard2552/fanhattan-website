@@ -1,10 +1,10 @@
 ---
 name: "La Fiesta"
 slug: "la-fiesta"
-coreBelief: "What breaks can be rebuilt—what survives is worth celebrating. The party never ends."
-rivalDistricts: ["the-swamp"]
+coreBelief: "Celebration generates more raw belief energy than organized fandom. Fortune favors those swinging hardest."
+rivalDistricts: ["stadium-south", "winchester", "the-swamp", "cabots-landing", "the-proving-grounds"]
 canonTier: "tier-1"
-description: "The festival district. Piñatas, cumbia, string lights on Calle Rota. Where belief energy pools around celebration and craft."
+description: "Boom Town. Seven blocks of festivals and converted warehouses where piñatas channel belief energy and the Syndicate can't quite bottle the chaos."
 coverImage: "/images/placeholder.svg"
 thumbnail: "/images/placeholder.svg"
 ---

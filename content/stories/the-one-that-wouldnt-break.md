@@ -27,7 +27,9 @@ artifacts:
   - the-resistance
   - district-trials
   - syndicate-offensive
-storyType: standalone
+storyType: episodic
+seriesSlug: casa-de-boom
+episodeNumber: 1
 ---
 
 # **THE ONE THAT WOULDN'T BREAK**

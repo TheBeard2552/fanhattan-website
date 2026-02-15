@@ -1,26 +1,26 @@
 ---
 name: "Stadium South"
 slug: "stadium-south"
-coreBelief: "Winners are remembered, losers are forgotten. In Stadium South, your legacy is your stats."
-rivalDistricts: ["the-proving-grounds"]
+coreBelief: "Survival is the only real victory. Not glory, not championships: waking up tomorrow, paying your tab, keeping your head down."
+rivalDistricts: ["tidewater"]
 canonTier: "tier-1"
-description: "A district built around competitive sports culture, where everything is tracked, ranked, and gamified."
+description: "Eight blocks south of the stadium. Neutral ground built on stubborn persistence, information, and staying alive when everyone else gets played."
 coverImage: "/images/districts/stadium-south.jpg"
 thumbnail: "/images/districts/stadium-south-thumb.jpg"
 ---
 
 # Stadium South
 
-Stadium South is the heart of Fanhattan's sports culture. Every street corner has a scoreboard, every bar tracks patron stats, and reputation is measured in quantifiable achievements.
+Stadium South is the "Shithole Switzerland" of Fanhattan, the place everyone passes through and nobody admits they need. It's eight blocks of brick, diesel, and cheap beer south of the stadium, where neutrality is less a principle and more a survival tactic.
 
 ## Culture
 
-The district operates on a pure meritocratic belief system. If you can perform, you're celebrated. If you can't, you're forgotten. There's no room for excuses or explanations—only results.
+Stadium South does not worship glory. It worships tomorrow. People here keep their heads down, keep their doors open, and keep their mouths shut, because the city remembers streaks and the Syndicate remembers debt.
 
 ## Economy
 
-Stadium South's economy runs on gambling, sports bars, memorabilia shops, and training facilities. The district attracts athletes, gamblers, and those seeking to prove themselves.
+Bars. Bookies. Pawn shops. Card stores. Side hustles that become careers if you survive long enough. Information is currency, and most of it gets traded over a beer at Shep's.
 
 ## Power Structure
 
-Power in Stadium South is held by those with the best records and the most influence over competitive outcomes. Bookies, coaches, and former champions form the unofficial leadership.
+Power belongs to the people who can keep something open in a district built to close. Shep anchors the neighborhood. Tony and Vito hear everything. The neutrality is a public story. The real rule is simpler: don't make the district a battleground.

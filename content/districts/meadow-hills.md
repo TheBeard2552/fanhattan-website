@@ -2,7 +2,7 @@
 name: "Meadow Hills"
 slug: "meadow-hills"
 coreBelief: "You can live in Fanhattan without being obsessed. Fandom should be fun, not consuming."
-rivalDistricts: ["the-proving-grounds"]
+rivalDistricts: []
 canonTier: "tier-1"
 description: "Casual Central. The district for people who want to enjoy sports without it consuming their identity."
 coverImage: "/images/placeholder.svg"
@@ -31,7 +31,7 @@ Earthquake (built on drained swamp). Being dragged into the factions.
 
 ## Rival Districts
 
-**Everyone** – Cultural rejection. **The Proving Grounds** – Natural allies; both reject obsessive fandom.
+**Everyone** – Cultural rejection. Meadow Hills isn't at war with anyone, it just opts out. When it does find allies, they tend to be people who also reject obsessive belief culture.
 
 ## Unspoken Truth
 

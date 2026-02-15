@@ -2,7 +2,7 @@
 name: "Vol Valley"
 slug: "vol-valley"
 coreBelief: "Greatness is permanent. 1998 wasn't just a great season—it was perfection, and perfection doesn't expire."
-rivalDistricts: ["the-swamp", "tidewater"]
+rivalDistricts: ["the-swamp", "tidewater", "the-proving-grounds"]
 canonTier: "tier-1"
 description: "Living in 1998. The Power T Plaza. Peyton Manning shrines. Glory never expires."
 coverImage: "/images/placeholder.svg"

@@ -1,10 +1,9 @@
 ---
 slug: morrows-manor
-canonTier: 2
+canonTier: tier-1
 district: winchester
 coreBelief: >-
-  Abandoned but legendary—Winchester's elite maintain a buffer zone because it's
-  actually haunted
+  Abandoned but active—Winchester's elite maintain a buffer zone because the Manor is a dense probability source that does not stay contained
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 related: []
@@ -15,12 +14,12 @@ name: Morrow's Manor
 
 ## Core Belief
 
-Morrow's Manor is abandoned but legendary. Winchester's elite maintain a buffer zone around it. Not for aesthetics—because it's actually haunted by probability ghosts. The Manor does things. Reality gets weird near it. Nobody talks about it in polite company.
+Morrow's Manor is a Victorian monument to old money and bad decisions, built in 1936 by Cornelius Morrow and abandoned for decades. Winchester's elite maintain a two block buffer zone around it, not out of superstition, but because the Manor is an active probability source. Reality shifts near it. Sidewalks appear where zoning says they cannot. Paths build themselves toward the house like the city is trying to guide people to a door they should not open.
 
 ## What It Controls
 
-A chunk of prime Winchester real estate that nobody will develop. A reminder that even the Heights have secrets. A potential source of probability phenomena that neither the Syndicate nor the Resistance fully understand.
+Winchester's political fear. A dead zone of undeveloped prime real estate. The densest natural probability field ever measured in the city. The tension between "we control everything" and the one building Winchester cannot control.
 
 ## Unspoken Truth
 
-Morrow's Manor is Tier 3 Street Truth—ghost stories, local legends. But the probability distortions are real. Winchester's elite aren't maintaining a buffer zone for property values. They're scared.
+The ghost story is a convenient mask. The real danger is structural. The Manor generates autonomous manifestations (including unauthorized sidewalks) and the effect is accelerating. Cornelius Morrow's journals, written 1948 to 1952 and recovered from the house, claim something worse: that Fanhattan's probability field came first, that belief is downstream of it, and that the city is conscious. Treat that last claim as Tier 3 street truth until stories confirm it. The rest is already bleeding into Tier 1 reality.

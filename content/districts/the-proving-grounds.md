@@ -1,26 +1,26 @@
 ---
 name: "The Proving Grounds"
 slug: "the-proving-grounds"
-coreBelief: "Survival is the only test that matters. Everything else is luxury."
-rivalDistricts: ["stadium-south"]
+coreBelief: "Nothing is guaranteed. Everything must be earned. Yesterday's glory means nothing without today's validation."
+rivalDistricts: ["tidewater", "vol-valley", "winchester"]
 canonTier: "tier-1"
-description: "A harsh, unforgiving district where people come to test themselves or disappear."
+description: "Rookie Row. The Draft District. An industrial gauntlet where rankings decide resources, and legitimacy has to be proven every day."
 coverImage: "/images/districts/proving-grounds.jpg"
 thumbnail: "/images/districts/proving-grounds-thumb.jpg"
 ---
 
 # The Proving Grounds
 
-The Proving Grounds is where Fanhattan's outcasts, desperados, and seekers go to test their limits. It's a place of harsh realities and no second chances.
+The Proving Grounds is where careers are made and erased in real time. Fifteen blocks of industrial concrete and metal bleachers, built around one ruthless idea: nothing carries over. You earn what you get, or you get nothing.
 
 ## Culture
 
-Unlike Stadium South's competitive glory-seeking, The Proving Grounds values pure survival and adaptation. People don't come here for fame—they come to prove they can endure.
+Performance is currency. The Draft Board tracks rankings and people live and die by the numbers, not because they love the system, but because the system decides who gets access to facilities, coaches, and opportunity.
 
 ## Territory
 
-The district is a mix of abandoned industrial zones, temporary camps, and makeshift settlements. Infrastructure is minimal, and residents are expected to be self-sufficient.
+Warehouses converted into training floors. Chain link fences that function as bulletin boards. Diners where prospects celebrate or mourn. Everything is functional, loud, and slightly desperate.
 
 ## Reputation
 
-Those who survive and thrive in The Proving Grounds earn a certain respect across Fanhattan. It's known as a place that forges the toughest individuals.
+People talk about The Proving Grounds like it is punishment. It is. It is also the only honest doorway to legitimacy left in the city, which is why the Syndicate tried to rig it and why the Resistance fought so hard to rebuild it.

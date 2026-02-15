@@ -2,7 +2,7 @@
 name: "Winchester"
 slug: "winchester"
 coreBelief: "Excellence deserves isolation. Distance from the rabble isn't elitism—it's self-preservation."
-rivalDistricts: ["tidewater", "the-proving-grounds"]
+rivalDistricts: ["tidewater", "the-proving-grounds", "la-fiesta"]
 canonTier: "tier-1"
 description: "Old money district with no sidewalks. The elite maintain distance from the rabble."
 coverImage: "/images/placeholder.svg"
@@ -31,8 +31,8 @@ Wrought-iron fences. No sidewalks. Old money architecture. Feels like a museum e
 
 ## Rival Districts
 
-**Tidewater** – Need each other, don't like each other. **The Proving Grounds** – Legacy vs. merit. **Everyone else** – Class separation.
+**Tidewater** – Need each other, don't like each other. **The Proving Grounds** – Legacy vs. merit. **La Fiesta** – Class warfare in seven blocks of string lights. **Everyone else** – Class separation.
 
 ## Unspoken Truth
 
-Morrow's Manor is actually haunted by probability ghosts. Winchester's elite maintain a buffer zone around it.
+Morrow's Manor is not a ghost story. It's an active probability source, dense enough to generate manifestations like unauthorized sidewalks that build paths toward it. Winchester maintains the buffer zone because they're scared, not superstitious, and some of them have been meeting inside the Manor at night.
