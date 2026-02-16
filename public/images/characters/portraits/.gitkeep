@@ -1,0 +1,19 @@
+# Character Portraits Directory
+
+Place character portrait images here using the naming convention: `{slug}.webp`
+
+For example:
+- `brown-bag-billy.webp`
+- `ace-dillingham.webp`
+- etc.
+
+Recommended specs:
+- Format: WebP
+- Aspect ratio: 2:3 (portrait)
+- Recommended size: 600x900px or 800x1200px
+- Optimization: Use tools like Squoosh or cwebp for best compression
+
+The character cards will automatically fall back to:
+1. `/images/characters/portraits/{slug}.webp` (primary)
+2. The `thumbnail` field from character frontmatter (secondary)
+3. A generated placeholder with initials (final fallback)

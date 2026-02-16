@@ -3,10 +3,10 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import CanonLayout from '@/features/lore/components/CanonLayout';
-import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
 import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
 import LoreFilterChips from '@/features/lore/components/LoreFilterChips';
 import LoreSortMenu from '@/features/lore/components/LoreSortMenu';
+import CharacterPortraitCard from '@/features/lore/components/CharacterPortraitCard';
 import type { CharacterEntry, DistrictEntry } from '@/lib/lore/types';
 
 interface LoreCharactersClientProps {
@@ -93,26 +93,13 @@ export default function LoreCharactersClient({
             />
           </div>
           {filteredAndSortedCharacters.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredAndSortedCharacters.map((character) => (
-                <Link
+                <CharacterPortraitCard
                   key={character.frontmatter.slug}
-                  href={`/character/${character.frontmatter.slug}`}
-                  className="group block bg-gradient-to-br from-white/5 to-white/[0.02] border-2 border-white/10 rounded-lg p-6 hover:border-platform/50 transition-all duration-300"
-                >
-                  <h2 className="font-display text-xl uppercase tracking-wide text-white group-hover:text-platform transition-colors mb-3">
-                    {character.frontmatter.name}
-                  </h2>
-                  {character.frontmatter.role && (
-                    <div className="text-sm text-gray-400 mb-2">{character.frontmatter.role}</div>
-                  )}
-                  {districtNames[character.frontmatter.district] && (
-                    <div className="text-xs text-gray-500 uppercase tracking-wide mb-3">
-                      {districtNames[character.frontmatter.district]}
-                    </div>
-                  )}
-                  <CanonTierBadge tier={character.frontmatter.canonTier} />
-                </Link>
+                  character={character}
+                  districtName={districtNames[character.frontmatter.district]}
+                />
               ))}
             </div>
           ) : (
