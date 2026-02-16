@@ -7,7 +7,10 @@ import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
 import LoreFilterChips from '@/features/lore/components/LoreFilterChips';
 import LoreSortMenu from '@/features/lore/components/LoreSortMenu';
 import CharacterPortraitCard from '@/features/lore/components/CharacterPortraitCard';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
 import type { CharacterEntry, DistrictEntry } from '@/lib/lore/types';
+
+const TIER_ORDER = ['tier-1', 'tier-2', 'tier-3'] as const;
 
 interface LoreCharactersClientProps {
   characters: CharacterEntry[];
@@ -22,7 +25,7 @@ export default function LoreCharactersClient({
 }: LoreCharactersClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [districtFilter, setDistrictFilter] = useState('all');
-  const [sortBy, setSortBy] = useState('name');
+  const [sortBy, setSortBy] = useState('tier');
 
   const districtFilters = [
     { id: 'all', label: 'All Districts', count: characters.length },
@@ -59,9 +62,23 @@ export default function LoreCharactersClient({
     return filtered;
   }, [characters, searchQuery, districtFilter, sortBy]);
 
+  const charactersByTier = useMemo(() => {
+    const grouped: Record<string, CharacterEntry[]> = {};
+    for (const tier of TIER_ORDER) {
+      grouped[tier] = [];
+    }
+    grouped['other'] = [];
+    for (const character of filteredAndSortedCharacters) {
+      const tier = character.frontmatter.canonTier;
+      const key = TIER_ORDER.includes(tier as (typeof TIER_ORDER)[number]) ? tier : 'other';
+      grouped[key].push(character);
+    }
+    return grouped;
+  }, [filteredAndSortedCharacters]);
+
   const sortOptions = [
-    { id: 'name', label: 'A–Z' },
     { id: 'tier', label: 'Canon Tier' },
+    { id: 'name', label: 'A–Z' },
     { id: 'district', label: 'District' },
   ];
 
@@ -93,14 +110,36 @@ export default function LoreCharactersClient({
             />
           </div>
           {filteredAndSortedCharacters.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredAndSortedCharacters.map((character) => (
-                <CharacterPortraitCard
-                  key={character.frontmatter.slug}
-                  character={character}
-                  districtName={districtNames[character.frontmatter.district]}
-                />
-              ))}
+            <div className="space-y-12">
+              {[...TIER_ORDER, 'other'].map((tier) => {
+                const tierCharacters = charactersByTier[tier] ?? [];
+                if (tierCharacters.length === 0) return null;
+                return (
+                  <section key={tier}>
+                    <div className="flex items-center gap-3 mb-6">
+                      {tier !== 'other' ? (
+                        <CanonTierBadge tier={tier as (typeof TIER_ORDER)[number]} />
+                      ) : (
+                        <span className="font-display text-sm uppercase tracking-wider text-gray-400">
+                          Other
+                        </span>
+                      )}
+                      <span className="text-gray-400 text-sm">
+                        {tierCharacters.length} character{tierCharacters.length !== 1 ? 's' : ''}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {tierCharacters.map((character) => (
+                        <CharacterPortraitCard
+                          key={character.frontmatter.slug}
+                          character={character}
+                          districtName={districtNames[character.frontmatter.district]}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-20">
