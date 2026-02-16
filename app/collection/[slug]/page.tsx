@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Section from '@/components/Section';
-import Card from '@/components/Card';
-import RarityBadge from '@/components/collection/RarityBadge';
-import ModeTag from '@/components/collection/ModeTag';
-import { getCollectibleBySlug, getAllCollectibleSlugs } from '../../../data/collectibles';
+import Section from '@/shared/components/Section';
+import Card from '@/shared/components/Card';
+import RarityBadge from '@/features/collection/components/RarityBadge';
+import ModeTag from '@/features/collection/components/ModeTag';
+import { getCollectibleBySlug, getAllCollectibleSlugs } from '@/features/collection/data/collectibles';
 
 interface PageProps {
   params: Promise<{

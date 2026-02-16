@@ -1,4 +1,4 @@
-import { CollectibleRarity } from '@/../../data/collectibles';
+import { CollectibleRarity } from '@/features/collection/data/collectibles';
 
 interface RarityBadgeProps {
   rarity: CollectibleRarity;

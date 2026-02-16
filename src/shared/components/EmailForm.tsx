@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import Button from './Button';
+import Button from '@/shared/components/Button';
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 

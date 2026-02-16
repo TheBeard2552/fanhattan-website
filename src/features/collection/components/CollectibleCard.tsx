@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { Collectible } from '@/../../data/collectibles';
-import RarityBadge from './collection/RarityBadge';
-import ModeTag from './collection/ModeTag';
+import { Collectible } from '@/features/collection/data/collectibles';
+import RarityBadge from '@/features/collection/components/RarityBadge';
+import ModeTag from '@/features/collection/components/ModeTag';
 
 // Legacy props (for homepage)
 interface LegacyProps {

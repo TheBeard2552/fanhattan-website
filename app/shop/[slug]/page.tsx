@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Section from '@/components/Section';
-import AddToCartButton from '@/components/shop/AddToCartButton';
-import DropBadge from '@/components/shop/DropBadge';
-import RarityBadge from '@/components/collection/RarityBadge';
-import { products, getProductBySlug } from '../../../data/products';
+import Section from '@/shared/components/Section';
+import AddToCartButton from '@/features/shop/components/AddToCartButton';
+import DropBadge from '@/features/shop/components/DropBadge';
+import RarityBadge from '@/features/collection/components/RarityBadge';
+import { products, getProductBySlug } from '@/features/shop/data/products';
 
 interface PageProps {
   params: Promise<{

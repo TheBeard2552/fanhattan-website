@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Product } from '../../../data/products';
+import { Product } from '@/features/shop/data/products';
 
 interface AddToCartButtonProps {
   product: Product;

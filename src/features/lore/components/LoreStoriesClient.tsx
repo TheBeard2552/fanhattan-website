@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import CanonLayout from '@/components/CanonLayout';
-import { CanonTierBadge } from '@/components/CanonTierBadge';
-import LoreSearchBar from '@/components/lore/LoreSearchBar';
-import LoreFilterChips from '@/components/lore/LoreFilterChips';
+import CanonLayout from '@/features/lore/components/CanonLayout';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
+import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
+import LoreFilterChips from '@/features/lore/components/LoreFilterChips';
 import type { StoryEntry } from '@/lib/lore/types';
 
 interface LoreStoriesClientProps {

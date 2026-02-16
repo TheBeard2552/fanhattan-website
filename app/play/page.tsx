@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Button from '@/components/Button';
-import PlaySection from '@/components/play/PlaySection';
-import ModeBlock from '@/components/play/ModeBlock';
-import StepCard from '@/components/play/StepCard';
-import DownloadButtons from '@/components/play/DownloadButtons';
+import Button from '@/shared/components/Button';
+import PlaySection from '@/features/play/components/PlaySection';
+import ModeBlock from '@/features/play/components/ModeBlock';
+import StepCard from '@/features/play/components/StepCard';
+import DownloadButtons from '@/features/play/components/DownloadButtons';
 
 export const metadata: Metadata = {
   title: 'How to Play — Bagged Up',

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Section from '@/components/Section';
-import Button from '@/components/Button';
+import Section from '@/shared/components/Section';
+import Button from '@/shared/components/Button';
 
 export const metadata: Metadata = {
   title: 'Official Fanhattan Shop — Bagged Up',

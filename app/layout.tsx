@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Lilita_One, Inter } from 'next/font/google';
 import './globals.css';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
+import Nav from '@/shared/components/Nav';
+import Footer from '@/shared/components/Footer';
 
 const lilitaOne = Lilita_One({
   weight: ['400'],

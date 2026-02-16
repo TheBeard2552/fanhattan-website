@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Section from '@/components/Section';
+import Section from '@/shared/components/Section';
 
 interface PlaySectionProps {
   children: ReactNode;

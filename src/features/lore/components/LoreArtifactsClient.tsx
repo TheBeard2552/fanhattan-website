@@ -2,11 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import CanonLayout from '@/components/CanonLayout';
-import { CanonTierBadge } from '@/components/CanonTierBadge';
-import LoreSearchBar from '@/components/lore/LoreSearchBar';
-import LoreFilterChips from '@/components/lore/LoreFilterChips';
-import LoreSortMenu from '@/components/lore/LoreSortMenu';
+import CanonLayout from '@/features/lore/components/CanonLayout';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
+import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
+import LoreFilterChips from '@/features/lore/components/LoreFilterChips';
+import LoreSortMenu from '@/features/lore/components/LoreSortMenu';
 import type { ArtifactEntry, ArtifactType } from '@/lib/lore/types';
 
 function getArtifactHref(slug: string, artifactType: ArtifactType): string {

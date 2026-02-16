@@ -1,5 +1,5 @@
 import { getAllCharacters, getAllDistricts } from '@/lib/lore/resolvers';
-import LoreCharactersClient from '@/components/lore/LoreCharactersClient';
+import LoreCharactersClient from '@/features/lore/components/LoreCharactersClient';
 
 export default function CharactersPage() {
   const characters = getAllCharacters();

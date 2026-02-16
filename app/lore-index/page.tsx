@@ -9,7 +9,7 @@ import {
   getAllFactions,
   getAllSystems,
 } from '@/lib/lore/resolvers';
-import { CanonTierBadge } from '@/components/CanonTierBadge';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
 
 export default function LoreIndexPage() {
   const districts = getAllDistricts();

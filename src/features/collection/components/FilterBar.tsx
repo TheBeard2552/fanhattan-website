@@ -1,6 +1,6 @@
 'use client';
 
-import { CollectibleMode, CollectibleType, CollectibleRarity } from '@/../../data/collectibles';
+import { CollectibleMode, CollectibleType, CollectibleRarity } from '@/features/collection/data/collectibles';
 
 interface FilterBarProps {
   mode: CollectibleMode | 'all';

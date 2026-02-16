@@ -1,4 +1,4 @@
-import Card from '@/components/Card';
+import Card from '@/shared/components/Card';
 
 interface StepCardProps {
   number: string;

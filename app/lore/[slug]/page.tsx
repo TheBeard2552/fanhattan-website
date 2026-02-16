@@ -3,9 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getCanonBySlug, getStaticSlugs, getRelatedEntries, getCharactersByDistrict, getSection } from '@/lib/content';
-import CanonLayout from '@/components/CanonLayout';
-import CanonTierBadge from '@/components/CanonTierBadge';
-import Markdown from '@/components/Markdown';
+import CanonLayout from '@/features/lore/components/CanonLayout';
+import CanonTierBadge from '@/features/lore/components/CanonTierBadge';
+import Markdown from '@/shared/components/Markdown';
 
 interface PageProps {
   params: Promise<{

@@ -1,4 +1,4 @@
-import { CollectibleMode } from '@/../../data/collectibles';
+import { CollectibleMode } from '@/features/collection/data/collectibles';
 
 interface ModeTagProps {
   mode: CollectibleMode;

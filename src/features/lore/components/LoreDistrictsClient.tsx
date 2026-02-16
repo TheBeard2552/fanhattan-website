@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import CanonLayout from '@/components/CanonLayout';
-import { CanonTierBadge } from '@/components/CanonTierBadge';
-import LoreSearchBar from '@/components/lore/LoreSearchBar';
-import LoreSortMenu from '@/components/lore/LoreSortMenu';
+import CanonLayout from '@/features/lore/components/CanonLayout';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
+import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
+import LoreSortMenu from '@/features/lore/components/LoreSortMenu';
 import type { DistrictEntry } from '@/lib/lore/types';
 
 interface LoreDistrictsClientProps {

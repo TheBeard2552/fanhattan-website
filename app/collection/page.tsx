@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Section from '@/components/Section';
-import { collectibles } from '../../data/collectibles';
+import Section from '@/shared/components/Section';
+import { collectibles } from '@/features/collection/data/collectibles';
 import CollectionGrid from './CollectionGrid';
 
 export const metadata: Metadata = {

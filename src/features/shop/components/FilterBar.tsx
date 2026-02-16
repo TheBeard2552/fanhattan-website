@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductType, DropType } from '../../../data/products';
+import { ProductType, DropType } from '@/features/shop/data/products';
 
 interface FilterBarProps {
   selectedType: ProductType | 'all';

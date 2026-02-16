@@ -8,8 +8,8 @@ import {
   getFactionsByCharacter,
   getStaticPaths,
 } from '@/lib/lore/resolvers';
-import { CanonTierBadge } from '@/components/CanonTierBadge';
-import { Markdown } from '@/components/MarkdownRenderer';
+import { CanonTierBadge } from '@/features/lore/components/CanonTierBadge';
+import { Markdown } from '@/shared/components/MarkdownRenderer';
 
 interface PageProps {
   params: Promise<{ slug: string }>;

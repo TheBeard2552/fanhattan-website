@@ -1,4 +1,4 @@
-import FeedbackForm from '@/components/FeedbackForm';
+import FeedbackForm from '@/shared/components/FeedbackForm';
 
 export const metadata = {
   title: 'Report an Incident | Bagged Up',

@@ -1,4 +1,4 @@
-import { DropType, Mode } from '../../../data/products';
+import { DropType, Mode } from '@/features/shop/data/products';
 
 interface DropBadgeProps {
   dropType: DropType;

@@ -1,5 +1,5 @@
 import { getAllDistricts, getCharactersByDistrict, getStoriesByDistrict } from '@/lib/lore/resolvers';
-import LoreDistrictsClient from '@/components/lore/LoreDistrictsClient';
+import LoreDistrictsClient from '@/features/lore/components/LoreDistrictsClient';
 
 export default function DistrictsPage() {
   const districts = getAllDistricts();

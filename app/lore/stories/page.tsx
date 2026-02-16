@@ -1,5 +1,5 @@
 import { getAllStories, getEpisodicStories } from '@/lib/lore/resolvers';
-import LoreStoriesClient from '@/components/lore/LoreStoriesClient';
+import LoreStoriesClient from '@/features/lore/components/LoreStoriesClient';
 
 export default function StoriesPage() {
   const allStories = getAllStories();

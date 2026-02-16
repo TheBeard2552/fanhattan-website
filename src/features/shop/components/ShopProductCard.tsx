@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Product } from '../../../data/products';
-import DropBadge from './DropBadge';
-import SoldOutOverlay from './SoldOutOverlay';
-import RarityBadge from '../collection/RarityBadge';
+import { Product } from '@/features/shop/data/products';
+import DropBadge from '@/features/shop/components/DropBadge';
+import SoldOutOverlay from '@/features/shop/components/SoldOutOverlay';
+import RarityBadge from '@/features/collection/components/RarityBadge';
 
 interface ShopProductCardProps {
   product: Product;

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Section from '@/components/Section';
-import Button from '@/components/Button';
-import CollectibleCard from '@/components/CollectibleCard';
-import ModeCard from '@/components/ModeCard';
-import EmailForm from '@/components/EmailForm';
+import Section from '@/shared/components/Section';
+import Button from '@/shared/components/Button';
+import CollectibleCard from '@/features/collection/components/CollectibleCard';
+import ModeCard from '@/shared/components/ModeCard';
+import EmailForm from '@/shared/components/EmailForm';
 
 export const metadata: Metadata = {
   title: 'Bagged Up - A Collectible Universe',

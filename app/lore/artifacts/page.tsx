@@ -1,5 +1,5 @@
 import { getAllArtifacts, getArtifactsByType } from '@/lib/lore/resolvers';
-import LoreArtifactsClient from '@/components/lore/LoreArtifactsClient';
+import LoreArtifactsClient from '@/features/lore/components/LoreArtifactsClient';
 
 export default function ArtifactsPage() {
   const artifacts = getAllArtifacts();

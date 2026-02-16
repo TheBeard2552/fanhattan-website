@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Collectible, CollectibleMode, CollectibleType, CollectibleRarity } from '../../data/collectibles';
-import CollectibleCard from '@/components/CollectibleCard';
-import FilterBar from '@/components/collection/FilterBar';
+import { Collectible, CollectibleMode, CollectibleType, CollectibleRarity } from '@/features/collection/data/collectibles';
+import CollectibleCard from '@/features/collection/components/CollectibleCard';
+import FilterBar from '@/features/collection/components/FilterBar';
 
 interface CollectionGridProps {
   collectibles: Collectible[];

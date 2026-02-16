@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Product, ProductType, DropType } from '../../data/products';
-import FilterBar from '@/components/shop/FilterBar';
-import ShopProductCard from '@/components/shop/ShopProductCard';
+import { Product, ProductType, DropType } from '@/features/shop/data/products';
+import FilterBar from '@/features/shop/components/FilterBar';
+import ShopProductCard from '@/features/shop/components/ShopProductCard';
 
 interface ShopGridProps {
   products: Product[];

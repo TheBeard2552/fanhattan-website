@@ -6,7 +6,7 @@ import {
   getAllStories,
   getAllArtifacts,
 } from '@/lib/lore/resolvers';
-import CanonLayout from '@/components/CanonLayout';
+import CanonLayout from '@/features/lore/components/CanonLayout';
 
 export const metadata: Metadata = {
   title: 'The Canon of Fanhattan — Bagged Up',
