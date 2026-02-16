@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CanonTierBadge } from './CanonTierBadge';
 import { Markdown } from '@/shared/components/MarkdownRenderer';
-import type { CharacterEntry, DistrictEntry, StoryEntry, BeliefEntry, FactionEntry } from '@/lib/lore/types';
+import type { CharacterEntry, DistrictEntry, StoryEntry, ArtifactEntry } from '@/lib/lore/types';
 
 interface CharacterBioClientProps {
   character: CharacterEntry;
   district: DistrictEntry | undefined;
   stories: StoryEntry[];
-  beliefs: BeliefEntry[];
-  factions: FactionEntry[];
+  beliefs: ArtifactEntry[];
+  factions: ArtifactEntry[];
 }
 
 export default function CharacterBioClient({

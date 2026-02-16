@@ -33,7 +33,7 @@ export default async function CharacterPage({ params }: PageProps) {
   return (
     <CharacterBioClient
       character={character}
-      district={district}
+      district={district ?? undefined}
       stories={stories}
       beliefs={beliefs}
       factions={factions}
