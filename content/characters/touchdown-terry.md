@@ -2,44 +2,24 @@
 name: Touchdown Terry
 slug: touchdown-terry
 district: stadium-south
-role: Honest sports memorabilia dealer
+role: Honest Card Shop Owner
 reputation: >-
-  Legit dealer who knows his cards and sports history. Played ball back in the
-  day—still got the limp to prove it. Weird having an honest dealer in Stadium
-  South.
+  The only honest card shop on Greer Avenue. Former athlete turned small
+  businessman. Twenty years proving you don't have to be dirty to survive.
 privateTruth: >-
-  Every authentic card he sells is a middle finger to the Syndicate who burned
-  down his uncle's shop. He's terrified they'll make an example of him next.
-canonTier: tier-2
+  Cecil Fontaine saved his shop from Syndicate shakedowns in 2009 with one phone
+  call. When the Syndicate sent operatives after hours, they stole his bat and
+  killed his security camera. Terry would burn the whole shop down before he'd
+  let them bury Nate inside it.
+canonTier: tier-1
 coverImage: /images/placeholder.svg
 thumbnail: /images/placeholder.svg
 artifacts:
   - honesty-in-business
   - meritocracy-is-honest
+  - gardeners-ledger
 ---
 
-## What They Want
+# Touchdown Terry
 
-To run his business clean in a dirty city, and to honor the game that gave him everything—even if his career ended before the pros. Every authentic card he sells, every collector he helps, is a way of keeping that connection alive.
-
-## What Stands In Their Way
-
-The Syndicate-affiliated memorabilia shops that deal in fakes and stolen goods. The fact that "honest card dealer" sounds like an oxymoron to most people. His bum knee from his final college game—a constant reminder of what could have been.
-
-## What They're Willing to Risk
-
-He already risked his safety by refusing to sell fakes or deal with Syndicate suppliers. He already risked his profits by insisting on authentication and fair prices. At this point, Terry's all-in on his principles. If they kill him for it, at least he'll die knowing he didn't compromise.
-
-## Reputation (Street Truth)
-
-"Touchdown Terry? Yeah, he's legit. Like, actually legit. Knows his cards, knows his sports history. You bring him something, he'll tell you straight if it's real or fake, what it's worth. Played ball back in the day—still got the limp to prove it. It's weird having an honest dealer in Stadium South, but he's been at it for years, so I guess it works?"
-
-People genuinely can't figure out if Terry's a saint or an idiot. The consensus leans toward "both, and that's why we like him."
-
-## Private Truth
-
-He's not doing this out of pure altruism. Terry's uncle ran a memorabilia shop that got burned down in the '90s during a Syndicate territory grab. The loss destroyed his uncle—not just financially, but spiritually. Watching cards and jerseys that meant something go up in flames because some gangster wanted protection money... it changed Terry.
-
-He inherited what was left and rebuilt with one rule: never compromise. Every authentic card he sells is a middle finger to the Syndicate. Every collector he treats fairly is proof that you don't have to be dirty to survive.
-
-But he's also terrified. Because he knows the second the Syndicate decides he's more trouble than he's worth, they'll make an example of him just like they did to his uncle.
+Touchdown Terry runs the only honest card shop on Greer Avenue, and in Stadium South, that's practically a superpower. Former athlete turned small businessman, Terry has spent twenty years proving that you don't have to be dirty to survive in Fanhattan's roughest district. His shop is where Nate Fontaine works, where collectors trade above board, and where the sports history of this city gets preserved one card at a time. Cecil Fontaine saved Terry's shop from Syndicate shakedowns back in 2009 by making a single phone call to someone in Winchester, and the shakedowns stopped overnight. Terry never knew who Cecil called. Now, reading the ledger, he's starting to understand. When the Syndicate sent operatives to his shop after hours, they stole his bat and killed his security camera. Terry would burn the whole shop down before he'd let them bury a twenty-three-year-old kid inside it.

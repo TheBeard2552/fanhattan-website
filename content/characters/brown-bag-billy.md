@@ -1,12 +1,12 @@
 ---
 name: Brown Bag Billy
 slug: brown-bag-billy
-district: the-proving-grounds
-role: Survival Expert & Information Broker
-reputation: The man who knows how to disappear—and how to find anyone who tried.
+district: stadium-south
+role: Probability Manipulator & Resistance Fighter
+reputation: The guy with the bag who does impossible stuff. Living legend.
 privateTruth: >-
-  He's actually from Stadium South elite, fled after a scandal, and reinvented
-  himself.
+  Every time he uses his abilities, he can feel pieces of himself scattering
+  across probability branches like cards thrown into the wind.
 canonTier: tier-1
 thumbnail: /images/characters/brown-bag-billy-thumb.jpg
 artifacts:
@@ -16,16 +16,4 @@ artifacts:
 
 # Brown Bag Billy
 
-Billy is a fixture in The Proving Grounds, known for his uncanny ability to procure anything and find anyone. He operates from a makeshift stall where he trades in information, supplies, and survival advice.
-
-## Background
-
-Though he presents as a lifelong Proving Grounds resident, Billy actually came from Stadium South's elite circles. After a betting scandal ruined his career, he fled and built a new identity in the one place no one would look for a former champion.
-
-## Role in the Community
-
-Billy serves as an unofficial guide for newcomers to The Proving Grounds. He teaches survival skills, brokers deals, and maintains a network of contacts across Fanhattan.
-
-## Connections
-
-Despite his low-key operation, Billy has ties to the Resistance and occasionally passes intelligence about Syndicate movements.
+Nobody knows what Billy Brownbag (also known as "Brown Bag Billy" after his ascension) actually looks like. The brown paper bag stays on, always, because that's what Brownbags do, and Billy is nothing if not loyal to the family tradition. What people do know is that he's the most dangerous probability manipulator in Fanhattan, a living legend who merged with a probability branch and walked away with abilities that make the Syndicate lose sleep. He fights for the Resistance, protects the people who can't protect themselves, and does impossible shit on a regular enough basis that half the city thinks he's cheating. The other half thinks he's lucky. Billy knows the truth is worse than either: every time he uses his abilities, he can feel pieces of himself scattering across probability branches like cards thrown into the wind. The guy with the bag who does impossible stuff. That's the legend. What's underneath? Even Billy's not sure anymore.
