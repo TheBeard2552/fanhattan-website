@@ -9,6 +9,10 @@ characters:
   - papi
   - brown-bag-billy
   - shep
+  - lucia-vega
+  - tomas
+  - yolanda
+  - danny
 canonTier: tier-1
 summary: >-
   Someone is using Casa de Boom's piñatas as Syndicate dead drops. Papi

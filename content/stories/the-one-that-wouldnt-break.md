@@ -178,7 +178,7 @@ He was, outwardly, having the time of his life.
 
 Inwardly, the tingle hadn't stopped since he'd hung the thing up. It pulsed behind his molars like a second heartbeat. He'd wake at 3 AM tasting copper and ozone. The probability field around Casa de Boom, always active, always a little chaotic, that was La Fiesta's nature, had thickened into something heavy and still, like the air before a Gulf Coast hurricane.
 
-On day four, someone from The Swamp, dressed appropriately in a dirty sleeveless white undershirt and hean shorts, showed up with a chainsaw.
+On day four, someone from The Swamp, dressed appropriately in a dirty sleeveless white undershirt and jean shorts, showed up with a chainsaw.
 
 "No," Papi said.
 

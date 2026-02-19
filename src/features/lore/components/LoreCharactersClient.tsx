@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import CanonLayout from '@/features/lore/components/CanonLayout';
 import LoreSearchBar from '@/features/lore/components/LoreSearchBar';
 import LoreFilterChips from '@/features/lore/components/LoreFilterChips';
@@ -23,9 +24,32 @@ export default function LoreCharactersClient({
   districts,
   districtNames,
 }: LoreCharactersClientProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
-  const [districtFilter, setDistrictFilter] = useState('all');
   const [sortBy, setSortBy] = useState('tier');
+
+  // District filter: sync with URL so it works with back/forward and shareable links
+  const validDistrictSlugs = new Set(districts.map((d) => d.frontmatter.slug));
+  const districtFromUrl = searchParams.get('district') ?? 'all';
+  const districtFilter =
+    districtFromUrl === 'all' || validDistrictSlugs.has(districtFromUrl)
+      ? districtFromUrl
+      : 'all';
+
+  const handleDistrictFilterChange = (districtId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (districtId === 'all') {
+      params.delete('district');
+    } else {
+      params.set('district', districtId);
+    }
+    const queryString = params.toString();
+    const url = queryString
+      ? `${window.location.pathname}?${queryString}`
+      : window.location.pathname;
+    router.push(url);
+  };
 
   const districtFilters = [
     { id: 'all', label: 'All Districts', count: characters.length },
@@ -105,7 +129,7 @@ export default function LoreCharactersClient({
             <LoreFilterChips
               filters={districtFilters}
               activeFilter={districtFilter}
-              onFilterChange={setDistrictFilter}
+              onFilterChange={handleDistrictFilterChange}
               className="mb-8"
             />
           </div>

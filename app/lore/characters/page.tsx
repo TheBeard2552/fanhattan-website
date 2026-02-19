@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getAllCharacters, getAllDistricts } from '@/lib/lore/resolvers';
 import LoreCharactersClient from '@/features/lore/components/LoreCharactersClient';
 
@@ -9,10 +10,12 @@ export default function CharactersPage() {
   );
 
   return (
-    <LoreCharactersClient
-      characters={characters}
-      districts={districts}
-      districtNames={districtNames}
-    />
+    <Suspense fallback={<div className="min-h-screen bg-[#0e0e0e]" />}>
+      <LoreCharactersClient
+        characters={characters}
+        districts={districts}
+        districtNames={districtNames}
+      />
+    </Suspense>
   );
 }
