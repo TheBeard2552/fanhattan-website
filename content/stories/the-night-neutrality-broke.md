@@ -7,6 +7,9 @@ districts:
 characters:
   - shep
   - brown-bag-billy
+  - mamba
+  - lady-luck
+  - baby-brownbag
 canonTier: tier-1
 summary: >-
   When the Syndicate demanded Shep choose a side, his decision sent shockwaves

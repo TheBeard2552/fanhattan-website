@@ -13,6 +13,8 @@ characters:
   - tomas
   - yolanda
   - danny
+  - marco
+  - reina-espinoza
 canonTier: tier-1
 summary: >-
   Someone is using Casa de Boom's piñatas as Syndicate dead drops. Papi

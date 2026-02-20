@@ -13,6 +13,7 @@ characters:
   - sylvia-pratt
   - brown-bag-billy
   - bailey-brownbag
+  - betty-boom
 canonTier: tier-1
 summary: >-
   Winchester's Open House is co-opted by the Syndicate's sensors. Norah Finch

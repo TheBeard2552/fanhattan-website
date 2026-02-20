@@ -81,7 +81,7 @@ export default function LoreStoriesClient({ allStories, seriesMap }: LoreStories
               Standalone tales and episodic sagas that shape Fanhattan.
             </p>
             <div className="mb-6">
-              <LoreSearchBar placeholder="Search stories..." onSearch={setSearchQuery} />
+              <LoreSearchBar placeholder="Search stories..." value={searchQuery} onSearch={setSearchQuery} />
             </div>
             <LoreFilterChips
               filters={filterOptions}

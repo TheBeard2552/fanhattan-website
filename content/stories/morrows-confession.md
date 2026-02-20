@@ -11,6 +11,10 @@ characters:
   - gus-papadopoulos
   - shep
   - brown-bag-billy
+  - dolores-morrow
+  - cornelius-morrow
+  - the-professor
+  - franklin-tate
 canonTier: tier-1
 summary: >-
   A sealed room in Morrow's Manor yields 47 journals that describe future

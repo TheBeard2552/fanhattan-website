@@ -61,28 +61,60 @@ export default function LoreCharactersClient({
   ];
 
   const filteredAndSortedCharacters = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
     let filtered = characters.filter((character) => {
-      const query = searchQuery.toLowerCase();
-      const matchesSearch =
-        character.frontmatter.name.toLowerCase().includes(query) ||
-        character.frontmatter.role.toLowerCase().includes(query) ||
-        character.frontmatter.reputation.toLowerCase().includes(query);
       const matchesDistrict =
         districtFilter === 'all' || character.frontmatter.district === districtFilter;
-      return matchesSearch && matchesDistrict;
+      if (!matchesDistrict) return false;
+      if (!query) return true;
+      const name = character.frontmatter.name.toLowerCase();
+      const role = character.frontmatter.role.toLowerCase();
+      const reputation = character.frontmatter.reputation.toLowerCase();
+      return (
+        name.includes(query) ||
+        role.includes(query) ||
+        reputation.includes(query)
+      );
     });
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'name':
-          return a.frontmatter.name.localeCompare(b.frontmatter.name);
-        case 'tier':
-          return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
-        case 'district':
-          return a.frontmatter.district.localeCompare(b.frontmatter.district);
-        default:
-          return 0;
-      }
-    });
+    // When searching, sort by relevance: name match first, then role, then reputation
+    if (query) {
+      const score = (c: CharacterEntry) => {
+        const name = c.frontmatter.name.toLowerCase();
+        const role = c.frontmatter.role.toLowerCase();
+        const reputation = c.frontmatter.reputation.toLowerCase();
+        if (name.includes(query)) return 3;
+        if (role.includes(query)) return 2;
+        if (reputation.includes(query)) return 1;
+        return 0;
+      };
+      filtered.sort((a, b) => {
+        const diff = score(b) - score(a);
+        if (diff !== 0) return diff;
+        switch (sortBy) {
+          case 'name':
+            return a.frontmatter.name.localeCompare(b.frontmatter.name);
+          case 'tier':
+            return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
+          case 'district':
+            return a.frontmatter.district.localeCompare(b.frontmatter.district);
+          default:
+            return 0;
+        }
+      });
+    } else {
+      filtered.sort((a, b) => {
+        switch (sortBy) {
+          case 'name':
+            return a.frontmatter.name.localeCompare(b.frontmatter.name);
+          case 'tier':
+            return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
+          case 'district':
+            return a.frontmatter.district.localeCompare(b.frontmatter.district);
+          default:
+            return 0;
+        }
+      });
+    }
     return filtered;
   }, [characters, searchQuery, districtFilter, sortBy]);
 
@@ -120,7 +152,7 @@ export default function LoreCharactersClient({
             <p className="text-xl text-gray-400 mb-8">Those who shape the city.</p>
             <div className="flex flex-col md:flex-row gap-4 mb-6">
               <div className="flex-1">
-                <LoreSearchBar placeholder="Search characters..." onSearch={setSearchQuery} />
+                <LoreSearchBar placeholder="Search characters..." value={searchQuery} onSearch={setSearchQuery} />
               </div>
               <div className="w-full md:w-64">
                 <LoreSortMenu options={sortOptions} activeSort={sortBy} onSortChange={setSortBy} />

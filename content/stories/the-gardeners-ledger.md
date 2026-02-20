@@ -15,6 +15,8 @@ characters:
   - touchdown-terry
   - bailey-brownbag
   - brown-bag-billy
+  - elena-vandermeer
+  - franklin-tate
 canonTier: tier-1
 summary: >-
   Nate Fontaine inherits his grandfather's ledger of Winchester secrets. Sal

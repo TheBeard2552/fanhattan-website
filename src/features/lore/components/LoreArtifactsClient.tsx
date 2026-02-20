@@ -101,7 +101,7 @@ export default function LoreArtifactsClient({ artifacts, typeCounts }: LoreArtif
             </p>
             <div className="flex flex-col md:flex-row gap-4 mb-6">
               <div className="flex-1">
-                <LoreSearchBar placeholder="Search artifacts..." onSearch={setSearchQuery} />
+                <LoreSearchBar placeholder="Search artifacts..." value={searchQuery} onSearch={setSearchQuery} />
               </div>
               <div className="w-full md:w-64">
                 <LoreSortMenu options={sortOptions} activeSort={sortBy} onSortChange={setSortBy} />

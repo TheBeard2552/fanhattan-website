@@ -67,7 +67,7 @@ export default function LoreDistrictsClient({
             <p className="text-xl text-gray-400 mb-8">The territories of power in Fanhattan.</p>
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <div className="flex-1">
-                <LoreSearchBar placeholder="Search districts..." onSearch={setSearchQuery} />
+                <LoreSearchBar placeholder="Search districts..." value={searchQuery} onSearch={setSearchQuery} />
               </div>
               <div className="w-full md:w-64">
                 <LoreSortMenu options={sortOptions} activeSort={sortBy} onSortChange={setSortBy} />

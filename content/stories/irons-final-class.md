@@ -11,6 +11,7 @@ characters:
   - brown-bag-billy
   - keisha-washington
   - dante-martinez
+  - silas-the-snake
 canonTier: tier-1
 summary: >-
   Coach Harlan "Iron" Grimes trains his final class while dying and documenting

@@ -13,6 +13,8 @@ characters:
   - bailey-brownbag
   - touchdown-terry
   - brown-bag-billy
+  - baby-brownbag
+  - fade-god
 canonTier: tier-1
 summary: >-
   Papi builds an unbreakable piñata in Casa de Boom. Something inside it is
