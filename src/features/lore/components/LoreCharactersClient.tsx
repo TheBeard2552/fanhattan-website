@@ -53,11 +53,13 @@ export default function LoreCharactersClient({
 
   const districtFilters = [
     { id: 'all', label: 'All Districts', count: characters.length },
-    ...districts.map((d) => ({
-      id: d.frontmatter.slug,
-      label: d.frontmatter.name,
-      count: characters.filter((c) => c.frontmatter.district === d.frontmatter.slug).length,
-    })),
+    ...districts
+      .map((d) => ({
+        id: d.frontmatter.slug,
+        label: d.frontmatter.name,
+        count: characters.filter((c) => c.frontmatter.district === d.frontmatter.slug).length,
+      }))
+      .filter((f) => f.count > 0),
   ];
 
   const filteredAndSortedCharacters = useMemo(() => {
@@ -68,53 +70,20 @@ export default function LoreCharactersClient({
       if (!matchesDistrict) return false;
       if (!query) return true;
       const name = character.frontmatter.name.toLowerCase();
-      const role = character.frontmatter.role.toLowerCase();
-      const reputation = character.frontmatter.reputation.toLowerCase();
-      return (
-        name.includes(query) ||
-        role.includes(query) ||
-        reputation.includes(query)
-      );
+      return name.includes(query);
     });
-    // When searching, sort by relevance: name match first, then role, then reputation
-    if (query) {
-      const score = (c: CharacterEntry) => {
-        const name = c.frontmatter.name.toLowerCase();
-        const role = c.frontmatter.role.toLowerCase();
-        const reputation = c.frontmatter.reputation.toLowerCase();
-        if (name.includes(query)) return 3;
-        if (role.includes(query)) return 2;
-        if (reputation.includes(query)) return 1;
-        return 0;
-      };
-      filtered.sort((a, b) => {
-        const diff = score(b) - score(a);
-        if (diff !== 0) return diff;
-        switch (sortBy) {
-          case 'name':
-            return a.frontmatter.name.localeCompare(b.frontmatter.name);
-          case 'tier':
-            return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
-          case 'district':
-            return a.frontmatter.district.localeCompare(b.frontmatter.district);
-          default:
-            return 0;
-        }
-      });
-    } else {
-      filtered.sort((a, b) => {
-        switch (sortBy) {
-          case 'name':
-            return a.frontmatter.name.localeCompare(b.frontmatter.name);
-          case 'tier':
-            return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
-          case 'district':
-            return a.frontmatter.district.localeCompare(b.frontmatter.district);
-          default:
-            return 0;
-        }
-      });
-    }
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'name':
+          return a.frontmatter.name.localeCompare(b.frontmatter.name);
+        case 'tier':
+          return a.frontmatter.canonTier.localeCompare(b.frontmatter.canonTier);
+        case 'district':
+          return a.frontmatter.district.localeCompare(b.frontmatter.district);
+        default:
+          return 0;
+      }
+    });
     return filtered;
   }, [characters, searchQuery, districtFilter, sortBy]);
 

@@ -1,0 +1,14 @@
+# Requirements for the Coqui TTS audio generation pipeline.
+# Used only locally (or in a CI step) to pre-generate static audio files.
+# NOT required for running the Next.js app itself.
+#
+# Setup:
+#   python3 -m venv .venv
+#   source .venv/bin/activate          # Windows: .venv\Scripts\activate
+#   pip install -r requirements-tts.txt
+#
+# Then generate audio:
+#   npm run tts:generate
+
+TTS>=0.22.0
+torch>=2.0.0

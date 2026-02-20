@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CanonTierBadge } from './CanonTierBadge';
 import { Markdown } from '@/shared/components/MarkdownRenderer';
+import CharacterAudioPlayer from './CharacterAudioPlayer';
 import type { CharacterEntry, DistrictEntry, StoryEntry, ArtifactEntry } from '@/lib/lore/types';
 
 interface CharacterBioClientProps {
@@ -166,6 +167,9 @@ export default function CharacterBioClient({
                 </Link>
               )}
             </div>
+
+            {/* Audio player */}
+            <CharacterAudioPlayer slug={frontmatter.slug} characterName={frontmatter.name} />
 
             {/* At a Glance Cards */}
             <div className="space-y-6 mb-8">

@@ -115,6 +115,81 @@ Collectibles use a scalable rarity system:
 └── tailwind.config.ts       # Design tokens config
 ```
 
+## Character Audiobook
+
+Each character page includes an optional audio player powered by [Coqui TTS](https://github.com/coqui-ai/TTS). Audio files are pre-generated as static assets and served directly from `public/audio/characters/`.
+
+### How it works
+
+1. A TypeScript script (`scripts/build-character-narration.ts`) reads the markdown files in `content/characters/` and writes clean, narration-ready `.txt` files to `.generated/narration/characters/`.
+2. A Python script (`scripts/tts/synthesize_character_audio.py`) feeds those `.txt` files into Coqui TTS and writes one `.wav` per character to `public/audio/characters/`.
+3. The `CharacterAudioPlayer` component on each character page probes for the `.wav` and renders a play/pause bar only if it exists.
+
+### Generating audio
+
+**One-time Python environment setup:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements-tts.txt
+```
+
+**Generate/refresh all character audio (incremental):**
+
+```bash
+source .venv/bin/activate
+npm run tts:generate
+```
+
+This only re-synthesizes characters whose `.txt` narration has changed since the last run.
+
+**Force regenerate everything:**
+
+```bash
+npm run tts:generate:force
+```
+
+**Run steps separately:**
+
+```bash
+# Step 1: rebuild narration text only
+npm run tts:build-narration
+
+# Step 2: synthesize audio only (uses existing narration text)
+npm run tts:synthesize
+```
+
+### Adding a new character
+
+1. Add the markdown file to `content/characters/<slug>.md` as normal.
+2. Run `npm run tts:generate` (with the venv active) to generate the new audio file.
+3. Commit `public/audio/characters/<slug>.wav` alongside the markdown file.
+
+### Changing the narrator voice
+
+Edit the `--model` default or pass it explicitly:
+
+```bash
+python scripts/tts/synthesize_character_audio.py --model tts_models/en/ljspeech/tacotron2-DDC_ph
+```
+
+**Good single-speaker English models:**
+
+| Model | Notes |
+|-------|-------|
+| `tts_models/en/ljspeech/vits` | Default — fast, natural, audiobook-quality |
+| `tts_models/en/ljspeech/tacotron2-DDC_ph` | Slightly more deliberate pace |
+| `tts_models/en/vctk/vits` | Multi-speaker; add `--speaker p270` |
+
+List all available models:
+
+```bash
+python -c "from TTS.api import TTS; TTS().list_models()"
+```
+
+---
+
 ## Getting Started
 
 ### Prerequisites

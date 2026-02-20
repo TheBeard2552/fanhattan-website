@@ -32,3 +32,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated narration scripts (intermediate build artifact)
+.generated/
+
+# Python virtual environment for TTS generation
+.venv/
