@@ -303,6 +303,35 @@ export function getArtifactsByDistrictAndType(districtSlug: string, artifactType
 }
 
 /**
+ * Get unique items (artifactType: "item") associated with a district.
+ * Sources: stories set in the district + items held by characters in the district.
+ * Artifacts are rare, myth-level objects — this keeps the list focused and important.
+ */
+export function getItemsByDistrict(districtSlug: string): ArtifactEntry[] {
+  const itemSlugs = new Set<string>();
+
+  // From stories involving this district
+  const storyArtifacts = getArtifactsByDistrictAndType(districtSlug, 'item');
+  for (const a of storyArtifacts) itemSlugs.add(a.frontmatter.slug);
+
+  // From characters who live in this district
+  const characters = getCharactersByDistrict(districtSlug);
+  for (const char of characters) {
+    for (const slug of char.frontmatter.artifacts) {
+      const artifact = getArtifactBySlug(slug);
+      if (artifact?.frontmatter.artifactType === 'item') itemSlugs.add(slug);
+    }
+  }
+
+  const items: ArtifactEntry[] = [];
+  for (const slug of itemSlugs) {
+    const artifact = getArtifactBySlug(slug);
+    if (artifact) items.push(artifact);
+  }
+  return items;
+}
+
+/**
  * Get all districts that appear in stories involving a character
  */
 export function getDistrictsByCharacter(characterSlug: string): DistrictEntry[] {

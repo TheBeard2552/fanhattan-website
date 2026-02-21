@@ -10,18 +10,20 @@ interface LoreSortMenuProps {
   activeSort: string;
   onSortChange: (sortId: string) => void;
   className?: string;
+  label?: string;
 }
 
 export default function LoreSortMenu({ 
   options, 
   activeSort, 
   onSortChange,
-  className = '' 
+  className = '',
+  label = 'Sort By',
 }: LoreSortMenuProps) {
   return (
     <div className={`relative ${className}`}>
       <label className="block text-xs font-display uppercase tracking-wide text-gray-500 mb-2">
-        Sort By
+        {label}
       </label>
       <select
         value={activeSort}

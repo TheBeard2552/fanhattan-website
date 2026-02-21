@@ -4,7 +4,7 @@ import {
   getAllDistricts,
   getAllCharacters,
   getAllStories,
-  getAllArtifacts,
+  getArtifactsByType,
 } from '@/lib/lore/resolvers';
 import CanonLayout from '@/features/lore/components/CanonLayout';
 
@@ -18,7 +18,7 @@ export default function LoreHubPage() {
   const districts = getAllDistricts();
   const characters = getAllCharacters();
   const stories = getAllStories();
-  const artifacts = getAllArtifacts();
+  const artifacts = getArtifactsByType('item');
 
   // Featured story: most recent by date, or first available
   const featuredStory = [...stories].sort((a, b) => {
@@ -40,7 +40,7 @@ export default function LoreHubPage() {
     { type: 'districts', title: 'Districts', description: 'The territories of power', emoji: '🏙️' },
     { type: 'characters', title: 'Characters', description: 'Those who shape the city', emoji: '👤' },
     { type: 'stories', title: 'Stories', description: 'Standalone tales and episodic sagas', emoji: '📜' },
-    { type: 'artifacts', title: 'Artifacts', description: 'Beliefs, factions, systems, and relics', emoji: '🏺' },
+    { type: 'artifacts', title: 'Artifacts', description: 'Rare objects that anchor the myth', emoji: '🏺' },
   ];
 
   // Curated "Start Here" entries (Survival Over Glory is a belief -> /belief/slug)

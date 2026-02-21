@@ -32,15 +32,15 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Shop</h4>
+            <h4 className="font-semibold mb-4">Drop</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/shop" className="hover:text-foreground transition-colors">All Products</Link></li>
+              <li><Link href="/drop" className="hover:text-foreground transition-colors">Drop 01</Link></li>
             </ul>
           </div>
         </div>
         
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Fanhattan. All rights reserved.</p>
+          <p suppressHydrationWarning>&copy; {new Date().getFullYear()} Fanhattan. All rights reserved.</p>
           <div className="flex flex-wrap gap-6 justify-center sm:justify-end">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>

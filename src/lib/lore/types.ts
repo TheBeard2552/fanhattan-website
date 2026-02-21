@@ -34,6 +34,16 @@ export interface DistrictFrontmatter {
   rivalDistricts: string[]; // slugs
   canonTier: CanonTier;
   description?: string;
+  tagline?: string;         // Short atmospheric hook, e.g. "Where the city keeps score."
+  pulse?: string;           // Immersive vignette — 1–3 sentences of raw atmosphere
+  privateTruth?: string;    // Restricted lore, collapsible on page
+  accentColor?: string;     // Per-district hex color for theming, e.g. "#1F6F78"
+  powerStructure?: {
+    political?: string;
+    criminal?: string;
+    cultural?: string;
+    hidden?: string;
+  };
   coverImage?: string;
   thumbnail?: string;
 }

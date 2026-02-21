@@ -40,10 +40,10 @@ export default async function Nav() {
               Lore
             </Link>
             <Link 
-              href="/shop" 
+              href="/drop" 
               className="text-sm font-display uppercase tracking-wide text-foreground/80 hover:text-platform transition-colors"
             >
-              Shop
+              Drop
             </Link>
             <Link 
               href="/incident" 

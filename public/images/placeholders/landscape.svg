@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08081a"/>
+      <stop offset="55%" stop-color="#141430"/>
+      <stop offset="100%" stop-color="#1e1a42"/>
+    </linearGradient>
+    <linearGradient id="gnd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e0e20"/>
+      <stop offset="100%" stop-color="#060610"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ede8d8" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ede8d8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+
+  <!-- Moon halo -->
+  <circle cx="640" cy="95" r="60" fill="url(#moon)"/>
+  <!-- Moon body -->
+  <circle cx="640" cy="95" r="26" fill="#ddd8c0" opacity="0.28"/>
+  <circle cx="640" cy="95" r="20" fill="#ede8d8" opacity="0.22"/>
+
+  <!-- Stars -->
+  <circle cx="55"  cy="38"  r="1.4" fill="white" opacity="0.70"/>
+  <circle cx="130" cy="72"  r="1.0" fill="white" opacity="0.55"/>
+  <circle cx="190" cy="28"  r="1.6" fill="white" opacity="0.65"/>
+  <circle cx="260" cy="55"  r="1.0" fill="white" opacity="0.50"/>
+  <circle cx="335" cy="22"  r="1.5" fill="white" opacity="0.70"/>
+  <circle cx="410" cy="65"  r="1.0" fill="white" opacity="0.45"/>
+  <circle cx="480" cy="42"  r="1.5" fill="white" opacity="0.60"/>
+  <circle cx="555" cy="18"  r="1.0" fill="white" opacity="0.55"/>
+  <circle cx="710" cy="48"  r="1.5" fill="white" opacity="0.65"/>
+  <circle cx="765" cy="30"  r="1.0" fill="white" opacity="0.50"/>
+  <circle cx="42"  cy="110" r="1.0" fill="white" opacity="0.40"/>
+  <circle cx="225" cy="100" r="1.4" fill="white" opacity="0.50"/>
+  <circle cx="500" cy="88"  r="1.0" fill="white" opacity="0.45"/>
+  <circle cx="740" cy="110" r="1.2" fill="white" opacity="0.55"/>
+
+  <!-- Far-layer buildings (mid-tone) -->
+  <rect x="0"   y="290" width="75"  height="310" fill="#121225"/>
+  <rect x="85"  y="255" width="55"  height="345" fill="#121225"/>
+  <rect x="150" y="270" width="95"  height="330" fill="#121225"/>
+  <rect x="255" y="215" width="75"  height="385" fill="#121225"/>
+  <rect x="340" y="235" width="55"  height="365" fill="#121225"/>
+  <rect x="405" y="205" width="110" height="395" fill="#121225"/>
+  <rect x="525" y="245" width="65"  height="355" fill="#121225"/>
+  <rect x="600" y="260" width="85"  height="340" fill="#121225"/>
+  <rect x="695" y="275" width="55"  height="325" fill="#121225"/>
+  <rect x="760" y="255" width="40"  height="345" fill="#121225"/>
+
+  <!-- Antenna/spire on tall building -->
+  <rect x="450" y="165" width="6"   height="40"  fill="#0e0e20"/>
+  <rect x="439" y="200" width="28"  height="5"   fill="#0e0e20"/>
+
+  <!-- Near-layer buildings (darkest) -->
+  <rect x="0"   y="345" width="50"  height="255" fill="#08081a"/>
+  <rect x="60"  y="315" width="38"  height="285" fill="#08081a"/>
+  <rect x="108" y="325" width="65"  height="275" fill="#08081a"/>
+  <rect x="183" y="285" width="48"  height="315" fill="#08081a"/>
+  <rect x="241" y="298" width="85"  height="302" fill="#08081a"/>
+  <rect x="336" y="275" width="42"  height="325" fill="#08081a"/>
+  <rect x="388" y="288" width="75"  height="312" fill="#08081a"/>
+  <rect x="473" y="302" width="52"  height="298" fill="#08081a"/>
+  <rect x="535" y="278" width="95"  height="322" fill="#08081a"/>
+  <rect x="640" y="292" width="60"  height="308" fill="#08081a"/>
+  <rect x="710" y="305" width="90"  height="295" fill="#08081a"/>
+
+  <!-- Lit windows (warm yellow + cool blue) -->
+  <rect x="92"  y="272" width="5" height="4" fill="#ffd580" opacity="0.60"/>
+  <rect x="102" y="280" width="5" height="4" fill="#ffd580" opacity="0.50"/>
+  <rect x="158" y="285" width="5" height="4" fill="#c4e8ff" opacity="0.55"/>
+  <rect x="170" y="275" width="5" height="4" fill="#ffd580" opacity="0.60"/>
+  <rect x="263" y="230" width="6" height="5" fill="#ffd580" opacity="0.55"/>
+  <rect x="275" y="242" width="6" height="5" fill="#ffd580" opacity="0.45"/>
+  <rect x="287" y="230" width="6" height="5" fill="#c4e8ff" opacity="0.50"/>
+  <rect x="415" y="220" width="6" height="5" fill="#ffd580" opacity="0.60"/>
+  <rect x="428" y="234" width="6" height="5" fill="#ffd580" opacity="0.50"/>
+  <rect x="441" y="220" width="6" height="5" fill="#c4e8ff" opacity="0.45"/>
+  <rect x="454" y="234" width="6" height="5" fill="#ffd580" opacity="0.60"/>
+  <rect x="533" y="255" width="5" height="4" fill="#ffd580" opacity="0.50"/>
+  <rect x="543" y="265" width="5" height="4" fill="#c4e8ff" opacity="0.45"/>
+  <rect x="610" y="272" width="5" height="4" fill="#ffd580" opacity="0.55"/>
+  <rect x="622" y="262" width="5" height="4" fill="#ffd580" opacity="0.60"/>
+
+  <!-- Horizon glow -->
+  <rect y="415" width="800" height="8" fill="#1e1a42" opacity="0.60"/>
+
+  <!-- Ground -->
+  <rect y="420" width="800" height="180" fill="url(#gnd)"/>
+
+  <!-- Ground reflections (faint vertical streaks) -->
+  <rect x="265" y="420" width="2" height="60" fill="#ffd580" opacity="0.06"/>
+  <rect x="430" y="420" width="2" height="80" fill="#ffd580" opacity="0.07"/>
+  <rect x="620" y="420" width="2" height="55" fill="#c4e8ff" opacity="0.05"/>
+</svg>

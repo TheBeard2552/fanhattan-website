@@ -1,18 +1,9 @@
-import { getAllArtifacts, getArtifactsByType } from '@/lib/lore/resolvers';
+import { getArtifactsByType } from '@/lib/lore/resolvers';
 import LoreArtifactsClient from '@/features/lore/components/LoreArtifactsClient';
 
+/** Artifacts = unique items only. Rare, myth-level objects that anchor the world. */
 export default function ArtifactsPage() {
-  const artifacts = getAllArtifacts();
-  const typeCounts = {
-    all: artifacts.length,
-    belief: getArtifactsByType('belief').length,
-    system: getArtifactsByType('system').length,
-    faction: getArtifactsByType('faction').length,
-    location: getArtifactsByType('location').length,
-    conflict: getArtifactsByType('conflict').length,
-    thread: getArtifactsByType('thread').length,
-    item: getArtifactsByType('item').length,
-  };
+  const items = getArtifactsByType('item');
 
-  return <LoreArtifactsClient artifacts={artifacts} typeCounts={typeCounts} />;
+  return <LoreArtifactsClient artifacts={items} />;
 }
